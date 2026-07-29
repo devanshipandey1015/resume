@@ -439,38 +439,918 @@ int main(void) {
   ]
 },
   {
-    id: 'cpp', title: 'C++', category: 'languages', short: 'Compiled language used heavily for DSA and OOP.',
-    simple: [
-      'C++ extends C with classes, objects, templates and the Standard Template Library.',
-      'It supports procedural, object-oriented and generic programming.',
-      'It is a strong choice for DSA because it offers efficient containers and fine control over memory.'
-    ],
-    technical: [
-      'The STL provides containers such as vector, map, unordered_map, set, stack, queue and priority_queue.',
-      'References provide aliases to existing objects, while pointers store addresses and can be null.',
-      'C++ supports compile-time polymorphism through overloading/templates and runtime polymorphism through virtual functions.'
-    ],
-    interview: 'I primarily use C++ for data structures and algorithms because the STL provides efficient containers such as vectors, maps, queues and priority queues. C++ also gives me control over references, pointers and memory, which helps me understand algorithm implementation more deeply.',
-    keyPoints: ['OOP', 'STL', 'Pointers and references', 'Templates', 'Constructors and destructors', 'Virtual functions'],
-    code: `vector<int> values = {1, 2, 3};\nunordered_map<string, int> frequency;\npriority_queue<int> maxHeap;`,
-    followUps: ['C versus C++?', 'map versus unordered_map?', 'What is RAII?', 'Why use a virtual destructor?']
-  },
+  id: 'cpp',
+  title: 'C++',
+  category: 'languages',
+
+  short:
+    'A compiled, statically typed language that supports procedural, object-oriented and generic programming.',
+
+  simple: [
+    'C++ is a general-purpose, compiled and statically typed programming language.',
+
+    'It was developed as an extension of C and adds features such as classes, objects, inheritance, polymorphism, templates and exception handling.',
+
+    'C++ supports multiple programming styles, including procedural programming, object-oriented programming and generic programming.',
+
+    'It is commonly used for data structures and algorithms, game development, operating systems, browsers, compilers, embedded systems and performance-sensitive software.',
+
+    'C++ gives the programmer more control over memory than languages such as Java and Python.',
+
+    'Memory can be managed manually using new and delete, although modern C++ generally prefers automatic objects, containers and smart pointers.',
+
+    'The Standard Template Library provides reusable containers and algorithms such as vector, map, set, stack, queue, sort and binary_search.',
+
+    'A class is a user-defined type that groups data and functions together.',
+
+    'An object is an instance of a class.',
+
+    'Encapsulation keeps related data and behaviour together and controls access through public, private and protected members.',
+
+    'Inheritance allows a new class to reuse or extend the behaviour of an existing class.',
+
+    'Polymorphism allows one interface to represent multiple implementations.',
+
+    'Templates allow functions and classes to work with multiple data types.',
+
+    'C++ supports both pointers and references. A pointer stores an address, while a reference acts as another name for an existing object.',
+
+    'Learning C++ helps in understanding object-oriented design, memory management and efficient implementation of algorithms.'
+  ],
+
+  technical: [
+    'C++ source code is normally compiled into native machine code before execution.',
+
+    'C++ is statically typed, which means types are generally checked during compilation.',
+
+    'C++ supports value semantics. Objects can be copied, moved, passed by value, passed by reference or accessed through pointers.',
+
+    'A constructor initialises an object when it is created.',
+
+    'A destructor runs when an object is destroyed and is commonly used to release resources.',
+
+    'A default constructor can be called without arguments, while a parameterised constructor accepts values used during initialisation.',
+
+    'A copy constructor creates a new object from an existing object of the same type.',
+
+    'A move constructor transfers ownership of resources from a temporary or expiring object rather than performing an expensive deep copy.',
+
+    'Function overloading allows several functions to share the same name when their parameter lists differ.',
+
+    'Function overriding occurs when a derived class provides its own implementation of a virtual function inherited from a base class.',
+
+    'Compile-time polymorphism includes function overloading, operator overloading and templates.',
+
+    'Runtime polymorphism is commonly implemented using virtual functions and base-class pointers or references.',
+
+    'A pure virtual function is declared using = 0 and makes the containing class abstract.',
+
+    'An abstract class cannot normally be instantiated directly and is used to define a common interface for derived classes.',
+
+    'A virtual destructor is required when objects may be deleted through a base-class pointer. It ensures that derived-class destructors also run.',
+
+    'The this pointer refers to the current object inside a non-static member function.',
+
+    'Static data members belong to the class rather than to individual objects.',
+
+    'Static member functions do not have a this pointer and can directly access only static members.',
+
+    'A friend function or class can access private and protected members, but friendship should be used carefully because it weakens encapsulation.',
+
+    'Public inheritance usually represents an is-a relationship, while composition represents a has-a relationship.',
+
+    'Composition is often preferred over inheritance when behaviour can be assembled without creating a strict type hierarchy.',
+
+    'Multiple inheritance allows a class to inherit from more than one base class.',
+
+    'The diamond problem occurs when a class inherits from two classes that share the same base class. Virtual inheritance can prevent duplicate base-class subobjects.',
+
+    'The stack commonly stores automatic local variables and function-call information.',
+
+    'The heap is used for dynamically allocated objects whose lifetime is controlled explicitly or through smart pointers.',
+
+    'A pointer can be null and can be reassigned. A reference normally must be initialised immediately and cannot be reseated to refer to another object.',
+
+    'A dangling pointer or reference refers to an object that no longer exists.',
+
+    'A memory leak occurs when dynamically allocated memory is not released and its address is lost.',
+
+    'RAII means Resource Acquisition Is Initialisation. A resource is owned by an object and released automatically in the object destructor.',
+
+    'unique_ptr provides exclusive ownership of a dynamically allocated object.',
+
+    'shared_ptr provides shared ownership using a reference count.',
+
+    'weak_ptr observes an object managed by shared_ptr without increasing the ownership count and can help break reference cycles.',
+
+    'The const keyword can protect variables, pointers, function parameters and member functions from unintended modification.',
+
+    'A const member function promises not to modify the observable state of the object through that function.',
+
+    'Templates support generic programming by allowing code to work with different types.',
+
+    'The STL consists broadly of containers, iterators, algorithms and function objects.',
+
+    'vector is a dynamic contiguous array with efficient random access and amortised constant-time insertion at the end.',
+
+    'list is a doubly linked list that supports efficient insertion and deletion when an iterator to the position is available, but it does not provide constant-time random access.',
+
+    'map stores ordered key-value pairs and is commonly implemented using a balanced tree.',
+
+    'unordered_map stores key-value pairs using hashing and provides average constant-time lookup.',
+
+    'set stores unique ordered values, while unordered_set stores unique hashed values.',
+
+    'priority_queue is commonly implemented using a heap and provides access to the highest-priority element.',
+
+    'Iterators provide a common way to traverse elements in STL containers.',
+
+    'The auto keyword asks the compiler to infer a variable type from its initialiser.',
+
+    'The namespace mechanism prevents naming conflicts. Standard-library components are placed inside the std namespace.',
+
+    'Exception handling uses try, throw and catch. Exceptions should represent exceptional situations rather than ordinary control flow.',
+
+    'Undefined behaviour can result from operations such as accessing an array outside its bounds, dereferencing invalid pointers or using an object after its lifetime ends.'
+  ],
+
+  interview:
+    'C++ is a compiled, statically typed and general-purpose programming language that supports procedural, object-oriented and generic programming. I primarily use C++ for data structures and algorithms because the Standard Template Library provides efficient containers and algorithms such as vectors, maps, queues and priority queues. C++ also helps me understand references, pointers, object lifetimes and memory management in greater depth.',
+
+  keyPoints: [
+    'Classes and objects',
+    'Constructors',
+    'Destructors',
+    'Inheritance',
+    'Polymorphism',
+    'Virtual functions',
+    'Templates',
+    'STL',
+    'Pointers',
+    'References',
+    'Smart pointers',
+    'RAII',
+    'Copy semantics',
+    'Move semantics',
+    'Exception handling'
+  ],
+
+  code: `#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+class Person {
+protected:
+    std::string name;
+
+public:
+    explicit Person(std::string personName)
+        : name(std::move(personName)) {}
+
+    virtual void introduce() const {
+        std::cout << "I am " << name << "\\n";
+    }
+
+    virtual ~Person() = default;
+};
+
+class Student : public Person {
+private:
+    int marks;
+
+public:
+    Student(std::string studentName, int studentMarks)
+        : Person(std::move(studentName)), marks(studentMarks) {}
+
+    void introduce() const override {
+        std::cout << "I am " << name
+                  << " and my marks are " << marks << "\\n";
+    }
+};
+
+int main() {
+    std::vector<int> numbers = {40, 10, 30, 20};
+
+    std::sort(numbers.begin(), numbers.end());
+
+    for (const int number : numbers) {
+        std::cout << number << " ";
+    }
+
+    std::cout << "\\n";
+
+    std::unique_ptr<Person> person =
+        std::make_unique<Student>("Devanshi", 95);
+
+    person->introduce();
+
+    return 0;
+}`,
+
+  followUps: [
+    'Why do you prefer C++ for DSA?',
+    'What are the four pillars of OOP?',
+    'What is the difference between overloading and overriding?',
+    'Why do we need a virtual destructor?',
+    'What is the difference between a pointer and a reference?',
+    'What are smart pointers?',
+    'What is RAII?',
+    'What is the difference between vector and array?',
+    'What is the difference between map and unordered_map?',
+    'What is copy construction versus move construction?'
+  ],
+
+  cautions: [
+    'Do not say that C++ is only an object-oriented language. It supports multiple programming paradigms.',
+
+    'Do not say that vector insertion is always O(1). Insertion at the end is amortised O(1), but reallocation can occur.',
+
+    'Do not say that unordered_map is always O(1). Its average lookup is O(1), but the worst case can be O(n).',
+
+    'Do not manually use new and delete when automatic objects, STL containers or smart pointers can manage ownership more safely.',
+
+    'Do not delete a derived object through a base pointer unless the base class has a virtual destructor.',
+
+    'Do not confuse function overloading with function overriding.',
+
+    'Do not describe references as objects that store addresses in exactly the same way as pointers. Their language behaviour is different.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is C++?',
+      answer:
+        'C++ is a compiled, statically typed and general-purpose programming language. It supports procedural, object-oriented and generic programming and is widely used where performance and control over resources are important.'
+    },
+
+    {
+      question: '2. Why do you use C++ for DSA?',
+      answer:
+        'I use C++ for DSA because the STL provides efficient containers and algorithms such as vector, stack, queue, map, unordered_map, priority_queue and sort. It also allows me to analyse memory usage and implementation details more closely.'
+    },
+
+    {
+      question: '3. What is the difference between C and C++?',
+      answer:
+        'C mainly supports procedural programming. C++ adds classes, objects, inheritance, polymorphism, templates, references, exception handling, function overloading and the Standard Template Library.'
+    },
+
+    {
+      question: '4. What is a class?',
+      answer:
+        'A class is a user-defined type that groups data members and member functions together. It acts as a blueprint from which objects can be created.'
+    },
+
+    {
+      question: '5. What is an object?',
+      answer:
+        'An object is an instance of a class. It has its own state represented by data members and can perform behaviour through member functions.'
+    },
+
+    {
+      question: '6. What is encapsulation?',
+      answer:
+        'Encapsulation means combining data and behaviour inside a class and controlling access to the internal state using access modifiers such as private, protected and public.'
+    },
+
+    {
+      question: '7. What is abstraction?',
+      answer:
+        'Abstraction means exposing the essential interface of an object while hiding unnecessary implementation details. Abstract classes and well-designed public methods can support abstraction.'
+    },
+
+    {
+      question: '8. What is inheritance?',
+      answer:
+        'Inheritance allows a derived class to reuse and extend the members of a base class. Public inheritance is commonly used to represent an is-a relationship.'
+    },
+
+    {
+      question: '9. What is polymorphism?',
+      answer:
+        'Polymorphism allows the same interface to produce different behaviour depending on the object or types involved. C++ supports compile-time polymorphism through overloading and templates and runtime polymorphism through virtual functions.'
+    },
+
+    {
+      question: '10. What is the difference between overloading and overriding?',
+      answer:
+        'Overloading means using the same function name with different parameter lists, usually within the same scope. Overriding occurs when a derived class replaces the implementation of a virtual function inherited from a base class.'
+    },
+
+    {
+      question: '11. What is a virtual function?',
+      answer:
+        'A virtual function is a member function that supports runtime dispatch. When called through a base-class pointer or reference, the implementation belonging to the actual object type can run.'
+    },
+
+    {
+      question: '12. What is a pure virtual function?',
+      answer:
+        'A pure virtual function is declared with = 0. It defines an interface that derived classes are expected to implement and makes the containing class abstract.'
+    },
+
+    {
+      question: '13. What is an abstract class?',
+      answer:
+        'An abstract class contains at least one pure virtual function and cannot normally be instantiated directly. It is used as a common base interface for derived classes.'
+    },
+
+    {
+      question: '14. Why is a virtual destructor important?',
+      answer:
+        'When a derived object is deleted through a base-class pointer, the base destructor must be virtual so that the derived destructor also runs. Otherwise, derived resources may not be released correctly.'
+    },
+
+    {
+      question: '15. What is a constructor?',
+      answer:
+        'A constructor is a special member function that runs when an object is created. It establishes the initial state of the object.'
+    },
+
+    {
+      question: '16. What is a destructor?',
+      answer:
+        'A destructor is a special member function that runs when an object is destroyed. It is used to release resources owned by the object.'
+    },
+
+    {
+      question: '17. What is a copy constructor?',
+      answer:
+        'A copy constructor creates a new object from an existing object of the same type. Its common form accepts a const reference to the source object.'
+    },
+
+    {
+      question: '18. What is shallow copy versus deep copy?',
+      answer:
+        'A shallow copy copies member values directly, including pointer addresses. A deep copy creates independent copies of dynamically owned resources so the objects do not unintentionally share the same allocation.'
+    },
+
+    {
+      question: '19. What is move semantics?',
+      answer:
+        'Move semantics allow resources to be transferred from a temporary or expiring object instead of being copied. This can reduce expensive allocations and copying.'
+    },
+
+    {
+      question: '20. What is the this pointer?',
+      answer:
+        'The this pointer points to the current object inside a non-static member function. It can be used to access members or distinguish member names from parameter names.'
+    },
+
+    {
+      question: '21. What is the difference between a pointer and a reference?',
+      answer:
+        'A pointer stores an address, can be null and can be reassigned. A reference is an alias for an existing object, normally must be initialised immediately and cannot later be reseated to another object.'
+    },
+
+    {
+      question: '22. What is a dangling pointer?',
+      answer:
+        'A dangling pointer points to an object whose lifetime has ended, such as dynamically allocated memory that was deleted or a local object that went out of scope.'
+    },
+
+    {
+      question: '23. What is RAII?',
+      answer:
+        'RAII means Resource Acquisition Is Initialisation. A resource is acquired and owned by an object, and the object destructor releases that resource automatically when its lifetime ends.'
+    },
+
+    {
+      question: '24. What is unique_ptr?',
+      answer:
+        'unique_ptr is a smart pointer that provides exclusive ownership of an object. It cannot be copied, but ownership can be transferred using move semantics.'
+    },
+
+    {
+      question: '25. What is shared_ptr?',
+      answer:
+        'shared_ptr allows multiple smart pointers to share ownership of an object. The object is destroyed when the final owning shared_ptr is removed.'
+    },
+
+    {
+      question: '26. What is weak_ptr?',
+      answer:
+        'weak_ptr observes an object managed by shared_ptr without increasing the ownership count. It is useful for avoiding circular shared ownership.'
+    },
+
+    {
+      question: '27. What is the STL?',
+      answer:
+        'The Standard Template Library provides generic containers, algorithms, iterators and function objects. Examples include vector, map, set, queue, sort and find.'
+    },
+
+    {
+      question: '28. What is the difference between vector and array?',
+      answer:
+        'A built-in array has a fixed size and limited built-in functionality. A vector is a dynamic contiguous container that can grow, tracks its own size and integrates with STL algorithms.'
+    },
+
+    {
+      question: '29. What is the difference between vector and list?',
+      answer:
+        'Vector stores elements contiguously and supports constant-time random access. List stores nodes separately and supports efficient insertion and deletion through valid iterators, but it does not provide constant-time indexed access.'
+    },
+
+    {
+      question: '30. What is the difference between map and unordered_map?',
+      answer:
+        'map stores keys in sorted order and commonly provides O(log n) operations. unordered_map uses hashing, does not maintain sorted order and provides average O(1) lookup, with a possible O(n) worst case.'
+    },
+
+    {
+      question: '31. What is the difference between set and unordered_set?',
+      answer:
+        'set stores unique values in sorted order with commonly O(log n) operations. unordered_set stores unique values using hashing and provides average O(1) lookup without sorted order.'
+    },
+
+    {
+      question: '32. What is a template?',
+      answer:
+        'A template allows a function or class to be written generically for multiple types. The compiler generates the required type-specific versions when the template is used.'
+    },
+
+    {
+      question: '33. What is exception handling?',
+      answer:
+        'Exception handling separates error reporting from normal logic using try, throw and catch. It is intended for exceptional conditions that cannot be handled normally at the point of detection.'
+    },
+
+    {
+      question: '34. What is the difference between stack and heap memory?',
+      answer:
+        'The stack commonly stores automatic local objects and function-call data, and its lifetime is managed automatically. Heap objects are dynamically allocated and must be managed using ownership objects or explicit allocation and release.'
+    },
+
+    {
+      question: '35. What is the diamond problem?',
+      answer:
+        'The diamond problem occurs when a derived class inherits through two paths from the same base class, potentially creating duplicate base subobjects. Virtual inheritance can ensure that only one shared base subobject exists.'
+    },
+
+    {
+      question: '36. What is composition versus inheritance?',
+      answer:
+        'Inheritance models an is-a relationship, while composition models a has-a relationship. Composition is often more flexible because behaviour can be changed without creating a tightly coupled class hierarchy.'
+    }
+  ]
+},
   {
-    id: 'python', title: 'Python', category: 'languages', short: 'Readable high-level language for rapid development.',
-    simple: [
-      'Python is known for concise, readable syntax.',
-      'It is widely used for automation, scripting, backend development, data analysis and machine learning.',
-      'It handles many low-level details such as memory management automatically.'
-    ],
-    technical: [
-      'Python is dynamically typed and uses automatic memory management and garbage collection.',
-      'Lists, dictionaries, sets and tuples are built-in high-level data structures.',
-      'Python implementations commonly execute bytecode through a virtual machine, although implementation details vary.'
-    ],
-    interview: 'Python is a high-level language that prioritises readability and developer productivity. I have used it for programming fundamentals and data-related coursework. Its concise syntax makes it useful for quickly implementing and testing logic.',
-    keyPoints: ['Dynamic typing', 'Lists and dictionaries', 'Functions', 'OOP', 'Exceptions', 'Modules'],
-    followUps: ['List versus tuple?', 'What is a dictionary?', 'Python versus C++?', 'What is garbage collection?']
-  },
+  id: 'python',
+  title: 'Python',
+  category: 'languages',
+
+  short:
+    'A high-level, dynamically typed language known for readable syntax, rapid development and a large ecosystem.',
+
+  simple: [
+    'Python is a high-level, general-purpose programming language known for readable and concise syntax.',
+
+    'Python is dynamically typed, which means variable types are determined while the program runs rather than being declared explicitly in every statement.',
+
+    'Python is commonly described as interpreted, although Python source code is generally compiled into bytecode before being executed by a Python virtual machine.',
+
+    'Python supports procedural, object-oriented and functional programming styles.',
+
+    'It is widely used for automation, scripting, data analysis, machine learning, backend development, testing and rapid prototyping.',
+
+    'Python uses indentation to define blocks of code instead of braces.',
+
+    'Variables in Python hold references to objects.',
+
+    'Python provides built-in data structures such as lists, tuples, sets and dictionaries.',
+
+    'Lists are ordered and mutable collections.',
+
+    'Tuples are ordered and generally immutable collections.',
+
+    'Sets store unique values and are useful for membership testing and removing duplicates.',
+
+    'Dictionaries store key-value pairs and provide fast average lookup by key.',
+
+    'Python automatically manages memory and uses garbage collection to reclaim many objects that are no longer required.',
+
+    'Functions are first-class objects, meaning they can be stored in variables, passed as arguments and returned from other functions.',
+
+    'Python has a large standard library and a large ecosystem of third-party packages.',
+
+    'Python is useful when developer productivity and readability are more important than maximum low-level control.'
+  ],
+
+  technical: [
+    'Python is dynamically typed, meaning a name can refer to objects of different types during its lifetime.',
+
+    'Python is strongly typed because incompatible types are not generally converted automatically for arbitrary operations.',
+
+    'Variables in Python are names bound to objects rather than fixed boxes that directly contain values.',
+
+    'Everything in Python is represented as an object, including integers, functions and classes.',
+
+    'Mutable objects can be changed after creation, while immutable objects cannot be changed in place.',
+
+    'Lists, dictionaries and sets are mutable. Integers, strings, tuples and frozensets are immutable.',
+
+    'A list is an ordered mutable sequence that allows duplicate elements.',
+
+    'A tuple is an ordered sequence that is generally immutable and can be used as a dictionary key when all of its elements are hashable.',
+
+    'A set is an unordered collection of unique hashable values.',
+
+    'A dictionary maps unique hashable keys to values and preserves insertion order in modern Python versions.',
+
+    'List comprehensions provide a concise way to create lists from iterable data.',
+
+    'A generator produces values lazily rather than storing an entire result sequence in memory.',
+
+    'The yield keyword pauses a generator function and preserves its execution state for the next iteration.',
+
+    'An iterator is an object that provides values one at a time through the iterator protocol.',
+
+    'An iterable is an object from which an iterator can be obtained, such as a list, string or dictionary.',
+
+    'Function arguments are passed using object references. Python uses call by sharing, meaning a function receives a new local reference to the same object.',
+
+    'Mutating a passed mutable object can affect the caller, while rebinding the local parameter does not change the caller’s variable binding.',
+
+    'Default argument values are evaluated once when the function is defined, not each time it is called.',
+
+    'Using a mutable object such as a list as a default parameter can unintentionally share state between calls.',
+
+    'The *args syntax collects extra positional arguments into a tuple.',
+
+    'The **kwargs syntax collects extra keyword arguments into a dictionary.',
+
+    'A lambda expression creates a small anonymous function containing one expression.',
+
+    'A closure is an inner function that remembers values from its enclosing scope even after the outer function has completed.',
+
+    'A decorator wraps or modifies a function or class without directly changing its source implementation.',
+
+    'A class defines data and behaviour, while an instance is an object created from that class.',
+
+    'The self parameter refers to the current instance inside an instance method.',
+
+    'The __init__ method initialises a newly created instance after object creation.',
+
+    'Instance methods receive self, class methods receive cls and static methods receive no automatic instance or class reference.',
+
+    'Python supports inheritance and method overriding.',
+
+    'Python uses duck typing, which focuses on whether an object supports the required behaviour rather than requiring a specific declared type.',
+
+    'Method resolution order defines the order in which Python searches base classes for attributes and methods.',
+
+    'Exceptions are handled using try, except, else and finally.',
+
+    'The finally block normally runs whether or not an exception occurs and is useful for cleanup.',
+
+    'Context managers manage setup and cleanup around a block of code and are commonly used through the with statement.',
+
+    'Modules are individual Python files, while packages organise related modules into directories.',
+
+    'pip is commonly used to install Python packages.',
+
+    'A virtual environment creates an isolated set of Python packages for a project.',
+
+    'Python uses reference counting in its common CPython implementation and also includes cyclic garbage collection.',
+
+    'The Global Interpreter Lock in CPython allows only one thread to execute Python bytecode at a time within one interpreter process.',
+
+    'The GIL does not prevent threads from being useful for many I/O-bound tasks because threads can wait while network or file operations complete.',
+
+    'Multiprocessing uses separate processes and can achieve parallel execution for CPU-bound work.',
+
+    'async and await support cooperative asynchronous programming, especially for many concurrent I/O operations.',
+
+    'Shallow copying creates a new outer container while nested objects may remain shared.',
+
+    'Deep copying recursively creates copies of nested objects where possible.',
+
+    'Type hints allow developers and tools to describe expected types, but Python generally does not enforce those hints automatically at runtime.',
+
+    'The if __name__ == "__main__" block allows code to run only when the file is executed directly rather than imported as a module.'
+  ],
+
+  interview:
+    'Python is a high-level, dynamically typed and general-purpose programming language known for readable syntax and rapid development. I have used it for programming fundamentals and data-related coursework. Its built-in data structures and large ecosystem make it useful for scripting, automation, data analysis, machine learning and quick implementation of ideas. Compared with C++, Python provides less low-level control but usually allows development with less code.',
+
+  keyPoints: [
+    'Dynamic typing',
+    'Strong typing',
+    'Lists',
+    'Tuples',
+    'Sets',
+    'Dictionaries',
+    'Functions',
+    'Comprehensions',
+    'Generators',
+    'Decorators',
+    'OOP',
+    'Exceptions',
+    'Modules',
+    'Virtual environments',
+    'Garbage collection',
+    'GIL',
+    'Async programming'
+  ],
+
+  code: `from dataclasses import dataclass
+from typing import Iterable
+
+@dataclass
+class Student:
+    name: str
+    marks: list[int]
+
+    def average(self) -> float:
+        if not self.marks:
+            return 0.0
+
+        return sum(self.marks) / len(self.marks)
+
+
+def passing_students(
+    students: Iterable[Student],
+    minimum_average: float = 40.0
+) -> list[Student]:
+    return [
+        student
+        for student in students
+        if student.average() >= minimum_average
+    ]
+
+
+def generate_squares(limit: int):
+    for number in range(limit):
+        yield number * number
+
+
+def main() -> None:
+    students = [
+        Student("Devanshi", [90, 95, 92]),
+        Student("Aarav", [35, 42, 38]),
+        Student("Mira", [78, 81, 84]),
+    ]
+
+    selected = passing_students(students, minimum_average=60)
+
+    for student in selected:
+        print(f"{student.name}: {student.average():.2f}")
+
+    print(list(generate_squares(5)))
+
+
+if __name__ == "__main__":
+    main()`,
+
+  followUps: [
+    'Is Python compiled or interpreted?',
+    'What is dynamic typing?',
+    'What is the difference between list and tuple?',
+    'What is the difference between set and dictionary?',
+    'What are mutable and immutable objects?',
+    'What is a generator?',
+    'What is a decorator?',
+    'How does Python pass arguments?',
+    'What is the GIL?',
+    'What is the difference between shallow and deep copy?'
+  ],
+
+  cautions: [
+    'Do not say Python is purely interpreted. Python implementations commonly compile source into bytecode before execution.',
+
+    'Do not say Python is weakly typed. It is dynamically typed but strongly typed.',
+
+    'Do not use mutable objects such as [] or {} as default parameter values unless shared state is intentional.',
+
+    'Do not say tuples are always completely immutable. A tuple cannot replace its elements, but it can contain mutable objects.',
+
+    'Do not say sets preserve a meaningful sorted order.',
+
+    'Do not say type hints are automatically enforced by the Python runtime.',
+
+    'The GIL is mainly associated with CPython implementation details and should not be described as a universal rule for every Python implementation.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Python?',
+      answer:
+        'Python is a high-level, dynamically typed and general-purpose programming language. It is known for readable syntax, rapid development and a large ecosystem for web development, automation, data analysis and machine learning.'
+    },
+
+    {
+      question: '2. Is Python compiled or interpreted?',
+      answer:
+        'Python is commonly described as interpreted, but in implementations such as CPython, source code is first compiled into bytecode and then executed by the Python virtual machine.'
+    },
+
+    {
+      question: '3. What is dynamic typing?',
+      answer:
+        'Dynamic typing means variable types are determined at runtime. A name can refer to an integer at one point and later refer to a string or another object.'
+    },
+
+    {
+      question: '4. Is Python strongly typed?',
+      answer:
+        'Yes. Python is dynamically typed but strongly typed. It generally does not perform arbitrary implicit conversions between incompatible types.'
+    },
+
+    {
+      question: '5. What is the difference between a list and a tuple?',
+      answer:
+        'A list is mutable, while a tuple is generally immutable. Both are ordered and allow duplicates. Tuples can be used as dictionary keys when all contained values are hashable.'
+    },
+
+    {
+      question: '6. What is the difference between a set and a dictionary?',
+      answer:
+        'A set stores unique values, while a dictionary stores key-value pairs. Both use hashing internally for average fast membership or key lookup.'
+    },
+
+    {
+      question: '7. What are mutable and immutable objects?',
+      answer:
+        'Mutable objects can be changed after creation, while immutable objects cannot be modified in place. Lists, dictionaries and sets are mutable, while integers, strings and tuples are generally immutable.'
+    },
+
+    {
+      question: '8. How are arguments passed in Python?',
+      answer:
+        'Python passes object references by assignment, sometimes called call by sharing. The function receives a local reference to the same object. Mutating a shared mutable object can affect the caller, but rebinding the local name does not.'
+    },
+
+    {
+      question: '9. What are *args and **kwargs?',
+      answer:
+        '*args collects additional positional arguments into a tuple. **kwargs collects additional keyword arguments into a dictionary.'
+    },
+
+    {
+      question: '10. What is a list comprehension?',
+      answer:
+        'A list comprehension is a concise syntax for creating a list from an iterable, optionally transforming values and filtering elements.'
+    },
+
+    {
+      question: '11. What is an iterator?',
+      answer:
+        'An iterator is an object that returns one value at a time and remembers its current position. It follows the iterator protocol using methods such as __iter__ and __next__.'
+    },
+
+    {
+      question: '12. What is an iterable?',
+      answer:
+        'An iterable is an object that can produce an iterator. Lists, strings, tuples, sets and dictionaries are common iterable objects.'
+    },
+
+    {
+      question: '13. What is a generator?',
+      answer:
+        'A generator is an iterator that produces values lazily. Generator functions use yield to return one value at a time while preserving their execution state.'
+    },
+
+    {
+      question: '14. Why use a generator instead of a list?',
+      answer:
+        'A generator can process large or potentially infinite sequences without storing every result in memory at once. The trade-off is that generated values are normally consumed sequentially.'
+    },
+
+    {
+      question: '15. What is a lambda function?',
+      answer:
+        'A lambda is a small anonymous function defined using a single expression. It is commonly used for short operations such as sorting keys.'
+    },
+
+    {
+      question: '16. What is a closure?',
+      answer:
+        'A closure is an inner function that remembers variables from its enclosing function scope even after the outer function has completed.'
+    },
+
+    {
+      question: '17. What is a decorator?',
+      answer:
+        'A decorator is a callable that wraps or transforms another function or class. It is commonly used for logging, authorisation, caching and validation.'
+    },
+
+    {
+      question: '18. What is self in Python?',
+      answer:
+        'self refers to the current instance inside an instance method. It is used to access instance attributes and other instance methods.'
+    },
+
+    {
+      question: '19. What is __init__?',
+      answer:
+        '__init__ is an initialiser method that runs after an instance has been created. It is commonly used to assign the initial state of the object.'
+    },
+
+    {
+      question: '20. What is the difference between an instance method, class method and static method?',
+      answer:
+        'An instance method receives self and works with a specific object. A class method receives cls and works with the class. A static method receives neither automatically and behaves like a function placed inside the class namespace.'
+    },
+
+    {
+      question: '21. What is duck typing?',
+      answer:
+        'Duck typing means code focuses on whether an object provides the required behaviour rather than requiring it to belong to a particular declared type.'
+    },
+
+    {
+      question: '22. What is method overriding?',
+      answer:
+        'Method overriding occurs when a subclass defines a method with the same name as a method inherited from its base class, replacing or extending the inherited behaviour.'
+    },
+
+    {
+      question: '23. What is MRO?',
+      answer:
+        'MRO means Method Resolution Order. It defines the order in which Python searches a class and its parent classes for methods and attributes, especially in multiple inheritance.'
+    },
+
+    {
+      question: '24. How does exception handling work in Python?',
+      answer:
+        'Potentially failing code is placed inside a try block. Matching errors can be handled with except, code for the successful path can use else, and cleanup logic can be placed in finally.'
+    },
+
+    {
+      question: '25. What is a context manager?',
+      answer:
+        'A context manager controls setup and cleanup around a block of code. It is commonly used through the with statement for files, locks and database resources.'
+    },
+
+    {
+      question: '26. What is the difference between a module and a package?',
+      answer:
+        'A module is usually one Python file containing definitions and statements. A package organises multiple related modules inside a directory structure.'
+    },
+
+    {
+      question: '27. What is a virtual environment?',
+      answer:
+        'A virtual environment provides an isolated Python interpreter environment and package set for a project, preventing dependency conflicts between projects.'
+    },
+
+    {
+      question: '28. How does memory management work in Python?',
+      answer:
+        'Python manages memory automatically. CPython primarily uses reference counting and also includes a cyclic garbage collector to reclaim certain groups of objects that reference one another.'
+    },
+
+    {
+      question: '29. What is the GIL?',
+      answer:
+        'The Global Interpreter Lock in CPython allows one thread at a time to execute Python bytecode within a process. Threads can still be useful for I/O-bound tasks, while multiprocessing is often used for CPU-bound parallel work.'
+    },
+
+    {
+      question: '30. What is the difference between threading and multiprocessing?',
+      answer:
+        'Threads share memory within one process and are often useful for I/O-bound work. Processes have separate memory spaces and can run Python code in parallel across multiple CPU cores.'
+    },
+
+    {
+      question: '31. What are async and await?',
+      answer:
+        'async defines asynchronous functions, and await pauses one coroutine while another operation can proceed. They are useful for handling many concurrent I/O operations efficiently.'
+    },
+
+    {
+      question: '32. What is shallow copy versus deep copy?',
+      answer:
+        'A shallow copy creates a new outer object but keeps references to nested objects. A deep copy recursively attempts to copy nested objects as well.'
+    },
+
+    {
+      question: '33. Why are mutable default arguments dangerous?',
+      answer:
+        'Default argument objects are created once when the function is defined. A mutable default can therefore preserve changes between separate function calls unexpectedly.'
+    },
+
+    {
+      question: '34. What are type hints?',
+      answer:
+        'Type hints describe expected parameter, return and variable types. They improve readability and static analysis, but Python does not normally enforce them automatically at runtime.'
+    },
+
+    {
+      question: '35. What does if __name__ == "__main__" mean?',
+      answer:
+        'It checks whether a Python file is being executed directly. Code inside the block runs during direct execution but not when the file is imported as a module.'
+    },
+
+    {
+      question: '36. Python versus C++?',
+      answer:
+        'Python generally offers shorter syntax, automatic memory management and faster development. C++ provides greater control over memory and performance and is typically better suited to low-level or performance-sensitive applications.'
+    }
+  ]
+},
   {
     id: 'java', title: 'Java', category: 'languages', short: 'Statically typed OOP language running on the JVM.',
     simple: [
