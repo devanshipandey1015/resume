@@ -17,21 +17,427 @@ export const navItems = [
 
 export const topics: Topic[] = [
   {
-    id: 'c', title: 'C', category: 'languages', short: 'Procedural language with direct memory access.',
-    simple: [
-      'C is a compiled, procedural programming language.',
-      'It is useful for operating systems, embedded systems, device drivers and performance-sensitive programs.',
-      'It teaches how memory, pointers, arrays and functions work at a lower level.'
-    ],
-    technical: [
-      'C provides manual memory management through functions such as malloc, calloc, realloc and free.',
-      'Pointers store memory addresses and allow indirect access to data.',
-      'C programs are normally preprocessed, compiled, assembled and linked before execution.'
-    ],
-    interview: 'C is a procedural and compiled programming language that provides low-level memory access through pointers. It helped me understand memory management, data structures and how programs interact more closely with hardware.',
-    keyPoints: ['Pointers', 'Structures', 'Stack and heap', 'Dynamic memory allocation', 'Header files', 'Compilation'],
-    followUps: ['What is a pointer?', 'Stack versus heap?', 'malloc versus calloc?', 'What causes a dangling pointer?']
-  },
+  id: 'c',
+  title: 'C',
+  category: 'languages',
+  short:
+    'A procedural, compiled language that provides efficient execution and direct control over memory.',
+
+  simple: [
+    'C is a general-purpose, procedural and compiled programming language.',
+
+    'A procedural language organises a program mainly around functions, variables, conditions, loops and step-by-step instructions.',
+
+    'C is statically typed, which means the type of a variable is declared before the program is executed.',
+
+    'C is compiled into machine code before execution, which generally gives it fast performance and low runtime overhead.',
+
+    'C provides direct access to memory through pointers. A pointer stores the memory address of another variable.',
+
+    'C does not provide built-in classes, inheritance, polymorphism or automatic garbage collection.',
+
+    'The programmer is responsible for allocating and releasing dynamically allocated memory.',
+
+    'C is commonly used for operating systems, embedded systems, microcontrollers, device drivers, compilers and performance-sensitive applications.',
+
+    'C is case-sensitive. For example, value, Value and VALUE are treated as different identifiers.',
+
+    'C is considered portable because a correctly written C program can usually be compiled on multiple systems with limited changes.',
+
+    'The C standard library provides reusable functions for input, output, strings, memory management, mathematics and file handling.',
+
+    'Learning C helps you understand how variables are stored, how memory is addressed and how data structures work internally.'
+  ],
+
+  technical: [
+    'A C program normally begins execution from the main function.',
+
+    'The build process generally consists of preprocessing, compilation, assembly and linking.',
+
+    'The preprocessor handles directives such as #include, #define, #if and header guards before normal compilation begins.',
+
+    'The compiler checks the program and translates C source code into lower-level instructions.',
+
+    'The assembler converts assembly instructions into object code, and the linker combines object files and libraries into an executable.',
+
+    'Basic C data types include char, int, float, double and void. Modifiers such as short, long, signed and unsigned change the range or representation of some types.',
+
+    'The exact size of many C data types can depend on the compiler and system architecture. The sizeof operator should be used when the actual size is required.',
+
+    'A pointer stores a memory address. Dereferencing a valid pointer using the * operator accesses the value stored at that address.',
+
+    'The & operator returns the address of a variable, while the * operator can declare or dereference a pointer depending on context.',
+
+    'C always passes function arguments by value. Pointer parameters are used when a function needs to modify data owned by the caller.',
+
+    'An array is not the same thing as a pointer, although an array expression often converts or decays into a pointer to its first element.',
+
+    'A C string is normally stored as an array of characters ending with the null terminator character \\0.',
+
+    'Structures group multiple related values of potentially different types into one user-defined type.',
+
+    'A union allows multiple members to share the same memory location. Only one member value is meaningfully stored at a time.',
+
+    'An enum defines a set of named integer constants, improving readability when representing a fixed set of values.',
+
+    'Automatic local variables are commonly associated with stack storage, while dynamically allocated memory is obtained from the heap.',
+
+    'malloc allocates a requested number of bytes but does not initialise them.',
+
+    'calloc allocates memory for multiple elements and initialises the allocated bytes to zero.',
+
+    'realloc changes the size of an existing memory block and may move it to a new address.',
+
+    'free releases dynamically allocated memory. Accessing memory after it has been freed creates undefined behaviour.',
+
+    'A memory leak occurs when dynamically allocated memory is no longer reachable but has not been released.',
+
+    'A dangling pointer points to memory that is no longer valid, such as memory that has already been freed.',
+
+    'A wild pointer is an uninitialised pointer that contains an unpredictable address.',
+
+    'A null pointer intentionally points to no valid object. It should be checked before dereferencing.',
+
+    'The const keyword prevents modification through a particular variable or pointer access path.',
+
+    'The meaning of static depends on context. A static local variable retains its value between function calls, while a file-level static symbol has internal linkage.',
+
+    'The extern keyword declares that a variable or function is defined in another source file or elsewhere in the program.',
+
+    'Header files usually contain declarations, type definitions, constants and function prototypes that are shared between source files.',
+
+    'Header guards prevent the same header file from being processed multiple times in one translation unit.',
+
+    'Macros perform text substitution before compilation. They should be used carefully because they do not provide normal function type checking.',
+
+    'Bitwise operators such as &, |, ^, ~, << and >> are useful for flags, masks, embedded systems and low-level data manipulation.',
+
+    'Undefined behaviour occurs when a program performs an operation for which the C standard defines no required result, such as accessing an array outside its bounds.',
+
+    'A segmentation fault often occurs when a program accesses invalid or protected memory.',
+
+    'C does not automatically check array bounds, pointer validity or whether allocated memory has been released correctly.'
+  ],
+
+  interview:
+    'C is a procedural, statically typed and compiled programming language. It provides low-level memory access through pointers while supporting structured programming through functions, loops and conditions. I studied C to understand memory management, pointers, program execution and the internal implementation of data structures. It is especially useful in systems and embedded programming where performance and hardware-level control are important.',
+
+  keyPoints: [
+    'Procedural programming',
+    'Static typing',
+    'Compilation process',
+    'Pointers',
+    'Arrays',
+    'Strings',
+    'Structures',
+    'Stack and heap',
+    'Dynamic memory allocation',
+    'Header files',
+    'File handling',
+    'Bitwise operators',
+    'Undefined behaviour'
+  ],
+
+  code: `#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char name[50];
+    int age;
+} Student;
+
+void updateAge(Student *student, int newAge) {
+    if (student != NULL) {
+        student->age = newAge;
+    }
+}
+
+int main(void) {
+    int value = 25;
+    int *pointer = &value;
+
+    printf("Value: %d\\n", value);
+    printf("Address: %p\\n", (void *)pointer);
+    printf("Value through pointer: %d\\n", *pointer);
+
+    Student student = {"Devanshi", 20};
+    updateAge(&student, 21);
+
+    printf("%s is %d years old.\\n", student.name, student.age);
+
+    int count = 5;
+
+    int *numbers = malloc((size_t)count * sizeof(*numbers));
+
+    if (numbers == NULL) {
+        fprintf(stderr, "Memory allocation failed.\\n");
+        return 1;
+    }
+
+    for (int i = 0; i < count; i++) {
+        numbers[i] = (i + 1) * 10;
+    }
+
+    for (int i = 0; i < count; i++) {
+        printf("%d ", numbers[i]);
+    }
+
+    printf("\\n");
+
+    free(numbers);
+    numbers = NULL;
+
+    return 0;
+}`,
+
+  followUps: [
+    'What are the main features of C?',
+    'How is a C program compiled?',
+    'What is a pointer?',
+    'Are arrays and pointers the same?',
+    'What is the difference between stack and heap memory?',
+    'What is the difference between malloc and calloc?',
+    'What is a dangling pointer?',
+    'What causes a segmentation fault?',
+    'What is a structure?',
+    'What is the difference between C and C++?'
+  ],
+
+  cautions: [
+    'Do not describe C as an object-oriented programming language.',
+
+    'Do not say that arrays and pointers are exactly the same. They are related, but they are different language concepts.',
+
+    'C always passes arguments by value. Passing a pointer still means that the pointer value itself is copied.',
+
+    'malloc does not initialise the allocated memory.',
+
+    'Do not dereference an uninitialised, null, dangling or otherwise invalid pointer.',
+
+    'C does not provide automatic garbage collection or automatic array-bounds checking.',
+
+    'Do not claim that the size of int or a pointer is identical on every system.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is C?',
+      answer:
+        'C is a general-purpose, procedural, statically typed and compiled programming language. It provides efficient execution and direct memory access through pointers, which makes it useful for system-level and embedded software.'
+    },
+
+    {
+      question: '2. Why is C called a procedural language?',
+      answer:
+        'C is called procedural because programs are mainly organised as a sequence of instructions and functions. The focus is on procedures that operate on data rather than on classes and objects.'
+    },
+
+    {
+      question: '3. Why is C considered a middle-level language?',
+      answer:
+        'C combines high-level features such as functions, loops and structured programming with lower-level features such as pointers, bitwise operations and direct memory access. The term middle-level is informal, but it describes this combination.'
+    },
+
+    {
+      question: '4. Is C a compiled or interpreted language?',
+      answer:
+        'C is normally compiled. The source code is converted into machine code before execution. The main stages are preprocessing, compilation, assembly and linking.'
+    },
+
+    {
+      question: '5. What are the stages of compiling a C program?',
+      answer:
+        'The preprocessor first expands directives such as #include and #define. The compiler translates the C code, the assembler creates object code, and the linker combines object files and libraries into the final executable.'
+    },
+
+    {
+      question: '6. What is a pointer?',
+      answer:
+        'A pointer is a variable that stores the memory address of another object or function. The address-of operator & obtains an address, while the dereference operator * accesses the value stored at a valid address.'
+    },
+
+    {
+      question: '7. Why are pointers useful?',
+      answer:
+        'Pointers are useful for dynamic memory allocation, modifying caller-owned data, implementing linked structures, working efficiently with arrays and strings, and interacting with hardware or system APIs.'
+    },
+
+    {
+      question: '8. What is a null pointer?',
+      answer:
+        'A null pointer represents that the pointer does not currently refer to a valid object. A pointer should be checked before dereferencing when null is a possible value.'
+    },
+
+    {
+      question: '9. What is a wild pointer?',
+      answer:
+        'A wild pointer is an uninitialised pointer. Because it contains an unpredictable address, dereferencing it can cause undefined behaviour or a program crash.'
+    },
+
+    {
+      question: '10. What is a dangling pointer?',
+      answer:
+        'A dangling pointer still stores the address of memory that is no longer valid. This can happen after memory is freed or after a local variable goes out of scope.'
+    },
+
+    {
+      question: '11. How can you reduce dangling-pointer mistakes?',
+      answer:
+        'Release dynamically allocated memory only once, avoid returning the address of a local automatic variable, and set a pointer to NULL after freeing it when the pointer may otherwise be reused.'
+    },
+
+    {
+      question: '12. Are arrays and pointers the same in C?',
+      answer:
+        'No. An array is a fixed collection of elements, while a pointer is a variable that stores an address. However, in many expressions an array name is converted into a pointer to its first element.'
+    },
+
+    {
+      question: '13. How are strings represented in C?',
+      answer:
+        'A C string is normally represented as an array of char values ending with the null terminator \\0. Library functions such as strlen and strcmp depend on this terminator.'
+    },
+
+    {
+      question: '14. Does C support pass by reference?',
+      answer:
+        'C passes every function argument by value. Reference-like behaviour is achieved by passing the address of an object through a pointer, allowing the function to modify the original object.'
+    },
+
+    {
+      question: '15. What is the difference between stack and heap memory?',
+      answer:
+        'Stack storage is commonly used for automatic local variables and function-call information. It is managed automatically. Heap memory is requested dynamically using functions such as malloc and must be released using free.'
+    },
+
+    {
+      question: '16. What does malloc do?',
+      answer:
+        'malloc allocates a requested number of bytes from dynamic storage and returns a pointer to the allocated block. The memory is not initialised, so its existing byte values are indeterminate.'
+    },
+
+    {
+      question: '17. What is the difference between malloc and calloc?',
+      answer:
+        'malloc accepts the total number of bytes to allocate and leaves them uninitialised. calloc accepts an element count and element size and initialises the allocated bytes to zero.'
+    },
+
+    {
+      question: '18. What does realloc do?',
+      answer:
+        'realloc changes the size of a previously allocated block. It may preserve the same address or move the data to a new location. If it fails, the original allocation remains valid.'
+    },
+
+    {
+      question: '19. What is a memory leak?',
+      answer:
+        'A memory leak occurs when allocated memory is no longer needed or reachable but has not been released. Repeated leaks can increase memory usage throughout the lifetime of a program.'
+    },
+
+    {
+      question: '20. What happens if free is called twice on the same pointer?',
+      answer:
+        'Freeing the same allocation twice produces undefined behaviour. A common defensive practice is to set the pointer to NULL after freeing it when the pointer remains in scope.'
+    },
+
+    {
+      question: '21. What is a structure in C?',
+      answer:
+        'A structure is a user-defined type that groups related values, potentially of different data types, into one object. For example, a Student structure can contain a name, age and identifier.'
+    },
+
+    {
+      question: '22. What is the difference between a structure and a union?',
+      answer:
+        'Each structure member has its own storage, so all members can hold values simultaneously. Union members share the same storage, so writing one member generally replaces the representation previously stored through another member.'
+    },
+
+    {
+      question: '23. What is an enum?',
+      answer:
+        'An enum defines a set of named integer constants. It improves readability when a variable should represent one value from a fixed set, such as status values or menu choices.'
+    },
+
+    {
+      question: '24. What does the static keyword mean in C?',
+      answer:
+        'Inside a function, a static variable retains its value between calls. At file scope, static gives a variable or function internal linkage, meaning it is available only within that source file.'
+    },
+
+    {
+      question: '25. What does the extern keyword mean?',
+      answer:
+        'extern declares that a variable or function has a definition elsewhere. It is commonly used when multiple source files need to access the same external symbol.'
+    },
+
+    {
+      question: '26. What is a header file?',
+      answer:
+        'A header file normally contains shared declarations, function prototypes, constants, macros and type definitions. Source files include the header so they agree on the same interfaces.'
+    },
+
+    {
+      question: '27. What are header guards?',
+      answer:
+        'Header guards use preprocessor conditions to prevent a header from being processed more than once in the same translation unit. This avoids duplicate-definition and redeclaration problems.'
+    },
+
+    {
+      question: '28. What is the difference between a macro and a function?',
+      answer:
+        'A macro performs text substitution before compilation and usually has no normal type checking. A function is compiled code with typed parameters, its arguments are evaluated according to normal language rules, and it is generally easier to debug.'
+    },
+
+    {
+      question: '29. What is the sizeof operator?',
+      answer:
+        'sizeof returns the size in bytes of a type or object. Its result has type size_t. It is especially useful when allocating memory because type sizes can vary between systems.'
+    },
+
+    {
+      question: '30. What is a segmentation fault?',
+      answer:
+        'A segmentation fault is an operating-system-level failure that commonly occurs when a program accesses invalid or protected memory, such as dereferencing an invalid pointer or writing outside valid storage.'
+    },
+
+    {
+      question: '31. What is undefined behaviour?',
+      answer:
+        'Undefined behaviour means the C standard places no requirements on the result of an invalid operation. Examples include out-of-bounds array access, using a freed object and signed integer overflow.'
+    },
+
+    {
+      question: '32. What are bitwise operators?',
+      answer:
+        'Bitwise operators work on the individual bits of integer values. C provides AND, OR, XOR, complement, left shift and right shift operators. They are commonly used for masks, flags and embedded programming.'
+    },
+
+    {
+      question: '33. What is recursion?',
+      answer:
+        'Recursion occurs when a function calls itself directly or indirectly. A recursive solution needs a base case to stop further calls and a recursive step that moves toward that base case.'
+    },
+
+    {
+      question: '34. What is the difference between declaration and definition?',
+      answer:
+        'A declaration tells the compiler that a name and type exist. A definition creates the entity or provides its implementation. A function prototype is a declaration, while the function body is its definition.'
+    },
+
+    {
+      question: '35. What is the difference between C and C++?',
+      answer:
+        'C mainly supports procedural programming. C++ extends C-style programming with classes, objects, inheritance, polymorphism, templates, references, exception handling and the Standard Template Library.'
+    },
+
+    {
+      question: '36. Why did you learn C when you mainly use C++?',
+      answer:
+        'C helped me understand procedural programming, pointers, arrays, memory allocation and how data structures are implemented internally. I mainly use C++ for DSA because the STL provides reusable containers and algorithms.'
+    }
+  ]
+},
   {
     id: 'cpp', title: 'C++', category: 'languages', short: 'Compiled language used heavily for DSA and OOP.',
     simple: [

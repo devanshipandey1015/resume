@@ -210,3 +210,47 @@ footer strong { color: var(--text); }
   .quiz-shell, .quiz-finish { padding: 22px; }
   footer { flex-direction: column; gap: 8px; padding: 22px 16px; }
 }
+.qa-section {
+  margin-top: 24px;
+}
+
+.qa-section h4 {
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}
+
+.qa-list {
+  display: grid;
+  gap: 10px;
+}
+
+.qa-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.qa-item summary {
+  cursor: pointer;
+  padding: 15px 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  list-style-position: inside;
+}
+
+.qa-item summary:hover {
+  background: var(--surface-soft);
+}
+
+.qa-item[open] summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.qa-item p {
+  margin: 0;
+  padding: 16px 18px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}

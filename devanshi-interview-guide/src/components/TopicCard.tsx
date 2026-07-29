@@ -68,6 +68,20 @@ export default function TopicCard({ topic, bookmarked, progress, onBookmark, onP
           {topic.keyPoints && <div className="chip-list">{topic.keyPoints.map((point) => <span key={point}>{point}</span>)}</div>}
           {topic.code && <pre><code>{topic.code}</code></pre>}
           {topic.followUps && <details><summary>Likely follow-up questions</summary><ul>{topic.followUps.map((q) => <li key={q}>{q}</li>)}</ul></details>}
+          {topic.qa && topic.qa.length > 0 && (
+  <section className="qa-section">
+    <h4>Interview Questions and Answers</h4>
+
+    <div className="qa-list">
+      {topic.qa.map((item) => (
+        <details className="qa-item" key={item.question}>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
           {topic.cautions && <div className="caution"><strong>Be accurate:</strong><ul>{topic.cautions.map((c) => <li key={c}>{c}</li>)}</ul></div>}
         </div>
       )}
