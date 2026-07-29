@@ -1,4 +1,13 @@
-export type ProgressState = 'not-started' | 'learning' | 'revised' | 'interview-ready';
+export type ProgressState =
+  | 'not-started'
+  | 'learning'
+  | 'revised'
+  | 'interview-ready';
+
+export type InterviewQA = {
+  question: string;
+  answer: string;
+};
 
 export type Topic = {
   id: string;
@@ -8,10 +17,13 @@ export type Topic = {
   simple: string[];
   technical: string[];
   interview: string;
+
   keyPoints?: string[];
   code?: string;
   followUps?: string[];
   cautions?: string[];
+
+  qa?: InterviewQA[];
 };
 
 export type Project = {
@@ -21,7 +33,12 @@ export type Project = {
   purpose: string;
   overview: string;
   flow: string[];
-  whyStack: { label: string; text: string }[];
+
+  whyStack: {
+    label: string;
+    text: string;
+  }[];
+
   interviewAnswer: string;
   questions: string[];
   verify: string[];
