@@ -1352,38 +1352,1017 @@ if __name__ == "__main__":
   ]
 },
   {
-    id: 'java', title: 'Java', category: 'languages', short: 'Statically typed OOP language running on the JVM.',
-    simple: [
-      'Java source code is compiled into bytecode.',
-      'The bytecode runs on the Java Virtual Machine, supporting platform independence.',
-      'Java is commonly used for backend systems, enterprise applications and Android legacy code.'
-    ],
-    technical: [
-      'The JVM executes bytecode and manages runtime services such as memory and garbage collection.',
-      'The JRE contains the JVM and runtime libraries, while the JDK includes the tools needed to develop Java applications.',
-      'Java supports classes, interfaces, inheritance, exceptions, generics and a rich collections framework.'
-    ],
-    interview: 'Java is a statically typed, object-oriented language. Java source code is compiled into bytecode that runs on the JVM, which provides platform independence. I have used Java while studying object-oriented programming and application-development concepts.',
-    keyPoints: ['JVM, JRE and JDK', 'Classes and interfaces', 'Collections', 'Exceptions', 'Garbage collection'],
-    followUps: ['JDK versus JRE versus JVM?', 'Interface versus abstract class?', 'Overloading versus overriding?']
-  },
+  id: 'java',
+  title: 'Java',
+  category: 'languages',
+
+  short:
+    'A statically typed, object-oriented language that compiles to bytecode and runs on the Java Virtual Machine.',
+
+  simple: [
+    'Java is a general-purpose, statically typed and object-oriented programming language.',
+
+    'Java source code is compiled into bytecode, which is executed by the Java Virtual Machine.',
+
+    'The JVM allows the same compiled Java bytecode to run on different operating systems that provide a compatible JVM.',
+
+    'This supports the idea of write once, run anywhere.',
+
+    'Java is commonly used for backend systems, enterprise software, Android applications, banking systems and large-scale services.',
+
+    'Java organises programs using classes and objects.',
+
+    'A class describes the data and behaviour of a type, while an object is an instance of that class.',
+
+    'Java supports encapsulation, abstraction, inheritance and polymorphism.',
+
+    'Java uses automatic garbage collection to reclaim many objects that are no longer reachable.',
+
+    'Java does not provide normal pointer arithmetic like C or C++.',
+
+    'Java supports exception handling using try, catch, finally, throw and throws.',
+
+    'Java provides collections such as ArrayList, HashMap, HashSet, Queue and Stack-like structures.',
+
+    'Interfaces are used to define capabilities that multiple classes can implement.',
+
+    'Java supports multithreading and concurrent programming.',
+
+    'Java is more explicit than Python but usually provides safer automatic memory management than manual C or C++ allocation.'
+  ],
+
+  technical: [
+    'Java source files normally use the .java extension and are compiled by javac into .class bytecode files.',
+
+    'The JVM loads, verifies and executes Java bytecode.',
+
+    'The JVM may interpret bytecode initially and use Just-In-Time compilation to convert frequently executed code into native machine code.',
+
+    'The JDK contains the compiler, development tools, runtime components and standard libraries needed to develop Java applications.',
+
+    'The JRE traditionally refers to the runtime components needed to run Java applications, including the JVM and runtime libraries.',
+
+    'The JVM is the virtual execution environment responsible for running Java bytecode.',
+
+    'Java is statically typed, so variable and method types are checked during compilation.',
+
+    'Primitive types include byte, short, int, long, float, double, char and boolean.',
+
+    'Reference types include classes, arrays, interfaces, enums and records.',
+
+    'Primitive variables normally store their values directly, while reference variables identify objects.',
+
+    'Java is always pass-by-value. When an object is passed to a method, the value being copied is the object reference.',
+
+    'Reassigning a parameter does not change the caller variable, but modifying the shared object through the copied reference may affect the caller-visible object.',
+
+    'A constructor initialises an object when it is created using new.',
+
+    'If no constructor is declared, the compiler may provide a default no-argument constructor.',
+
+    'The this keyword refers to the current object.',
+
+    'The super keyword refers to members of the immediate parent class and can call a parent constructor.',
+
+    'Method overloading uses the same method name with different parameter lists.',
+
+    'Method overriding occurs when a subclass provides a new implementation of an inherited method.',
+
+    'Overloading is resolved at compile time, while overriding supports runtime polymorphism.',
+
+    'A final variable cannot be reassigned after initialisation.',
+
+    'A final method cannot be overridden.',
+
+    'A final class cannot be extended.',
+
+    'A static member belongs to the class rather than to a particular object.',
+
+    'Static methods do not receive a this reference.',
+
+    'An abstract class cannot be instantiated directly and can contain both abstract and implemented methods.',
+
+    'An interface defines a contract that implementing classes agree to provide.',
+
+    'A class can extend one class but implement multiple interfaces.',
+
+    'Interfaces can contain abstract methods, default methods, static methods and constants.',
+
+    'Encapsulation is commonly achieved using private fields and controlled public methods.',
+
+    'Inheritance represents an is-a relationship, while composition represents a has-a relationship.',
+
+    'Composition is often preferred when code reuse does not require strict substitutability.',
+
+    'Java String objects are immutable. Operations that appear to change a String create or return another String.',
+
+    'StringBuilder is mutable and is preferred when a sequence of string modifications is required.',
+
+    'The equals method compares logical equality when it is correctly overridden.',
+
+    'The == operator compares primitive values or reference identity, depending on the operands.',
+
+    'Objects that are equal according to equals should produce the same hashCode value.',
+
+    'ArrayList is backed by a resizable array and provides fast indexed access.',
+
+    'LinkedList is node-based and implements both List and Deque, but it does not provide efficient indexed access.',
+
+    'HashMap stores key-value pairs using hashing and provides average constant-time lookup when hashing behaves well.',
+
+    'TreeMap keeps keys ordered and commonly provides logarithmic operations.',
+
+    'HashSet stores unique elements and is commonly backed internally by a HashMap.',
+
+    'Comparable defines the natural ordering of a class through compareTo.',
+
+    'Comparator defines an external or alternative ordering through compare.',
+
+    'Checked exceptions must normally be caught or declared using throws.',
+
+    'Unchecked exceptions extend RuntimeException and are not subject to the same compile-time handling requirement.',
+
+    'The finally block is normally used for cleanup logic that should run whether or not an exception occurs.',
+
+    'Try-with-resources automatically closes objects that implement AutoCloseable.',
+
+    'Garbage collection reclaims unreachable managed objects, but it does not prevent logical memory leaks caused by retained references.',
+
+    'The Java memory model includes areas such as thread stacks, the heap, method metadata and runtime-managed structures.',
+
+    'Each thread has its own call stack, while objects are generally allocated in shared heap memory.',
+
+    'A thread is a path of execution within a process.',
+
+    'The synchronized keyword can restrict concurrent access to a critical section or object monitor.',
+
+    'Race conditions occur when multiple threads access shared mutable data without correct coordination.',
+
+    'Deadlock can occur when threads wait indefinitely for resources held by one another.',
+
+    'Generics provide compile-time type safety for classes, interfaces and methods.',
+
+    'Due to type erasure, much generic type information is removed during compilation.',
+
+    'Packages organise related classes and help prevent naming conflicts.',
+
+    'Access modifiers include private, default package access, protected and public.',
+
+    'Java records provide a concise syntax for immutable-style data carriers.',
+
+    'Enums represent a controlled set of named constant instances.',
+
+    'Annotations attach metadata to code and can be processed by the compiler, runtime or development tools.'
+  ],
+
+  interview:
+    'Java is a statically typed and object-oriented programming language. Java source code is compiled into bytecode that runs on the JVM, which provides platform independence. I have used Java while studying object-oriented programming and application-development concepts. I understand classes, interfaces, inheritance, polymorphism, collections, exception handling and automatic memory management. My main project experience is currently stronger in Kotlin, TypeScript and JavaScript, so I present Java as an academic and programming-fundamentals skill.',
+
+  keyPoints: [
+    'JVM',
+    'JDK and JRE',
+    'Bytecode',
+    'Classes and objects',
+    'Interfaces',
+    'Inheritance',
+    'Polymorphism',
+    'Collections',
+    'Generics',
+    'Exceptions',
+    'Strings',
+    'Garbage collection',
+    'Multithreading',
+    'Access modifiers'
+  ],
+
+  code: `import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+interface Printable {
+    void printDetails();
+}
+
+class Student implements Printable {
+    private final String name;
+    private final List<Integer> marks;
+
+    public Student(String name, List<Integer> marks) {
+        this.name = name;
+        this.marks = new ArrayList<>(marks);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double calculateAverage() {
+        if (marks.isEmpty()) {
+            return 0.0;
+        }
+
+        int total = 0;
+
+        for (int mark : marks) {
+            total += mark;
+        }
+
+        return (double) total / marks.size();
+    }
+
+    @Override
+    public void printDetails() {
+        System.out.println(
+            name + ": " + calculateAverage()
+        );
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+
+        students.add(
+            new Student("Devanshi", List.of(90, 95, 92))
+        );
+
+        students.add(
+            new Student("Mira", List.of(78, 81, 84))
+        );
+
+        students.sort(
+            Comparator.comparingDouble(Student::calculateAverage)
+                      .reversed()
+        );
+
+        for (Student student : students) {
+            student.printDetails();
+        }
+    }
+}`,
+
+  followUps: [
+    'What is the difference between JVM, JRE and JDK?',
+    'Why is Java platform-independent?',
+    'Is Java completely object-oriented?',
+    'What is the difference between == and equals?',
+    'What is overloading versus overriding?',
+    'What is an interface?',
+    'What is an abstract class?',
+    'What is the difference between ArrayList and LinkedList?',
+    'What is the difference between HashMap and TreeMap?',
+    'How does garbage collection work?'
+  ],
+
+  cautions: [
+    'Do not claim that Java is used in one of your listed projects unless that is accurate.',
+
+    'Describe Java as academic and programming-fundamentals experience if you have not used it in a major project.',
+
+    'Do not say Java is pass-by-reference. Java is always pass-by-value.',
+
+    'Do not use == for logical String comparison. Use equals when comparing String content.',
+
+    'Garbage collection does not guarantee that a program cannot have memory leaks.',
+
+    'Do not say HashMap is always O(1). Average lookup is commonly O(1), but performance depends on hashing and collisions.',
+
+    'Do not say an interface and an abstract class are identical.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Java?',
+      answer:
+        'Java is a statically typed, object-oriented and general-purpose language. It compiles source code into bytecode that runs on the Java Virtual Machine.'
+    },
+
+    {
+      question: '2. Why is Java platform-independent?',
+      answer:
+        'Java source code is compiled into platform-neutral bytecode. A compatible JVM on each operating system executes that same bytecode.'
+    },
+
+    {
+      question: '3. What is the JVM?',
+      answer:
+        'The JVM is the execution environment that loads, verifies and runs Java bytecode. It also manages memory, garbage collection and runtime services.'
+    },
+
+    {
+      question: '4. What is the JDK?',
+      answer:
+        'The JDK is the Java Development Kit. It contains development tools such as javac, runtime components and libraries required to build Java applications.'
+    },
+
+    {
+      question: '5. What is the JRE?',
+      answer:
+        'The JRE traditionally refers to the environment required to run Java programs. It includes the JVM and runtime libraries but not the complete set of development tools.'
+    },
+
+    {
+      question: '6. What is bytecode?',
+      answer:
+        'Bytecode is the intermediate instruction format produced by the Java compiler. It is stored in class files and executed by the JVM.'
+    },
+
+    {
+      question: '7. What is JIT compilation?',
+      answer:
+        'Just-In-Time compilation converts frequently executed bytecode into native machine code during program execution to improve performance.'
+    },
+
+    {
+      question: '8. Is Java completely object-oriented?',
+      answer:
+        'Not completely, because Java includes primitive types such as int, char and boolean that are not ordinary objects.'
+    },
+
+    {
+      question: '9. What is a class?',
+      answer:
+        'A class is a user-defined blueprint describing fields, constructors and methods. Objects are created as instances of that class.'
+    },
+
+    {
+      question: '10. What is an object?',
+      answer:
+        'An object is an instance of a class with its own state and access to the behaviour defined by that class.'
+    },
+
+    {
+      question: '11. What is encapsulation?',
+      answer:
+        'Encapsulation combines data and methods within a class and restricts direct access to internal state, commonly using private fields and controlled public methods.'
+    },
+
+    {
+      question: '12. What is abstraction?',
+      answer:
+        'Abstraction exposes essential behaviour while hiding implementation details. Interfaces and abstract classes are commonly used to create abstractions.'
+    },
+
+    {
+      question: '13. What is inheritance?',
+      answer:
+        'Inheritance allows a child class to reuse and extend accessible behaviour from a parent class. Java supports single class inheritance.'
+    },
+
+    {
+      question: '14. What is polymorphism?',
+      answer:
+        'Polymorphism allows a common type to refer to objects with different implementations. Overriding provides runtime polymorphism, while overloading is resolved at compile time.'
+    },
+
+    {
+      question: '15. What is method overloading?',
+      answer:
+        'Method overloading means declaring multiple methods with the same name but different parameter lists.'
+    },
+
+    {
+      question: '16. What is method overriding?',
+      answer:
+        'Method overriding occurs when a subclass provides a new implementation of an inherited method with a compatible signature.'
+    },
+
+    {
+      question: '17. What is an interface?',
+      answer:
+        'An interface defines a contract that implementing classes must follow. It supports abstraction and allows a class to implement multiple capabilities.'
+    },
+
+    {
+      question: '18. What is an abstract class?',
+      answer:
+        'An abstract class cannot be instantiated directly. It can contain abstract methods, implemented methods, fields and constructors.'
+    },
+
+    {
+      question: '19. Interface versus abstract class?',
+      answer:
+        'An interface mainly defines a capability or contract and supports multiple implementation. An abstract class can provide shared state, constructors and partial implementation within one inheritance hierarchy.'
+    },
+
+    {
+      question: '20. Does Java support multiple inheritance?',
+      answer:
+        'Java does not support extending multiple classes. A class can, however, implement multiple interfaces.'
+    },
+
+    {
+      question: '21. What does static mean?',
+      answer:
+        'A static member belongs to the class rather than to each object. Static methods can be called without creating an instance.'
+    },
+
+    {
+      question: '22. What does final mean?',
+      answer:
+        'A final variable cannot be reassigned, a final method cannot be overridden and a final class cannot be extended.'
+    },
+
+    {
+      question: '23. What is the difference between == and equals?',
+      answer:
+        'For objects, == compares whether two references identify the same object. equals is intended to compare logical equality when correctly implemented.'
+    },
+
+    {
+      question: '24. Why are Strings immutable?',
+      answer:
+        'String immutability improves safety, sharing, hashing and thread-related reasoning. Operations that appear to modify a String return a new String.'
+    },
+
+    {
+      question: '25. String versus StringBuilder?',
+      answer:
+        'String is immutable. StringBuilder is mutable and is more suitable when repeatedly appending or changing text.'
+    },
+
+    {
+      question: '26. Is Java pass-by-value or pass-by-reference?',
+      answer:
+        'Java is always pass-by-value. For objects, the copied value is a reference to the same object.'
+    },
+
+    {
+      question: '27. What is the Java Collections Framework?',
+      answer:
+        'It is a set of interfaces and implementations for storing and processing groups of objects, including List, Set, Queue and Map-related types.'
+    },
+
+    {
+      question: '28. Array versus ArrayList?',
+      answer:
+        'An array has a fixed length. ArrayList resizes dynamically and provides collection methods, but it stores objects rather than primitive values directly.'
+    },
+
+    {
+      question: '29. ArrayList versus LinkedList?',
+      answer:
+        'ArrayList provides efficient indexed access using a dynamic array. LinkedList stores separate nodes and supports List and Deque operations but has slower indexed access.'
+    },
+
+    {
+      question: '30. HashMap versus TreeMap?',
+      answer:
+        'HashMap uses hashing and does not maintain sorted key order. TreeMap maintains sorted keys and commonly provides O(log n) operations.'
+    },
+
+    {
+      question: '31. HashSet versus ArrayList?',
+      answer:
+        'HashSet stores unique elements and supports average fast membership checks. ArrayList preserves order and allows duplicates.'
+    },
+
+    {
+      question: '32. Comparable versus Comparator?',
+      answer:
+        'Comparable defines a class natural ordering through compareTo. Comparator defines an external or alternative ordering through compare.'
+    },
+
+    {
+      question: '33. What are generics?',
+      answer:
+        'Generics allow classes and methods to work with specified types while providing compile-time type safety and reducing explicit casts.'
+    },
+
+    {
+      question: '34. Checked versus unchecked exceptions?',
+      answer:
+        'Checked exceptions must normally be caught or declared. Unchecked exceptions extend RuntimeException and are not subject to that compile-time rule.'
+    },
+
+    {
+      question: '35. What is try-with-resources?',
+      answer:
+        'Try-with-resources automatically closes resources that implement AutoCloseable when execution leaves the block.'
+    },
+
+    {
+      question: '36. How does garbage collection work?',
+      answer:
+        'The JVM identifies managed objects that are no longer reachable and can reclaim their memory. The exact algorithm depends on the selected garbage collector.'
+    },
+
+    {
+      question: '37. Can Java have memory leaks?',
+      answer:
+        'Yes. A program can retain references to objects it no longer needs, preventing the garbage collector from reclaiming them.'
+    },
+
+    {
+      question: '38. What is a thread?',
+      answer:
+        'A thread is an independent path of execution inside a process. Multiple threads can share heap objects within the same Java process.'
+    },
+
+    {
+      question: '39. What is synchronization?',
+      answer:
+        'Synchronization coordinates access to shared mutable data so that concurrent threads do not execute unsafe critical operations at the same time.'
+    },
+
+    {
+      question: '40. Why did you include Java on your resume?',
+      answer:
+        'I studied Java for object-oriented programming and application-development concepts. I understand its class model, interfaces, collections, exceptions and JVM execution, although my primary project work is currently in Kotlin, TypeScript and JavaScript.'
+    }
+  ]
+},
   {
-    id: 'kotlin', title: 'Kotlin', category: 'languages', short: 'Modern statically typed language used for Android.',
-    simple: [
-      'Kotlin is a modern language developed by JetBrains and widely used for Android applications.',
-      'It is interoperable with Java, so both languages can coexist in one project.',
-      'It reduces boilerplate and offers built-in null-safety.'
-    ],
-    technical: [
-      'Non-nullable types cannot normally store null, while nullable types use the question-mark syntax.',
-      'val creates a read-only reference, while var creates a mutable reference.',
-      'Kotlin supports data classes, extension functions, type inference and coroutines.'
-    ],
-    interview: 'Kotlin is a statically typed language commonly used for Android development. I used it in CareCompanion to implement application logic and screen interactions. I chose Kotlin because it has concise syntax, built-in null safety and strong interoperability with the Android ecosystem.',
-    keyPoints: ['Null safety', 'val versus var', 'Data classes', 'Java interoperability', 'Coroutines'],
-    code: `var name: String? = null\nval length = name?.length`,
-    followUps: ['What is a nullable type?', 'val versus var?', 'What is a data class?', 'Kotlin versus Java?']
-  },
+  id: 'kotlin',
+  title: 'Kotlin',
+  category: 'languages',
+
+  short:
+    'A concise, statically typed and null-safe language widely used for modern Android development.',
+
+  simple: [
+    'Kotlin is a statically typed, general-purpose programming language developed by JetBrains.',
+
+    'Kotlin is widely used for native Android application development.',
+
+    'Kotlin code can run on the JVM and can work together with existing Java code.',
+
+    'This compatibility allows Android projects to contain both Kotlin and Java classes.',
+
+    'Kotlin generally requires less boilerplate code than Java.',
+
+    'Kotlin provides built-in null-safety features that help prevent many null-reference errors.',
+
+    'A non-nullable type such as String cannot normally store null.',
+
+    'A nullable type such as String? can store either a String or null.',
+
+    'val declares a read-only reference, while var declares a reference that can be reassigned.',
+
+    'Type inference allows Kotlin to determine a variable type from its initial value.',
+
+    'Data classes provide concise classes for storing structured data.',
+
+    'Extension functions allow developers to add callable functionality to an existing type without modifying that type.',
+
+    'Kotlin supports object-oriented and functional programming styles.',
+
+    'Coroutines provide a structured way to perform asynchronous and concurrent work.',
+
+    'In CareCompanion, Kotlin is the language responsible for Android application logic and screen interactions.'
+  ],
+
+  technical: [
+    'Kotlin is statically typed, so types are generally checked during compilation.',
+
+    'Kotlin/JVM code is compiled into JVM bytecode and can use Java libraries.',
+
+    'Kotlin provides Java interoperability, allowing Kotlin to call Java code and Java to call appropriately exposed Kotlin code.',
+
+    'val prevents a reference from being reassigned, but it does not automatically make the referenced object deeply immutable.',
+
+    'var allows the reference to be reassigned.',
+
+    'A type without a question mark is non-nullable by default.',
+
+    'A type followed by ? is nullable.',
+
+    'The safe-call operator ?. accesses a member only when the receiver is not null.',
+
+    'The Elvis operator ?: supplies an alternative value when the expression on its left is null.',
+
+    'The not-null assertion operator !! converts a nullable value to a non-null expectation and throws an exception if the value is null.',
+
+    'The !! operator should be used cautiously because it removes the benefit of compile-time null-safety.',
+
+    'Safe casts use as? and return null when a cast is not possible.',
+
+    'Smart casts allow the compiler to treat a checked value as a more specific type when it can prove that the value has not changed.',
+
+    'The when expression provides a flexible alternative to switch statements and can return a value.',
+
+    'The if statement is also an expression in Kotlin and can return a value.',
+
+    'Functions are declared using the fun keyword.',
+
+    'Function parameters are read-only inside the function.',
+
+    'Default parameter values reduce the need for multiple overloaded methods.',
+
+    'Named arguments improve readability when calling functions with several parameters.',
+
+    'A primary constructor is declared as part of the class header.',
+
+    'Secondary constructors are declared using the constructor keyword.',
+
+    'The init block runs as part of object initialisation.',
+
+    'Classes and methods are final by default in Kotlin.',
+
+    'The open keyword is required when a class or method should support inheritance or overriding.',
+
+    'The override keyword is mandatory when overriding an inherited member.',
+
+    'An abstract class can contain abstract and implemented members.',
+
+    'An interface defines a contract and can also provide method implementations.',
+
+    'A data class automatically provides useful methods such as equals, hashCode, toString, component functions and copy.',
+
+    'A data class should have at least one primary-constructor parameter marked val or var.',
+
+    'A sealed class restricts which types can directly extend it, making it useful for representing a controlled set of states.',
+
+    'An enum class represents a fixed set of named instances.',
+
+    'An object declaration creates a singleton instance.',
+
+    'A companion object stores class-associated members similar to certain Java static use cases.',
+
+    'Extension functions are resolved statically and do not actually modify the original class.',
+
+    'Higher-order functions accept functions as parameters or return functions.',
+
+    'Lambda expressions provide concise function values.',
+
+    'Collection operations such as map, filter, reduce, any and all support functional-style data processing.',
+
+    'List usually represents a read-only collection interface, while MutableList supports modification through that reference.',
+
+    'Read-only collection interfaces do not necessarily guarantee that the underlying collection can never change through another reference.',
+
+    'Kotlin distinguishes between structural equality using == and referential equality using ===.',
+
+    'The == operator safely calls equals for logical comparison.',
+
+    'The === operator checks whether two references identify the same object.',
+
+    'Kotlin exceptions are unchecked from the language perspective, so methods do not declare checked exceptions as Java does.',
+
+    'The try expression can return a value.',
+
+    'The use function helps close resources that implement Closeable or AutoCloseable.',
+
+    'Coroutines are lightweight units of asynchronous work managed by coroutine libraries rather than one operating-system thread per coroutine.',
+
+    'A suspend function can pause without blocking its underlying thread and resume later.',
+
+    'Coroutine builders include launch and async in appropriate coroutine scopes.',
+
+    'launch returns a Job and is used when a result value is not directly required.',
+
+    'async returns a Deferred value whose result can be obtained using await.',
+
+    'Coroutine scopes help control coroutine lifetimes and cancellation.',
+
+    'Structured concurrency ties child coroutine lifetimes to a parent scope.',
+
+    'Dispatchers determine the execution context used by a coroutine.',
+
+    'Android applications commonly use lifecycle-aware scopes to avoid work continuing longer than the relevant screen or component.',
+
+    'Kotlin properties can have custom getter and setter logic.',
+
+    'The lateinit modifier delays initialisation of a non-null mutable property, but accessing it before initialisation causes an exception.',
+
+    'The lazy delegate delays computation of a read-only value until it is first accessed.',
+
+    'Delegated properties allow property behaviour to be provided by another object.',
+
+    'Scope functions include let, run, with, apply and also, each with different receiver and return-value behaviour.',
+
+    'Kotlin Android development still requires understanding Android components such as activities, fragments, intents, lifecycle callbacks and state management.',
+
+    'Kotlin itself does not automatically provide navigation, persistence or networking. Those features depend on Android APIs and libraries used by the project.'
+  ],
+
+  interview:
+    'Kotlin is a statically typed language widely used for modern Android development. I used Kotlin in CareCompanion to implement application logic and screen interactions for features such as schedules, medicine management, emergency contacts and wellness or SOS support. I chose Kotlin because it provides concise syntax, built-in null-safety and strong interoperability with Java and the Android ecosystem. I would describe only the Android components and coroutine features that are actually present in my project.',
+
+  keyPoints: [
+    'Null safety',
+    'val and var',
+    'Type inference',
+    'Data classes',
+    'Extension functions',
+    'Sealed classes',
+    'Collections',
+    'Lambdas',
+    'Higher-order functions',
+    'Coroutines',
+    'Java interoperability',
+    'Android lifecycle',
+    'Activities',
+    'Fragments',
+    'Intents'
+  ],
+
+  code: `data class Medicine(
+    val name: String,
+    val dosage: String,
+    var completed: Boolean = false
+)
+
+fun formatMedicine(medicine: Medicine?): String {
+    return medicine?.let {
+        it.name + " - " + it.dosage
+    } ?: "No medicine selected"
+}
+
+fun pendingMedicines(
+    medicines: List<Medicine>
+): List<Medicine> {
+    return medicines.filter { medicine ->
+        !medicine.completed
+    }
+}
+
+fun main() {
+    val medicines = mutableListOf(
+        Medicine("Medicine A", "After breakfast"),
+        Medicine("Medicine B", "Before sleeping")
+    )
+
+    medicines[0].completed = true
+
+    val pending = pendingMedicines(medicines)
+
+    pending.forEach { medicine ->
+        println(formatMedicine(medicine))
+    }
+}`,
+
+  followUps: [
+    'Why did you use Kotlin for CareCompanion?',
+    'What is null safety?',
+    'What is the difference between val and var?',
+    'What is a data class?',
+    'What is an extension function?',
+    'What is the difference between == and ===?',
+    'What is a sealed class?',
+    'What are coroutines?',
+    'What is an activity?',
+    'What is the Android activity lifecycle?'
+  ],
+
+  cautions: [
+    'Only claim that CareCompanion uses activities, fragments, coroutines, Room or other Android components after checking the actual code.',
+
+    'Do not say val makes an entire object immutable. It only prevents reassignment of that reference.',
+
+    'Avoid using !! unless null is genuinely impossible and that guarantee is clear.',
+
+    'Do not describe extension functions as modifying the original class.',
+
+    'Do not say coroutines are the same as threads.',
+
+    'Do not claim persistent medicine storage, reminders, API calls or cloud integration unless CareCompanion actually implements them.',
+
+    'Kotlin null safety reduces null-related errors but cannot eliminate every possible runtime null issue, especially around Java interoperability and !!.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Kotlin?',
+      answer:
+        'Kotlin is a statically typed, general-purpose language developed by JetBrains. It is widely used for Android development and can compile to JVM bytecode.'
+    },
+
+    {
+      question: '2. Why did you use Kotlin in CareCompanion?',
+      answer:
+        'I used Kotlin because it is well suited to modern Android development, offers concise syntax, provides built-in null safety and integrates with Android Studio and Java-based Android APIs.'
+    },
+
+    {
+      question: '3. How does Kotlin work with Java?',
+      answer:
+        'Kotlin/JVM compiles to JVM bytecode and can call Java classes and libraries. Java can also call Kotlin code when its declarations are exposed compatibly.'
+    },
+
+    {
+      question: '4. What is the difference between val and var?',
+      answer:
+        'val creates a read-only reference that cannot be reassigned. var creates a mutable reference that can be reassigned.'
+    },
+
+    {
+      question: '5. Does val make an object immutable?',
+      answer:
+        'No. val prevents the reference from pointing to another object, but the object itself may still contain mutable properties or collections.'
+    },
+
+    {
+      question: '6. What is type inference?',
+      answer:
+        'Type inference allows the compiler to determine a variable or expression type from its initial value or context.'
+    },
+
+    {
+      question: '7. What is null safety?',
+      answer:
+        'Kotlin separates nullable and non-nullable types. A String cannot normally hold null, while String? can hold either a String or null.'
+    },
+
+    {
+      question: '8. What is the safe-call operator?',
+      answer:
+        'The ?. operator accesses a property or function only when the receiver is not null. If it is null, the expression returns null.'
+    },
+
+    {
+      question: '9. What is the Elvis operator?',
+      answer:
+        'The ?: operator provides a fallback value when the expression on its left evaluates to null.'
+    },
+
+    {
+      question: '10. What does the !! operator do?',
+      answer:
+        'The !! operator asserts that a nullable value is not null. It throws a NullPointerException if the value is actually null.'
+    },
+
+    {
+      question: '11. What is a smart cast?',
+      answer:
+        'After a reliable type or null check, the Kotlin compiler may automatically treat a value as the checked type without requiring an explicit cast.'
+    },
+
+    {
+      question: '12. What is a data class?',
+      answer:
+        'A data class is designed to hold structured data. Kotlin automatically generates useful methods such as equals, hashCode, toString and copy.'
+    },
+
+    {
+      question: '13. What does the copy function do in a data class?',
+      answer:
+        'It creates a new instance using the existing property values while allowing selected properties to be replaced.'
+    },
+
+    {
+      question: '14. What is an extension function?',
+      answer:
+        'An extension function allows a function to be called using the syntax of an existing type without changing or inheriting from that type.'
+    },
+
+    {
+      question: '15. Does an extension function modify the original class?',
+      answer:
+        'No. It is resolved as a statically declared function and does not add an actual member to the original class.'
+    },
+
+    {
+      question: '16. What is a sealed class?',
+      answer:
+        'A sealed class restricts its direct subclasses to a controlled hierarchy. It is useful for representing states such as loading, success and error.'
+    },
+
+    {
+      question: '17. What is an object declaration?',
+      answer:
+        'An object declaration creates a singleton instance that is initialised when first accessed according to its runtime context.'
+    },
+
+    {
+      question: '18. What is a companion object?',
+      answer:
+        'A companion object stores members associated with a class rather than a specific instance and can provide factory functions or constants.'
+    },
+
+    {
+      question: '19. Why are Kotlin classes final by default?',
+      answer:
+        'Final-by-default classes prevent accidental inheritance. A class or method must be marked open when extension or overriding is intended.'
+    },
+
+    {
+      question: '20. What is the when expression?',
+      answer:
+        'when selects a branch based on values, types or conditions. It is more flexible than a traditional switch and can return a value.'
+    },
+
+    {
+      question: '21. What is the difference between == and ===?',
+      answer:
+        '== checks structural equality using equals, while === checks whether two references identify the same object.'
+    },
+
+    {
+      question: '22. What is a higher-order function?',
+      answer:
+        'A higher-order function accepts another function as a parameter or returns a function.'
+    },
+
+    {
+      question: '23. What is a lambda?',
+      answer:
+        'A lambda is an anonymous function value that can be passed to higher-order functions such as map, filter or forEach.'
+    },
+
+    {
+      question: '24. List versus MutableList?',
+      answer:
+        'List exposes read-only collection operations. MutableList also exposes methods for adding, removing and replacing elements.'
+    },
+
+    {
+      question: '25. What are coroutines?',
+      answer:
+        'Coroutines are lightweight asynchronous tasks that can suspend and resume without requiring one dedicated operating-system thread for each task.'
+    },
+
+    {
+      question: '26. What is a suspend function?',
+      answer:
+        'A suspend function can pause coroutine execution without blocking the underlying thread and can later resume with its state preserved.'
+    },
+
+    {
+      question: '27. launch versus async?',
+      answer:
+        'launch starts a coroutine and returns a Job. async returns a Deferred result that can be obtained using await.'
+    },
+
+    {
+      question: '28. Are coroutines the same as threads?',
+      answer:
+        'No. Coroutines are units of asynchronous work scheduled on execution contexts. Many coroutines can use a smaller number of threads.'
+    },
+
+    {
+      question: '29. What is structured concurrency?',
+      answer:
+        'Structured concurrency organises coroutines inside scopes so their lifetime, cancellation and failures are connected to their parent operation.'
+    },
+
+    {
+      question: '30. What is lateinit?',
+      answer:
+        'lateinit delays initialisation of a non-null mutable property. Accessing it before assigning a value causes an exception.'
+    },
+
+    {
+      question: '31. What is lazy?',
+      answer:
+        'lazy computes and stores a read-only value the first time it is accessed.'
+    },
+
+    {
+      question: '32. lateinit versus lazy?',
+      answer:
+        'lateinit is used with a mutable var that will be assigned later. lazy is used with a val whose value is calculated automatically on first access.'
+    },
+
+    {
+      question: '33. What are Kotlin scope functions?',
+      answer:
+        'let, run, with, apply and also execute a block in the context of an object. They differ in how the object is referenced and what the function returns.'
+    },
+
+    {
+      question: '34. What is an activity?',
+      answer:
+        'An activity is an Android component that commonly represents a user-facing screen or entry point and participates in a lifecycle managed by Android.'
+    },
+
+    {
+      question: '35. What is a fragment?',
+      answer:
+        'A fragment is a reusable portion of user interface and behaviour hosted within an activity. It has its own lifecycle connected to its host.'
+    },
+
+    {
+      question: '36. What is an intent?',
+      answer:
+        'An intent is an Android messaging object used to request an action, such as opening another activity or invoking a system feature.'
+    },
+
+    {
+      question: '37. What is the activity lifecycle?',
+      answer:
+        'Important callbacks include onCreate, onStart, onResume, onPause, onStop and onDestroy. They represent transitions in the activity state.'
+    },
+
+    {
+      question: '38. How did you use Kotlin in CareCompanion?',
+      answer:
+        'I used Kotlin to implement the Android application logic and screen interactions for healthcare-support features. I would explain the exact navigation and storage mechanisms after verifying the relevant project classes.'
+    },
+
+    {
+      question: '39. Kotlin versus Java?',
+      answer:
+        'Both run well in the Android ecosystem. Kotlin is generally more concise and provides built-in nullable-type handling, data classes and coroutine support, while Java has a larger legacy codebase and ecosystem.'
+    },
+
+    {
+      question: '40. What would you improve in CareCompanion?',
+      answer:
+        'Depending on the current implementation, possible improvements include persistent local storage, secure cloud synchronisation, validated medicine reminders, lifecycle-aware state handling and improved accessibility. I would only claim implemented features that are present in the code.'
+    }
+  ]
+},
   {
     id: 'html', title: 'HTML', category: 'languages', short: 'Markup language that structures webpage content.',
     simple: [
