@@ -2364,69 +2364,2212 @@ fun main() {
   ]
 },
   {
-    id: 'html', title: 'HTML', category: 'languages', short: 'Markup language that structures webpage content.',
-    simple: [
-      'HTML defines the structure and meaning of webpage content.',
-      'It creates headings, forms, buttons, images, links, tables and other elements.',
-      'HTML is a markup language, not a programming language.'
-    ],
-    technical: [
-      'Semantic elements such as header, nav, main, section and footer describe the purpose of content.',
-      'Semantic HTML improves accessibility, search-engine understanding and maintainability.',
-      'Forms use input controls and labels to collect user information.'
-    ],
-    interview: 'HTML is a markup language used to structure webpage content. I use semantic HTML elements to make interfaces more readable, accessible and maintainable.',
-    code: `<main>\n  <section aria-labelledby="readings-title">\n    <h2 id="readings-title">Vitals history</h2>\n  </section>\n</main>`,
-    followUps: ['What is semantic HTML?', 'Why are labels important?', 'div versus section?']
-  },
+  id: 'html',
+  title: 'HTML',
+  category: 'languages',
+
+  short:
+    'The markup language used to define the structure, meaning and content of webpages.',
+
+  simple: [
+    'HTML stands for HyperText Markup Language.',
+
+    'HTML is a markup language, not a programming language, because it describes webpage structure rather than implementing general-purpose logic.',
+
+    'HTML uses elements to represent content such as headings, paragraphs, links, images, buttons, forms and tables.',
+
+    'Most HTML elements contain an opening tag, content and a closing tag.',
+
+    'Attributes provide additional information about an element, such as an image source, link destination or input type.',
+
+    'The browser reads HTML and converts it into a tree-like representation called the Document Object Model.',
+
+    'CSS styles the HTML elements, while JavaScript adds dynamic behaviour and interaction.',
+
+    'Semantic HTML uses elements that describe the meaning of content, such as header, nav, main, article, section and footer.',
+
+    'Semantic elements improve readability, accessibility and search-engine understanding.',
+
+    'Forms collect user input through controls such as input, textarea, select, checkbox, radio button and button.',
+
+    'Labels should be connected to form controls so users and screen readers can understand each field.',
+
+    'The alt attribute describes an image when the image cannot be seen or loaded.',
+
+    'Block-level elements generally begin on a new line, while inline elements normally remain within surrounding text.',
+
+    'HTML documents usually contain a doctype, an html root element, a head section and a body section.',
+
+    'The head contains metadata and linked resources, while the body contains visible webpage content.',
+
+    'HTML provides the foundation on which CSS, JavaScript, React and other frontend technologies operate.'
+  ],
+
+  technical: [
+    'The <!DOCTYPE html> declaration tells the browser to use modern standards-mode rendering.',
+
+    'The html element is the root element of an HTML document.',
+
+    'The lang attribute identifies the primary language of a page and helps accessibility tools and search engines.',
+
+    'The head element contains document metadata, title information, character encoding, viewport configuration, stylesheets and other resources.',
+
+    'The meta charset="UTF-8" declaration allows the document to represent a wide range of characters.',
+
+    'The viewport meta tag controls how a page is scaled and displayed on mobile devices.',
+
+    'The body element contains the content presented to the user.',
+
+    'The browser parses HTML and creates the DOM tree, which JavaScript can inspect and modify.',
+
+    'HTML elements can contain attributes consisting of a name and an optional value.',
+
+    'Global attributes such as id, class, title, hidden and data-* can be used on many HTML elements.',
+
+    'The id attribute should uniquely identify one element within a document.',
+
+    'The class attribute can be shared by multiple elements and is commonly used by CSS and JavaScript.',
+
+    'Custom data-* attributes store application-specific data on HTML elements.',
+
+    'Semantic elements communicate the role of content rather than only its appearance.',
+
+    'The main element should represent the dominant content of the page and is normally used once per document.',
+
+    'The article element represents self-contained content that could stand independently.',
+
+    'The section element groups related content and normally has an associated heading.',
+
+    'The nav element represents a major group of navigation links.',
+
+    'The aside element represents supporting or indirectly related content.',
+
+    'Heading elements range from h1 to h6 and should form a meaningful content hierarchy.',
+
+    'Heading levels should describe document structure rather than being selected only for visual size.',
+
+    'Anchor elements create hyperlinks using the href attribute.',
+
+    'The target="_blank" attribute opens a link in another browsing context, and rel="noopener noreferrer" is commonly added for security and privacy.',
+
+    'The img element is a replaced element and normally requires src and alt attributes.',
+
+    'Responsive images can use srcset, sizes and the picture element.',
+
+    'The alt attribute should describe meaningful images, while decorative images commonly use an empty alt value.',
+
+    'The form element groups controls that collect and submit user input.',
+
+    'The action attribute specifies where form data is submitted, while method commonly specifies GET or POST.',
+
+    'A label can be connected to an input using the label for attribute and the input id attribute.',
+
+    'The name attribute determines the key under which a form control value is submitted.',
+
+    'The type attribute changes the behaviour and validation of an input, such as email, number, date, password or checkbox.',
+
+    'Built-in form validation attributes include required, min, max, minlength, maxlength and pattern.',
+
+    'Client-side validation improves user experience but must not replace backend validation.',
+
+    'Buttons should normally specify type="button" unless they are intended to submit or reset a form.',
+
+    'Inside a form, a button without an explicit type commonly behaves as a submit button.',
+
+    'Tables should be used for tabular data rather than general page layout.',
+
+    'Table-related elements include table, caption, thead, tbody, tr, th and td.',
+
+    'The scope attribute on th can help assistive technologies understand row and column headings.',
+
+    'Ordered lists use ol, unordered lists use ul and individual list items use li.',
+
+    'The details and summary elements create a native expandable disclosure component.',
+
+    'The audio and video elements provide native media playback capabilities.',
+
+    'The canvas element provides a drawing surface controlled primarily through JavaScript.',
+
+    'The iframe element embeds another browsing context and should be used carefully because of security, performance and accessibility concerns.',
+
+    'ARIA attributes can supplement accessibility when native HTML does not provide the required semantics.',
+
+    'Native semantic HTML should generally be preferred over recreating existing controls using generic div elements and ARIA.',
+
+    'A valid HTML document improves predictable browser behaviour, maintainability and accessibility.'
+  ],
+
+  interview:
+    'HTML is the markup language used to define the structure and meaning of webpage content. I use semantic elements such as header, nav, main, section and footer to keep pages readable and accessible. I also use appropriate form controls, labels and validation attributes so users can interact with the interface correctly. HTML provides structure, CSS controls presentation and JavaScript adds dynamic behaviour.',
+
+  keyPoints: [
+    'Document structure',
+    'Elements and attributes',
+    'Semantic HTML',
+    'Forms',
+    'Accessibility',
+    'DOM',
+    'Links and images',
+    'Tables',
+    'Metadata',
+    'Responsive images',
+    'Native validation'
+  ],
+
+  code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Healthcare Vitals Tracker</title>
+</head>
+
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#readings">Readings</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section aria-labelledby="vitals-heading">
+      <h1 id="vitals-heading">Record your vitals</h1>
+
+      <form>
+        <div>
+          <label for="systolic">
+            Systolic pressure
+          </label>
+
+          <input
+            id="systolic"
+            name="systolic"
+            type="number"
+            min="1"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="diastolic">
+            Diastolic pressure
+          </label>
+
+          <input
+            id="diastolic"
+            name="diastolic"
+            type="number"
+            min="1"
+            required
+          />
+        </div>
+
+        <button type="submit">
+          Save reading
+        </button>
+      </form>
+    </section>
+
+    <section
+      id="readings"
+      aria-labelledby="history-heading"
+    >
+      <h2 id="history-heading">Reading history</h2>
+
+      <article>
+        <h3>30 July 2026</h3>
+        <p>Blood pressure: 120/80</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Healthcare Vitals Tracker</p>
+  </footer>
+</body>
+</html>`,
+
+  followUps: [
+    'Why is HTML not considered a programming language?',
+    'What is semantic HTML?',
+    'What is the DOM?',
+    'What is the difference between id and class?',
+    'What is the difference between div and section?',
+    'Why are labels important in forms?',
+    'What is the purpose of the alt attribute?',
+    'What is the viewport meta tag?',
+    'What are block and inline elements?',
+    'What is the difference between GET and POST in forms?'
+  ],
+
+  cautions: [
+    'Do not describe HTML as a programming language.',
+
+    'Do not use div for every element when a suitable semantic element exists.',
+
+    'Do not use headings only to achieve a particular font size.',
+
+    'Do not omit labels from important form controls.',
+
+    'Frontend form validation is not a substitute for backend validation.',
+
+    'Do not use tables for general page layout.',
+
+    'The alt attribute should describe the purpose of meaningful images rather than merely repeat the filename.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is HTML?',
+      answer:
+        'HTML stands for HyperText Markup Language. It defines the structure and meaning of webpage content using elements and attributes.'
+    },
+
+    {
+      question: '2. Why is HTML not a programming language?',
+      answer:
+        'HTML describes document structure and content. It does not independently provide general-purpose programming constructs such as variables, conditions, loops and functions.'
+    },
+
+    {
+      question: '3. What is an HTML element?',
+      answer:
+        'An element is a structural part of an HTML document, such as a heading, paragraph, link, form control or section.'
+    },
+
+    {
+      question: '4. What is an attribute?',
+      answer:
+        'An attribute provides additional information or configuration for an element, such as href for a link, src for an image or type for an input.'
+    },
+
+    {
+      question: '5. What is semantic HTML?',
+      answer:
+        'Semantic HTML uses elements that describe their purpose, such as nav, main, article, section and footer, instead of relying only on generic containers.'
+    },
+
+    {
+      question: '6. Why is semantic HTML important?',
+      answer:
+        'It improves code readability, accessibility and search-engine understanding by clearly communicating the role of each part of the page.'
+    },
+
+    {
+      question: '7. What is the DOM?',
+      answer:
+        'The Document Object Model is the browser-created tree representation of an HTML document. JavaScript can read and modify this tree.'
+    },
+
+    {
+      question: '8. What does <!DOCTYPE html> do?',
+      answer:
+        'It tells the browser to interpret the document using modern HTML standards mode.'
+    },
+
+    {
+      question: '9. What is the purpose of the head element?',
+      answer:
+        'The head contains metadata and linked resources such as the title, character encoding, viewport configuration, stylesheets and scripts.'
+    },
+
+    {
+      question: '10. What is the purpose of the body element?',
+      answer:
+        'The body contains the webpage content presented to users.'
+    },
+
+    {
+      question: '11. What is the difference between id and class?',
+      answer:
+        'An id should uniquely identify one element in a document. A class can be shared across multiple elements for styling or behaviour.'
+    },
+
+    {
+      question: '12. What are block and inline elements?',
+      answer:
+        'Block elements generally occupy available horizontal space and start on a new line. Inline elements normally remain within surrounding text content.'
+    },
+
+    {
+      question: '13. What is the difference between div and section?',
+      answer:
+        'div is a generic container without semantic meaning. section groups related thematic content and should normally have a heading.'
+    },
+
+    {
+      question: '14. What is the difference between section and article?',
+      answer:
+        'A section groups related content within a page. An article represents self-contained content that could stand independently or be reused.'
+    },
+
+    {
+      question: '15. Why should heading levels be used carefully?',
+      answer:
+        'Headings create a document outline. A meaningful hierarchy helps users, assistive technologies and search engines understand content structure.'
+    },
+
+    {
+      question: '16. What is the alt attribute?',
+      answer:
+        'The alt attribute provides a text alternative for an image. It helps users who cannot see the image and appears when the image cannot load.'
+    },
+
+    {
+      question: '17. What should be used for decorative images?',
+      answer:
+        'A decorative image commonly uses an empty alt attribute, alt="", so assistive technologies can ignore it.'
+    },
+
+    {
+      question: '18. Why are labels important in forms?',
+      answer:
+        'Labels identify form controls and improve usability and accessibility. Clicking a correctly connected label also focuses or activates its control.'
+    },
+
+    {
+      question: '19. What is the difference between the id and name of an input?',
+      answer:
+        'The id connects the input to labels and scripts. The name identifies the field when form data is submitted.'
+    },
+
+    {
+      question: '20. What does required do?',
+      answer:
+        'The required attribute asks the browser to prevent normal form submission when the control has no acceptable value.'
+    },
+
+    {
+      question: '21. What is the difference between GET and POST in a form?',
+      answer:
+        'GET commonly places submitted values in the URL and is suited to retrieval operations. POST sends data in the request body and is commonly used when creating or submitting data.'
+    },
+
+    {
+      question: '22. Why should button type be specified?',
+      answer:
+        'Inside a form, a button may default to submit. Setting type="button" avoids accidental form submission when the button performs another action.'
+    },
+
+    {
+      question: '23. What is the viewport meta tag?',
+      answer:
+        'It controls how a webpage is scaled on mobile devices. A common value sets the viewport width to the device width and initial scale to one.'
+    },
+
+    {
+      question: '24. What are data-* attributes?',
+      answer:
+        'They are custom attributes used to store application-specific information on HTML elements, such as data-id or data-status.'
+    },
+
+    {
+      question: '25. When should tables be used?',
+      answer:
+        'Tables should be used for genuine tabular data containing related rows and columns, not for general page layout.'
+    },
+
+    {
+      question: '26. What are details and summary?',
+      answer:
+        'They provide a native expandable component. summary is the visible control and details contains the collapsible content.'
+    },
+
+    {
+      question: '27. What is ARIA?',
+      answer:
+        'ARIA provides accessibility roles, states and properties for interfaces where native HTML semantics are insufficient.'
+    },
+
+    {
+      question: '28. Should ARIA replace semantic HTML?',
+      answer:
+        'No. Native semantic HTML should be preferred because it already provides browser behaviour and accessibility semantics.'
+    },
+
+    {
+      question: '29. How does HTML connect with CSS and JavaScript?',
+      answer:
+        'HTML creates the structure, CSS controls visual presentation and JavaScript handles dynamic behaviour and interaction.'
+    },
+
+    {
+      question: '30. How did you use HTML in Puzzle Grove?',
+      answer:
+        'I used HTML to structure the game interface, navigation, forms, buttons, puzzle content and user-facing sections. CSS handled presentation and JavaScript implemented the game behaviour.'
+    }
+  ]
+},
   {
-    id: 'css', title: 'CSS', category: 'languages', short: 'Styles and lays out HTML interfaces.',
-    simple: [
-      'CSS controls colours, fonts, spacing, layouts, animations and responsive behaviour.',
-      'Flexbox is useful for one-dimensional alignment.',
-      'CSS Grid is useful for layouts involving rows and columns.'
-    ],
-    technical: [
-      'The box model consists of content, padding, border and margin.',
-      'Specificity and the cascade determine which style rule is applied.',
-      'Media queries adapt a layout to different viewport sizes.'
-    ],
-    interview: 'CSS controls the visual presentation and layout of HTML. I have used Flexbox for one-dimensional alignment and CSS Grid for layouts involving both rows and columns. I also use media queries to adapt interfaces to different screen sizes.',
-    keyPoints: ['Box model', 'Flexbox', 'Grid', 'Specificity', 'Media queries', 'Positioning'],
-    followUps: ['Grid versus Flexbox?', 'Explain the box model.', 'What is CSS specificity?']
-  },
+  id: 'css',
+  title: 'CSS',
+  category: 'languages',
+
+  short:
+    'The styling language used to control webpage layout, appearance, responsiveness and visual behaviour.',
+
+  simple: [
+    'CSS stands for Cascading Style Sheets.',
+
+    'CSS controls the visual presentation of HTML elements.',
+
+    'It can manage colours, typography, spacing, borders, backgrounds, positioning, layout, transitions and animations.',
+
+    'A CSS rule contains a selector and one or more property-value declarations.',
+
+    'Selectors identify which HTML elements should receive a style.',
+
+    'The cascade decides which declaration is applied when several rules target the same element.',
+
+    'Specificity measures how strongly a selector targets an element.',
+
+    'Inheritance allows some properties, such as text colour and font family, to pass from parent elements to descendants.',
+
+    'The box model describes each element as content surrounded by padding, border and margin.',
+
+    'Flexbox is useful for one-dimensional layouts along a row or column.',
+
+    'CSS Grid is useful for two-dimensional layouts involving rows and columns.',
+
+    'Media queries apply different styles according to conditions such as viewport width.',
+
+    'A mobile-first approach begins with styles for small screens and adds enhancements for wider screens.',
+
+    'Relative units such as rem, em, %, vw and vh help create flexible interfaces.',
+
+    'Pseudo-classes style elements in a particular state, such as hover, focus or disabled.',
+
+    'Pseudo-elements style or generate a specific part of an element, such as ::before or ::after.',
+
+    'Transitions animate changes between property values, while keyframe animations support multi-step animation sequences.',
+
+    'CSS custom properties store reusable values such as colours and spacing.',
+
+    'Responsive design combines flexible layouts, media queries, scalable units and responsive media.'
+  ],
+
+  technical: [
+    'A CSS declaration consists of a property and value, while a rule combines one or more selectors with a declaration block.',
+
+    'Selectors include element selectors, class selectors, id selectors, attribute selectors, combinators, pseudo-classes and pseudo-elements.',
+
+    'The cascade considers origin, importance, cascade layers, specificity and source order when resolving conflicting declarations.',
+
+    'The !important flag increases declaration priority but should not be used as a routine replacement for clear selector design.',
+
+    'Specificity is influenced by selector categories such as inline styles, ids, classes, attributes, pseudo-classes and element selectors.',
+
+    'When competing declarations have equal priority and specificity, the later declaration generally wins.',
+
+    'Inheritance applies automatically only to certain properties, commonly including text-related properties.',
+
+    'The initial keyword uses a property initial value, inherit uses the parent computed value, unset behaves as inherit or initial depending on the property, and revert restores an earlier cascade origin.',
+
+    'The box model consists of content, padding, border and margin.',
+
+    'With box-sizing: content-box, declared width and height apply only to the content box.',
+
+    'With box-sizing: border-box, declared width and height include padding and border.',
+
+    'Margin creates space outside the border, while padding creates space between content and border.',
+
+    'Vertical margins of normal block elements can sometimes collapse.',
+
+    'The display property controls how an element participates in layout.',
+
+    'Common display values include block, inline, inline-block, flex, grid and none.',
+
+    'display: none removes an element from normal layout and the accessibility tree in typical browser behaviour.',
+
+    'visibility: hidden hides an element while preserving its layout space.',
+
+    'opacity: 0 makes an element transparent but does not necessarily remove it from interaction or accessibility.',
+
+    'The position property supports static, relative, absolute, fixed and sticky positioning.',
+
+    'An absolutely positioned element is positioned relative to its nearest positioned containing ancestor, depending on the containing-block rules.',
+
+    'A fixed element is commonly positioned relative to the viewport.',
+
+    'A sticky element behaves normally until it reaches a defined scroll threshold within its scroll container.',
+
+    'The z-index property participates in stacking contexts rather than creating one universal page-wide ordering.',
+
+    'Transforms, opacity and positioned elements with z-index can create new stacking contexts.',
+
+    'Flexbox uses a main axis and cross axis.',
+
+    'justify-content aligns or distributes flex items along the main axis.',
+
+    'align-items aligns items along the cross axis.',
+
+    'flex-grow controls how available positive space is distributed.',
+
+    'flex-shrink controls how items reduce when insufficient space exists.',
+
+    'flex-basis specifies the initial main-size basis before free-space distribution.',
+
+    'flex-wrap allows items to move onto additional lines.',
+
+    'CSS Grid defines rows and columns explicitly or implicitly.',
+
+    'grid-template-columns and grid-template-rows define explicit tracks.',
+
+    'The fr unit represents a fraction of available grid space.',
+
+    'repeat, minmax and auto-fit or auto-fill support responsive grid patterns.',
+
+    'gap creates spacing between flex or grid items without requiring margins on individual children.',
+
+    'Media queries apply rules according to media features such as width, orientation or user preferences.',
+
+    'A mobile-first stylesheet commonly uses min-width media queries to progressively enhance the layout.',
+
+    'rem units are relative to the root font size, while em units are relative to the relevant element font size.',
+
+    'Percentages are resolved relative to a property-specific containing value.',
+
+    'Viewport units include vw, vh, dvw, dvh and related variants that consider different viewport behaviours.',
+
+    'The clamp function can create responsive values with a minimum, preferred and maximum limit.',
+
+    'CSS custom properties are declared using names beginning with -- and accessed using var().',
+
+    'Custom properties participate in the cascade and can be changed for themes or component scopes.',
+
+    'Pseudo-classes include :hover, :focus, :focus-visible, :checked, :disabled, :first-child and :nth-child.',
+
+    'Pseudo-elements include ::before, ::after, ::first-letter and ::selection.',
+
+    'A transition animates a property change between two states.',
+
+    'A keyframe animation defines multiple stages using @keyframes.',
+
+    'Not every CSS property can be animated efficiently. Transform and opacity are commonly preferred for smooth animation.',
+
+    'Object-fit controls how replaced content such as images and videos fits inside its content box.',
+
+    'Overflow controls how content that exceeds an element box is handled.',
+
+    'CSS reset or normalisation rules reduce browser-default inconsistencies.',
+
+    'BEM is one optional naming convention that organises CSS classes into blocks, elements and modifiers.',
+
+    'Responsive design should account for readable text, touch targets, keyboard focus, content reflow and reduced-motion preferences.',
+
+    'The prefers-reduced-motion media query can reduce or disable animations for users who request less motion.'
+  ],
+
+  interview:
+    'CSS is the styling language used to control the appearance and layout of HTML. I use the box model for spacing, Flexbox for one-dimensional alignment and CSS Grid for layouts involving both rows and columns. I use media queries and flexible units to build responsive interfaces. In Puzzle Grove, CSS and Bootstrap were used to create a mobile-first game interface that worked across different screen sizes.',
+
+  keyPoints: [
+    'Cascade',
+    'Specificity',
+    'Inheritance',
+    'Box model',
+    'Flexbox',
+    'CSS Grid',
+    'Positioning',
+    'Responsive design',
+    'Media queries',
+    'Units',
+    'Pseudo-classes',
+    'Animations',
+    'Custom properties',
+    'Accessibility'
+  ],
+
+  code: `:root {
+  --background: #f7f7fb;
+  --surface: #ffffff;
+  --text: #20202a;
+  --accent: #6b4eff;
+  --spacing: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family:
+    system-ui,
+    sans-serif;
+
+  color: var(--text);
+  background: var(--background);
+}
+
+.page {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+  padding-block: 2rem;
+}
+
+.card-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: var(--spacing);
+}
+
+.card {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: 0 8px 30px rgb(0 0 0 / 0.08);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 34px rgb(0 0 0 / 0.12);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+
+  border: 0;
+  border-radius: 0.7rem;
+
+  color: white;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding-block: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
+}`,
+
+  followUps: [
+    'What is the CSS box model?',
+    'How does the cascade work?',
+    'What is specificity?',
+    'Flexbox versus Grid?',
+    'What is position absolute relative to?',
+    'What is a stacking context?',
+    'What is the difference between rem and em?',
+    'What is mobile-first design?',
+    'What are pseudo-classes and pseudo-elements?',
+    'What is the difference between display none and visibility hidden?'
+  ],
+
+  cautions: [
+    'Do not say Flexbox is always better than Grid or vice versa. They solve different layout problems.',
+
+    'Do not assume z-index works globally without considering stacking contexts.',
+
+    'Avoid excessive use of !important because it makes the cascade harder to manage.',
+
+    'Do not use fixed pixel widths for every layout when the design needs to adapt across devices.',
+
+    'Hover should not be the only way to reveal essential information because touch and keyboard users may not trigger it.',
+
+    'Animations should respect reduced-motion preferences when possible.',
+
+    'Do not remove visible keyboard focus indicators without providing an accessible replacement.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is CSS?',
+      answer:
+        'CSS stands for Cascading Style Sheets. It controls the presentation, layout and visual behaviour of HTML content.'
+    },
+
+    {
+      question: '2. What is a CSS selector?',
+      answer:
+        'A selector identifies the elements to which a group of CSS declarations should apply.'
+    },
+
+    {
+      question: '3. What is the cascade?',
+      answer:
+        'The cascade is the system browsers use to resolve competing CSS declarations based on origin, importance, specificity and source order.'
+    },
+
+    {
+      question: '4. What is specificity?',
+      answer:
+        'Specificity is the relative weight of a selector. More specific selectors can override less specific selectors when their cascade priority is otherwise equal.'
+    },
+
+    {
+      question: '5. What is inheritance in CSS?',
+      answer:
+        'Inheritance allows certain computed property values, commonly text-related properties, to pass from a parent element to its descendants.'
+    },
+
+    {
+      question: '6. What is the box model?',
+      answer:
+        'The box model consists of content, padding, border and margin. Together they determine the element visual dimensions and spacing.'
+    },
+
+    {
+      question: '7. What is box-sizing: border-box?',
+      answer:
+        'It makes the declared width and height include the element padding and border, which often simplifies responsive sizing.'
+    },
+
+    {
+      question: '8. Margin versus padding?',
+      answer:
+        'Margin creates space outside an element border. Padding creates space between the content and border.'
+    },
+
+    {
+      question: '9. What is margin collapsing?',
+      answer:
+        'Adjacent vertical margins of certain normal block elements can combine into one margin rather than being added together.'
+    },
+
+    {
+      question: '10. What is the difference between block, inline and inline-block?',
+      answer:
+        'Block elements normally begin on a new line. Inline elements participate within text flow. Inline-block remains inline while allowing block-like sizing.'
+    },
+
+    {
+      question: '11. What is Flexbox?',
+      answer:
+        'Flexbox is a one-dimensional layout system used to arrange and align items primarily along one row or column.'
+    },
+
+    {
+      question: '12. What is CSS Grid?',
+      answer:
+        'CSS Grid is a two-dimensional layout system designed to control both rows and columns.'
+    },
+
+    {
+      question: '13. Flexbox versus Grid?',
+      answer:
+        'Flexbox is usually best for one-dimensional component alignment. Grid is usually better when rows and columns must be coordinated together.'
+    },
+
+    {
+      question: '14. What is the main axis in Flexbox?',
+      answer:
+        'The main axis follows flex-direction. justify-content operates along this axis.'
+    },
+
+    {
+      question: '15. What is the cross axis in Flexbox?',
+      answer:
+        'The cross axis is perpendicular to the main axis. align-items commonly controls alignment along it.'
+    },
+
+    {
+      question: '16. What do flex-grow, flex-shrink and flex-basis do?',
+      answer:
+        'flex-basis defines the initial main size, flex-grow distributes extra space and flex-shrink controls reduction when space is insufficient.'
+    },
+
+    {
+      question: '17. What is the fr unit in Grid?',
+      answer:
+        'The fr unit represents a fraction of the available grid-container space.'
+    },
+
+    {
+      question: '18. What is the difference between auto-fill and auto-fit?',
+      answer:
+        'Both create repeated responsive tracks. auto-fill can preserve empty tracks, while auto-fit commonly collapses empty tracks so existing items can expand.'
+    },
+
+    {
+      question: '19. What is position relative?',
+      answer:
+        'A relatively positioned element remains in normal flow but can be offset. It can also establish a containing block for positioned descendants.'
+    },
+
+    {
+      question: '20. What is position absolute?',
+      answer:
+        'An absolutely positioned element is removed from normal flow and positioned using its containing block, commonly the nearest positioned ancestor.'
+    },
+
+    {
+      question: '21. Fixed versus sticky positioning?',
+      answer:
+        'Fixed positioning normally remains relative to the viewport. Sticky positioning behaves normally until it reaches a scroll threshold within its container.'
+    },
+
+    {
+      question: '22. What is z-index?',
+      answer:
+        'z-index controls stacking order within a stacking context. It does not provide one universal ordering across unrelated stacking contexts.'
+    },
+
+    {
+      question: '23. What creates a stacking context?',
+      answer:
+        'Examples include the root element, positioned elements with certain z-index values, transforms and elements with opacity below one.'
+    },
+
+    {
+      question: '24. What is responsive web design?',
+      answer:
+        'Responsive design allows a layout to adapt across screen sizes using flexible dimensions, media queries, responsive media and appropriate layout systems.'
+    },
+
+    {
+      question: '25. What is mobile-first design?',
+      answer:
+        'Mobile-first design begins with styles for smaller screens and adds enhancements for larger screens, commonly using min-width media queries.'
+    },
+
+    {
+      question: '26. What is the difference between px, em and rem?',
+      answer:
+        'px is a CSS pixel unit. em is relative to the relevant element font size, while rem is relative to the root font size.'
+    },
+
+    {
+      question: '27. What is a pseudo-class?',
+      answer:
+        'A pseudo-class selects an element according to a state or relationship, such as :hover, :focus, :checked or :first-child.'
+    },
+
+    {
+      question: '28. What is a pseudo-element?',
+      answer:
+        'A pseudo-element targets a conceptual part of an element or generates presentational content, such as ::before and ::after.'
+    },
+
+    {
+      question: '29. display: none versus visibility: hidden?',
+      answer:
+        'display: none removes the element from layout. visibility: hidden hides it while preserving its layout space.'
+    },
+
+    {
+      question: '30. What are CSS custom properties?',
+      answer:
+        'Custom properties are reusable values declared with names beginning with -- and read using var(). They participate in the cascade.'
+    },
+
+    {
+      question: '31. Transition versus animation?',
+      answer:
+        'A transition animates a change between states. A keyframe animation can define several stages and run independently of a direct property-state change.'
+    },
+
+    {
+      question: '32. Why prefer transform and opacity for animation?',
+      answer:
+        'They can often be rendered more efficiently than properties that repeatedly trigger layout and painting.'
+    },
+
+    {
+      question: '33. What is object-fit?',
+      answer:
+        'object-fit controls how replaced content such as images or videos is resized within its box, using values such as cover or contain.'
+    },
+
+    {
+      question: '34. Why should !important be avoided?',
+      answer:
+        'Frequent use makes overrides and debugging difficult by bypassing the normal cascade. Clear architecture and appropriate selector specificity are usually better.'
+    },
+
+    {
+      question: '35. How did you use CSS in Puzzle Grove?',
+      answer:
+        'I used CSS for the game layout, visual states, spacing and responsive behaviour. Flexbox handled component alignment, while Grid supported board-style layouts.'
+    }
+  ]
+},
   {
-    id: 'javascript', title: 'JavaScript', category: 'languages', short: 'Adds behaviour and interactivity to web pages.',
-    simple: [
-      'JavaScript handles button clicks, form validation, game logic, API calls and dynamic updates.',
-      'It runs in browsers and can also run on servers through Node.js.',
-      'In Puzzle Grove, it is responsible for game state, answer checking, streaks and achievements.'
-    ],
-    technical: [
-      'JavaScript is dynamically typed and uses an event loop to coordinate asynchronous work.',
-      'Promises and async/await simplify asynchronous operations such as API calls.',
-      'The DOM API allows JavaScript to read and change the rendered page.'
-    ],
-    interview: 'JavaScript is the language responsible for browser-side behaviour. In Puzzle Grove, I used JavaScript for the game logic, user interaction, state updates and progression features.',
-    keyPoints: ['let, const and var', 'Functions', 'DOM', 'Events', 'Promises', 'async/await', 'Closures', 'Event loop'],
-    followUps: ['let versus const versus var?', 'What is a closure?', 'What is the event loop?', 'Promise versus async/await?']
-  },
+  id: 'javascript',
+  title: 'JavaScript',
+  category: 'languages',
+
+  short:
+    'The programming language used to add behaviour, state, logic and interactivity to web applications.',
+
+  simple: [
+    'JavaScript is a high-level, dynamically typed programming language used extensively in web development.',
+
+    'In the browser, JavaScript can respond to events, validate forms, modify webpage content, call APIs and manage application state.',
+
+    'JavaScript can also run outside the browser using environments such as Node.js.',
+
+    'JavaScript is dynamically typed, meaning a variable can refer to values of different types during execution.',
+
+    'JavaScript supports primitive values, objects, arrays and functions.',
+
+    'Functions are first-class values, so they can be assigned to variables, passed to other functions and returned from functions.',
+
+    'The DOM is the browser representation of the webpage that JavaScript can inspect and modify.',
+
+    'Events represent user and browser actions such as clicks, typing, submissions and page loading.',
+
+    'Promises represent the eventual completion or failure of asynchronous work.',
+
+    'async and await provide a readable syntax for working with promises.',
+
+    'JavaScript uses an event loop to coordinate synchronous code, asynchronous callbacks and queued tasks.',
+
+    'Objects store related data using key-value properties.',
+
+    'Arrays store ordered collections of values.',
+
+    'Closures allow functions to remember values from their surrounding lexical scope.',
+
+    'Modules allow code to be divided into reusable files using import and export.',
+
+    'Browser storage such as localStorage can preserve small amounts of data between page visits.',
+
+    'In Puzzle Grove, JavaScript handles puzzle rules, answer checking, user interactions, game state, streaks and achievements.'
+  ],
+
+  technical: [
+    'JavaScript follows the ECMAScript language specification.',
+
+    'JavaScript is dynamically typed because types belong to values rather than being fixed permanently to variable names.',
+
+    'JavaScript is generally considered strongly typed in the sense that values retain types, although it also performs several implicit conversions.',
+
+    'Primitive types include string, number, bigint, boolean, undefined, symbol and null.',
+
+    'Objects include ordinary objects, arrays, functions, dates, maps, sets and many other built-in structures.',
+
+    'The typeof operator returns a string describing the broad runtime type of a value, although typeof null historically returns "object".',
+
+    'let and const are block-scoped, while var is function-scoped and has older hoisting behaviour.',
+
+    'const prevents reassignment of the variable binding but does not make an object deeply immutable.',
+
+    'Declarations are processed before normal execution, but access behaviour depends on the declaration type.',
+
+    'let and const exist in the temporal dead zone before their declaration is evaluated.',
+
+    'Function declarations are generally available before their textual position within the scope.',
+
+    'JavaScript uses lexical scope, meaning variable accessibility is based on where code is written.',
+
+    'A closure is created when a function retains access to variables from an outer lexical environment.',
+
+    'The this value depends on how a normal function is called rather than only where it was declared.',
+
+    'Arrow functions do not create their own this binding and instead use the surrounding lexical this.',
+
+    'Arrow functions also do not provide their own arguments object and cannot be used as constructors.',
+
+    'The == operator allows type coercion during comparison.',
+
+    'The === operator compares without type coercion and is usually preferred for predictable equality checks.',
+
+    'Object.is provides another equality algorithm that differs for values such as NaN and signed zero.',
+
+    'Falsy values include false, 0, -0, 0n, an empty string, null, undefined and NaN.',
+
+    'The nullish coalescing operator ?? uses its right side only when the left side is null or undefined.',
+
+    'The logical OR operator || uses its right side when the left side is any falsy value.',
+
+    'Optional chaining ?. safely accesses a property or calls a function when the receiver is not null or undefined.',
+
+    'Objects are reference values. Assigning an object to another variable copies the reference rather than deeply cloning the object.',
+
+    'The spread syntax can create shallow copies of arrays and objects.',
+
+    'A shallow copy duplicates the outer container but keeps references to nested objects.',
+
+    'Destructuring extracts values from arrays or properties from objects into variables.',
+
+    'Array methods such as map, filter and reduce support functional-style transformations.',
+
+    'map returns a new array containing transformed values.',
+
+    'filter returns a new array containing elements that satisfy a condition.',
+
+    'reduce combines array elements into one accumulated result.',
+
+    'forEach runs a function for each element but does not itself create a transformed array.',
+
+    'A callback is a function passed to another function for later or conditional execution.',
+
+    'Synchronous code runs directly on the call stack.',
+
+    'The event loop coordinates the call stack with queued asynchronous work.',
+
+    'Promise reactions are commonly processed through the microtask queue.',
+
+    'Timer callbacks are scheduled through task queues and do not necessarily run immediately after their delay expires.',
+
+    'A Promise can be pending, fulfilled or rejected.',
+
+    'then handles fulfilment, catch handles rejection and finally runs after settlement.',
+
+    'An async function always returns a Promise.',
+
+    'await pauses execution within an async function until the awaited value settles, without blocking the entire JavaScript runtime.',
+
+    'Promise.all waits for all provided promises and rejects when one rejects.',
+
+    'Promise.allSettled waits for every promise and returns the outcome of each one.',
+
+    'The fetch API performs HTTP requests and resolves even for many HTTP error status codes, so response.ok should be checked.',
+
+    'JSON.stringify converts compatible JavaScript data into a JSON string.',
+
+    'JSON.parse converts valid JSON text into JavaScript values.',
+
+    'The DOM provides methods such as querySelector, createElement and addEventListener.',
+
+    'Event bubbling means an event can travel from the target element upward through ancestors.',
+
+    'Event capturing travels from outer ancestors toward the target before the bubbling phase.',
+
+    'Event delegation attaches one listener to a parent and handles events from matching descendants.',
+
+    'preventDefault stops the browser default behaviour when the event is cancelable.',
+
+    'stopPropagation prevents further propagation through the event path.',
+
+    'localStorage stores string values without an automatic expiration time.',
+
+    'sessionStorage stores data for the lifetime of the browser tab or page session.',
+
+    'Cookies can be sent with HTTP requests and support security attributes, unlike localStorage values.',
+
+    'Browser storage should not be treated as secure storage for sensitive secrets.',
+
+    'ES modules use export and import and have their own module scope.',
+
+    'JavaScript uses prototypal inheritance. Objects can inherit properties and methods through a prototype chain.',
+
+    'Class syntax provides a more familiar abstraction over JavaScript prototype-based behaviour.',
+
+    'Garbage collection reclaims objects that are no longer reachable, but applications can still retain unnecessary references and leak memory logically.',
+
+    'Debouncing delays repeated execution until activity stops for a specified period.',
+
+    'Throttling limits how often a function can run within a period.',
+
+    'Strict mode enables stricter parsing and error handling for certain unsafe behaviours.'
+  ],
+
+  interview:
+    'JavaScript is the programming language responsible for browser-side behaviour and interactivity. In Puzzle Grove, I used JavaScript for game logic, answer validation, user interactions, state updates, streak tracking and achievement progression. I understand concepts such as DOM manipulation, events, arrays and objects, promises, async and await, closures and browser storage. HTML provides the structure, CSS handles presentation and JavaScript makes the interface dynamic.',
+
+  keyPoints: [
+    'Types and coercion',
+    'Scope',
+    'Closures',
+    'Functions',
+    'Objects and arrays',
+    'DOM',
+    'Events',
+    'Promises',
+    'Async and await',
+    'Event loop',
+    'Modules',
+    'Browser storage',
+    'Prototypes',
+    'Error handling'
+  ],
+
+  code: `const gameState = {
+  currentAttempt: 0,
+  guesses: [],
+  completed: false,
+  score: 0
+};
+
+const answerForm =
+  document.querySelector("#answer-form");
+
+const answerInput =
+  document.querySelector("#answer");
+
+const message =
+  document.querySelector("#message");
+
+function checkAnswer(answer, expectedAnswer) {
+  return answer
+    .trim()
+    .toLowerCase() ===
+    expectedAnswer.toLowerCase();
+}
+
+function saveGameState() {
+  localStorage.setItem(
+    "puzzle-game-state",
+    JSON.stringify(gameState)
+  );
+}
+
+function loadGameState() {
+  const savedState =
+    localStorage.getItem("puzzle-game-state");
+
+  if (savedState === null) {
+    return;
+  }
+
+  const parsedState = JSON.parse(savedState);
+
+  Object.assign(gameState, parsedState);
+}
+
+answerForm?.addEventListener(
+  "submit",
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const answer = answerInput?.value ?? "";
+
+    gameState.currentAttempt += 1;
+    gameState.guesses.push(answer);
+
+    if (checkAnswer(answer, "react")) {
+      gameState.completed = true;
+      gameState.score += 10;
+
+      if (message) {
+        message.textContent = "Correct answer";
+      }
+    } else if (message) {
+      message.textContent = "Try again";
+    }
+
+    saveGameState();
+  }
+);
+
+loadGameState();`,
+
+  followUps: [
+    'What is the difference between let, const and var?',
+    'What is a closure?',
+    'What is the event loop?',
+    'What is the difference between == and ===?',
+    'What is a Promise?',
+    'How does async and await work?',
+    'What is event bubbling?',
+    'What is localStorage?',
+    'What is shallow copy?',
+    'What is the difference between map, filter and reduce?'
+  ],
+
+  cautions: [
+    'Do not say JavaScript and Java are the same or directly related languages.',
+
+    'const does not make an object deeply immutable.',
+
+    'Do not use == when strict equality is more appropriate and predictable.',
+
+    'await does not block the entire browser thread while asynchronous work is pending.',
+
+    'fetch does not reject automatically for every HTTP error status such as 404 or 500.',
+
+    'localStorage should not be described as secure production authentication.',
+
+    'Do not claim Puzzle Grove has backend authentication unless the code actually uses a backend authentication service.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is JavaScript?',
+      answer:
+        'JavaScript is a high-level, dynamically typed programming language used to add logic, behaviour and interactivity to web applications.'
+    },
+
+    {
+      question: '2. Is JavaScript the same as Java?',
+      answer:
+        'No. They are separate languages with different type systems, runtimes and programming models.'
+    },
+
+    {
+      question: '3. What are JavaScript primitive types?',
+      answer:
+        'The primitive types are string, number, bigint, boolean, undefined, symbol and null.'
+    },
+
+    {
+      question: '4. What is dynamic typing?',
+      answer:
+        'Dynamic typing means a variable name can refer to values of different types during runtime.'
+    },
+
+    {
+      question: '5. let versus const versus var?',
+      answer:
+        'let and const are block-scoped. let permits reassignment, while const does not. var is function-scoped and has older hoisting behaviour.'
+    },
+
+    {
+      question: '6. Does const make an object immutable?',
+      answer:
+        'No. It prevents reassignment of the variable binding, but properties of the referenced object may still be changed.'
+    },
+
+    {
+      question: '7. What is hoisting?',
+      answer:
+        'Hoisting describes how declarations are processed before normal execution. The exact behaviour differs among function declarations, var, let and const.'
+    },
+
+    {
+      question: '8. What is the temporal dead zone?',
+      answer:
+        'It is the period between entering a scope and evaluating a let or const declaration, during which accessing the variable throws an error.'
+    },
+
+    {
+      question: '9. What is scope?',
+      answer:
+        'Scope determines where variables and functions can be accessed. JavaScript uses lexical scope based on the location where code is written.'
+    },
+
+    {
+      question: '10. What is a closure?',
+      answer:
+        'A closure is a function that retains access to variables from its surrounding lexical scope even after the outer function has completed.'
+    },
+
+    {
+      question: '11. What is the difference between a normal function and an arrow function?',
+      answer:
+        'Arrow functions use lexical this and do not have their own arguments object. Normal functions receive this according to how they are called.'
+    },
+
+    {
+      question: '12. What is the this keyword?',
+      answer:
+        'In a normal function, this refers to a value determined by the call context. In an arrow function, this is inherited from the surrounding scope.'
+    },
+
+    {
+      question: '13. What is the difference between == and ===?',
+      answer:
+        '== permits type coercion before comparison. === compares type and value without that coercion and is usually preferred.'
+    },
+
+    {
+      question: '14. What are truthy and falsy values?',
+      answer:
+        'Falsy values behave as false in Boolean contexts. All other values are truthy.'
+    },
+
+    {
+      question: '15. What is the difference between || and ??',
+      answer:
+        '|| uses the right value when the left value is falsy. ?? uses the right value only when the left value is null or undefined.'
+    },
+
+    {
+      question: '16. What is optional chaining?',
+      answer:
+        'Optional chaining uses ?. to safely access properties or methods when an intermediate value may be null or undefined.'
+    },
+
+    {
+      question: '17. Are objects copied by value?',
+      answer:
+        'Assigning an object to another variable copies the reference value. Both variables can therefore refer to the same object.'
+    },
+
+    {
+      question: '18. What is a shallow copy?',
+      answer:
+        'A shallow copy creates a new outer object or array but keeps references to nested objects.'
+    },
+
+    {
+      question: '19. What is destructuring?',
+      answer:
+        'Destructuring extracts array items or object properties into individual variables using concise syntax.'
+    },
+
+    {
+      question: '20. What does map do?',
+      answer:
+        'map creates a new array by applying a transformation function to each element.'
+    },
+
+    {
+      question: '21. What does filter do?',
+      answer:
+        'filter creates a new array containing only elements for which the provided condition returns true.'
+    },
+
+    {
+      question: '22. What does reduce do?',
+      answer:
+        'reduce processes array values into one accumulated result, such as a total, object or grouped structure.'
+    },
+
+    {
+      question: '23. What is a callback?',
+      answer:
+        'A callback is a function passed to another function so it can be executed later or under a particular condition.'
+    },
+
+    {
+      question: '24. What is the call stack?',
+      answer:
+        'The call stack tracks currently executing functions. A function is pushed when called and removed when it finishes.'
+    },
+
+    {
+      question: '25. What is the event loop?',
+      answer:
+        'The event loop coordinates the call stack with queued asynchronous work and schedules callbacks when the stack is available.'
+    },
+
+    {
+      question: '26. What is a Promise?',
+      answer:
+        'A Promise represents the eventual completion or failure of an asynchronous operation. It can be pending, fulfilled or rejected.'
+    },
+
+    {
+      question: '27. What does an async function return?',
+      answer:
+        'An async function always returns a Promise, even when it directly returns a normal value.'
+    },
+
+    {
+      question: '28. What does await do?',
+      answer:
+        'await pauses the current async function until the awaited value settles while allowing the runtime to process other work.'
+    },
+
+    {
+      question: '29. Promise.all versus Promise.allSettled?',
+      answer:
+        'Promise.all rejects when one input rejects. Promise.allSettled waits for every input and reports each fulfilment or rejection.'
+    },
+
+    {
+      question: '30. Does fetch reject on a 404 response?',
+      answer:
+        'Usually no. fetch commonly resolves with a Response object for HTTP error statuses, so response.ok or status should be checked.'
+    },
+
+    {
+      question: '31. What is the DOM?',
+      answer:
+        'The DOM is the browser-created object tree representing the HTML document. JavaScript can query and modify it.'
+    },
+
+    {
+      question: '32. What is event bubbling?',
+      answer:
+        'Event bubbling is the phase in which an event travels from the target element upward through its ancestors.'
+    },
+
+    {
+      question: '33. What is event delegation?',
+      answer:
+        'Event delegation attaches one listener to a parent and handles events originating from matching descendant elements.'
+    },
+
+    {
+      question: '34. preventDefault versus stopPropagation?',
+      answer:
+        'preventDefault stops the browser default action. stopPropagation stops the event from continuing through the propagation path.'
+    },
+
+    {
+      question: '35. localStorage versus sessionStorage?',
+      answer:
+        'localStorage persists until explicitly cleared. sessionStorage normally lasts only for the current browser-tab session.'
+    },
+
+    {
+      question: '36. Is localStorage secure for authentication tokens?',
+      answer:
+        'It is accessible to JavaScript running on the page and can be exposed by cross-site scripting. Its use for sensitive tokens requires careful security design.'
+    },
+
+    {
+      question: '37. What are JavaScript modules?',
+      answer:
+        'Modules split code into separate files with explicit import and export relationships and their own module scope.'
+    },
+
+    {
+      question: '38. What is prototypal inheritance?',
+      answer:
+        'Objects can delegate property and method lookup to another object through the prototype chain.'
+    },
+
+    {
+      question: '39. What is debouncing?',
+      answer:
+        'Debouncing delays a function until repeated activity has stopped for a specified time, which is useful for search input handling.'
+    },
+
+    {
+      question: '40. What is throttling?',
+      answer:
+        'Throttling limits a function to running at most once within a defined time interval.'
+    },
+
+    {
+      question: '41. How did you use JavaScript in Puzzle Grove?',
+      answer:
+        'I used JavaScript for puzzle rules, answer checking, user events, game-state updates, streak calculations, achievements and browser-based progress persistence.'
+    }
+  ]
+},
   {
-    id: 'typescript', title: 'TypeScript', category: 'languages', short: 'JavaScript with compile-time type checking.',
-    simple: [
-      'TypeScript is a superset of JavaScript that adds static type checking.',
-      'It catches many mistakes during development instead of waiting for runtime.',
-      'TypeScript is compiled into JavaScript before the browser runs it.'
-    ],
-    technical: [
-      'Interfaces and type aliases define predictable data structures.',
-      'Union types, generics and type narrowing improve safety without removing JavaScript flexibility.',
-      'TypeScript improves code completion, refactoring and collaboration in larger projects.'
-    ],
-    interview: 'TypeScript extends JavaScript with static typing. I used it in the Healthcare Vitals Tracker to define predictable structures for user data and health readings. It helped catch errors during development and made React components easier to maintain.',
-    code: `interface VitalReading {\n  id: string;\n  systolic: number;\n  diastolic: number;\n  bloodSugar: number;\n  createdAt: string;\n}`,
-    followUps: ['JavaScript versus TypeScript?', 'Interface versus type?', 'What are generics?']
-  },
+  id: 'typescript',
+  title: 'TypeScript',
+  category: 'languages',
+
+  short:
+    'A statically typed superset of JavaScript that catches many errors during development and improves maintainability.',
+
+  simple: [
+    'TypeScript is a programming language built on top of JavaScript.',
+
+    'It includes all valid JavaScript syntax and adds features such as static types, interfaces, generics and type checking.',
+
+    'TypeScript code is converted into JavaScript before it runs in a browser or JavaScript runtime.',
+
+    'Browsers do not directly execute TypeScript source code.',
+
+    'Static typing means TypeScript can detect many type-related mistakes while the application is being developed.',
+
+    'For example, TypeScript can warn if a function expects a number but receives a string.',
+
+    'TypeScript improves editor suggestions, autocomplete, navigation and refactoring.',
+
+    'It is especially useful in larger projects where many components, functions and data structures interact.',
+
+    'TypeScript types describe the expected shape of data.',
+
+    'An interface can describe the properties that an object should contain.',
+
+    'A type alias can describe objects, unions, primitive combinations and other custom types.',
+
+    'Union types allow a value to have one of several permitted types.',
+
+    'Optional properties represent values that may or may not exist.',
+
+    'Generics allow reusable code to work safely with different data types.',
+
+    'TypeScript can infer many types automatically, so every variable does not need an explicit annotation.',
+
+    'TypeScript types are mainly used during development and are generally removed from the generated JavaScript.',
+
+    'TypeScript does not replace runtime validation. Data received from users, APIs or storage must still be checked at runtime.',
+
+    'In the Healthcare Vitals Tracker, TypeScript can define clear structures for users, authentication state and health readings.'
+  ],
+
+  technical: [
+    'TypeScript is a superset of JavaScript, meaning valid JavaScript is generally valid TypeScript.',
+
+    'The TypeScript compiler checks source code and can emit JavaScript that runs in browsers or JavaScript runtimes.',
+
+    'TypeScript uses static analysis to identify problems before the program is executed.',
+
+    'Type annotations explicitly describe the expected type of variables, parameters and return values.',
+
+    'Type inference allows the compiler to determine types from initial values and surrounding context.',
+
+    'Primitive types include string, number, boolean, bigint, symbol, null and undefined.',
+
+    'Arrays can be written using number[] or Array<number>.',
+
+    'A tuple represents an array with a known number of positions and known types for those positions.',
+
+    'Object types describe the names and types of object properties.',
+
+    'An optional property is marked using a question mark, such as measuredAt?: string.',
+
+    'A readonly property cannot be reassigned through that typed reference after initialisation.',
+
+    'readonly provides compile-time protection and does not automatically freeze the JavaScript object at runtime.',
+
+    'A union type allows a value to match one of several types, such as string | null.',
+
+    'An intersection type combines multiple types into one type using the & operator.',
+
+    'Literal types restrict values to specific strings, numbers or booleans.',
+
+    'A discriminated union uses a shared literal property to distinguish between several possible object shapes.',
+
+    'Type narrowing reduces a broad type to a more specific type after checks such as typeof, instanceof, equality or property tests.',
+
+    'A type guard is a runtime condition that helps TypeScript understand a value type within a particular branch.',
+
+    'A custom type predicate has a return type such as value is VitalReading.',
+
+    'The any type disables most type checking for the affected value and should be used sparingly.',
+
+    'The unknown type can represent an unknown value more safely than any because it must be checked before use.',
+
+    'The never type represents a value that should never occur, such as a function that always throws or an exhaustively handled impossible branch.',
+
+    'The void type commonly describes a function whose return value is not intended to be used.',
+
+    'An interface describes the structure of objects and can be extended or declaration-merged.',
+
+    'A type alias can represent object types, unions, intersections, tuples, primitive aliases and mapped types.',
+
+    'Interfaces and type aliases overlap significantly for ordinary object shapes.',
+
+    'TypeScript uses structural typing, meaning compatibility is based mainly on the shape of a value rather than its explicit declared name.',
+
+    'Generics allow types to be passed as parameters to reusable functions, classes and interfaces.',
+
+    'Generic constraints restrict which types can be supplied to a generic using the extends keyword.',
+
+    'The keyof operator produces a union of known property names from a type.',
+
+    'The typeof operator can be used in a type position to derive a type from a JavaScript value declaration.',
+
+    'Indexed access types retrieve the type of a property, such as VitalReading["systolic"].',
+
+    'The in operator is used in mapped types and can also act as a runtime property check for narrowing.',
+
+    'Conditional types select a type based on whether one type extends another.',
+
+    'Mapped types transform every property of an existing type.',
+
+    'Utility types such as Partial, Required, Readonly, Pick, Omit and Record provide reusable type transformations.',
+
+    'Partial<T> makes all properties optional.',
+
+    'Required<T> makes all properties required.',
+
+    'Readonly<T> marks all properties as readonly in the resulting type.',
+
+    'Pick<T, K> creates a type containing selected properties.',
+
+    'Omit<T, K> creates a type excluding selected properties.',
+
+    'Record<K, V> describes an object with keys of type K and values of type V.',
+
+    'ReturnType<T> extracts the return type of a function type.',
+
+    'Parameters<T> extracts function parameter types as a tuple.',
+
+    'The as keyword performs a type assertion, telling TypeScript to treat a value as a particular type.',
+
+    'A type assertion does not validate or convert the value at runtime.',
+
+    'The non-null assertion operator ! tells TypeScript that a value is not null or undefined, but it can hide genuine runtime errors.',
+
+    'The satisfies operator verifies that a value is compatible with a type while preserving a more specific inferred type where possible.',
+
+    'Function overload signatures can describe several permitted ways to call one implementation.',
+
+    'Optional parameters are marked with ?, while default parameters provide a runtime fallback value.',
+
+    'Enums provide named values, although string-literal unions are often simpler for many frontend state cases.',
+
+    'A namespace groups names, although modern frontend projects generally use ES modules with import and export.',
+
+    'Declaration files use the .d.ts extension and describe types for JavaScript code, libraries or non-code imports.',
+
+    'The vite-env.d.ts file commonly includes Vite client type declarations for asset and environment support.',
+
+    'A custom declaration such as declare module "*.css" can tell TypeScript how to accept CSS imports.',
+
+    'The tsconfig.json file controls TypeScript compiler behaviour.',
+
+    'The strict option enables a collection of stronger type-checking rules.',
+
+    'strictNullChecks treats null and undefined as distinct types that must be handled explicitly.',
+
+    'noImplicitAny reports values that TypeScript would otherwise infer as any without an explicit decision.',
+
+    'noUncheckedSideEffectImports can report imports such as CSS files when no matching declaration is available.',
+
+    'noEmit tells the compiler to perform type checking without generating JavaScript files.',
+
+    'In many Vite projects, TypeScript performs type checking while Vite handles development serving and production bundling.',
+
+    'The development server may display an application even when a separate production type-check command would fail.',
+
+    'Running npm run build is therefore important before deployment because it can include stricter TypeScript checks.',
+
+    'TypeScript types are erased during compilation, so interfaces and type aliases do not exist as runtime objects.',
+
+    'External data from APIs, localStorage, forms or databases must be validated at runtime because TypeScript cannot guarantee its actual runtime shape.',
+
+    'In React, props and state can be typed to ensure components receive predictable data.',
+
+    'React event types such as ChangeEvent and FormEvent can describe browser events in TypeScript components.',
+
+    'TypeScript can model asynchronous functions using Promise-based return types.',
+
+    'An async function returning a VitalReading should generally have a return type such as Promise<VitalReading>.'
+  ],
+
+  interview:
+    'TypeScript is a statically typed superset of JavaScript. It adds compile-time type checking while still producing JavaScript for browser execution. I used TypeScript in the Healthcare Vitals Tracker to define predictable structures for health readings, authenticated users, form values and component props. It helped catch incorrect property names and incompatible values during development and made the React code easier to understand and refactor. I also understand that TypeScript types are removed during compilation, so API and user input still require runtime validation.',
+
+  keyPoints: [
+    'Static typing',
+    'Type inference',
+    'Interfaces',
+    'Type aliases',
+    'Union types',
+    'Generics',
+    'Narrowing',
+    'Type guards',
+    'Utility types',
+    'Structural typing',
+    'Declaration files',
+    'tsconfig',
+    'Runtime validation',
+    'React typing'
+  ],
+
+  code: `type ReadingType =
+  | "blood-pressure"
+  | "blood-sugar";
+
+interface BaseReading {
+  id: string;
+  userId: string;
+  measuredAt: string;
+}
+
+interface BloodPressureReading
+  extends BaseReading {
+  type: "blood-pressure";
+  systolic: number;
+  diastolic: number;
+}
+
+interface BloodSugarReading
+  extends BaseReading {
+  type: "blood-sugar";
+  bloodSugar: number;
+}
+
+type VitalReading =
+  | BloodPressureReading
+  | BloodSugarReading;
+
+type NewReading =
+  Omit<VitalReading, "id" | "userId">;
+
+type ReadingStatus =
+  | {
+      status: "loading";
+    }
+  | {
+      status: "success";
+      data: VitalReading[];
+    }
+  | {
+      status: "error";
+      message: string;
+    };
+
+function formatReading(
+  reading: VitalReading
+): string {
+  if (reading.type === "blood-pressure") {
+    return (
+      reading.systolic +
+      "/" +
+      reading.diastolic +
+      " mmHg"
+    );
+  }
+
+  return reading.bloodSugar + " mg/dL";
+}
+
+function isVitalReading(
+  value: unknown
+): value is VitalReading {
+  if (
+    typeof value !== "object" ||
+    value === null
+  ) {
+    return false;
+  }
+
+  const candidate =
+    value as Record<string, unknown>;
+
+  if (
+    typeof candidate.id !== "string" ||
+    typeof candidate.userId !== "string" ||
+    typeof candidate.measuredAt !== "string"
+  ) {
+    return false;
+  }
+
+  if (candidate.type === "blood-pressure") {
+    return (
+      typeof candidate.systolic === "number" &&
+      typeof candidate.diastolic === "number"
+    );
+  }
+
+  if (candidate.type === "blood-sugar") {
+    return (
+      typeof candidate.bloodSugar === "number"
+    );
+  }
+
+  return false;
+}
+
+async function fetchReadings():
+  Promise<VitalReading[]> {
+  const response =
+    await fetch("/api/readings");
+
+  if (!response.ok) {
+    throw new Error(
+      "Unable to fetch readings"
+    );
+  }
+
+  const data: unknown =
+    await response.json();
+
+  if (!Array.isArray(data)) {
+    throw new Error(
+      "Invalid response format"
+    );
+  }
+
+  const validReadings =
+    data.filter(isVitalReading);
+
+  return validReadings;
+}`,
+
+  followUps: [
+    'What is TypeScript?',
+    'How is TypeScript different from JavaScript?',
+    'Does TypeScript run in the browser?',
+    'Interface versus type alias?',
+    'What is type inference?',
+    'What is a union type?',
+    'What is a generic?',
+    'What is the difference between any and unknown?',
+    'What is type narrowing?',
+    'Why is runtime validation still required?'
+  ],
+
+  cautions: [
+    'Do not say browsers directly execute TypeScript. TypeScript is converted into JavaScript first.',
+
+    'Do not claim TypeScript guarantees that API data is valid at runtime.',
+
+    'Avoid using any simply to remove compiler errors because it disables useful checking.',
+
+    'Type assertions do not convert or validate runtime values.',
+
+    'readonly does not automatically freeze a JavaScript object at runtime.',
+
+    'The non-null assertion operator can hide genuine null-related problems.',
+
+    'Do not say interfaces are converted into JavaScript classes. Interfaces are removed during compilation.',
+
+    'Do not claim TypeScript makes JavaScript completely error-free. It mainly catches errors that can be identified through static analysis.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is TypeScript?',
+      answer:
+        'TypeScript is a statically typed superset of JavaScript. It adds type checking and development-time language features and is converted into JavaScript before execution.'
+    },
+
+    {
+      question: '2. Why use TypeScript instead of JavaScript?',
+      answer:
+        'TypeScript can detect incompatible values, missing properties and incorrect function usage during development. It also improves autocomplete, navigation and refactoring.'
+    },
+
+    {
+      question: '3. Does TypeScript run directly in the browser?',
+      answer:
+        'No. Browsers execute JavaScript. TypeScript source code must first be transformed into JavaScript.'
+    },
+
+    {
+      question: '4. Is every JavaScript program valid TypeScript?',
+      answer:
+        'Most valid JavaScript syntax is accepted by TypeScript, although compiler settings and type-checking rules may report errors that JavaScript itself would allow.'
+    },
+
+    {
+      question: '5. What is static typing?',
+      answer:
+        'Static typing means the compiler analyses expected value types before runtime and reports many incompatible operations during development.'
+    },
+
+    {
+      question: '6. What is type inference?',
+      answer:
+        'Type inference allows TypeScript to determine a value type automatically from its initial value, return expression or surrounding context.'
+    },
+
+    {
+      question: '7. When should you add explicit types?',
+      answer:
+        'Explicit types are useful for public function boundaries, component props, complex data structures, API models and cases where inference is unclear or too broad.'
+    },
+
+    {
+      question: '8. What is an interface?',
+      answer:
+        'An interface describes the expected structure of an object, including properties, methods and optional or readonly members.'
+    },
+
+    {
+      question: '9. What is a type alias?',
+      answer:
+        'A type alias assigns a name to a type. It can represent object shapes, unions, intersections, tuples, primitives and other derived types.'
+    },
+
+    {
+      question: '10. Interface versus type alias?',
+      answer:
+        'Both can describe object shapes. Interfaces support extension and declaration merging, while type aliases can directly represent unions, intersections, tuples and primitive combinations.'
+    },
+
+    {
+      question: '11. What is declaration merging?',
+      answer:
+        'TypeScript can combine compatible interface declarations with the same name into one interface definition.'
+    },
+
+    {
+      question: '12. What is structural typing?',
+      answer:
+        'Structural typing means compatibility depends mainly on whether a value has the required shape rather than whether it was created from a specifically named type.'
+    },
+
+    {
+      question: '13. What is a union type?',
+      answer:
+        'A union type permits a value to match one of several types, such as string | null or "loading" | "success" | "error".'
+    },
+
+    {
+      question: '14. What is an intersection type?',
+      answer:
+        'An intersection combines several types. The resulting value must satisfy the requirements of all combined types.'
+    },
+
+    {
+      question: '15. What is a literal type?',
+      answer:
+        'A literal type restricts a value to a specific literal such as "success", 200 or true rather than the broader string, number or boolean type.'
+    },
+
+    {
+      question: '16. What is a discriminated union?',
+      answer:
+        'It is a union of object types that share a literal property, such as status or type, which TypeScript uses to narrow the object to the correct variant.'
+    },
+
+    {
+      question: '17. What is type narrowing?',
+      answer:
+        'Type narrowing is the process of reducing a broad type to a more specific type after a runtime check.'
+    },
+
+    {
+      question: '18. How can TypeScript narrow a type?',
+      answer:
+        'Common techniques include typeof, instanceof, equality checks, the in operator, truthiness checks and discriminated-union properties.'
+    },
+
+    {
+      question: '19. What is a type guard?',
+      answer:
+        'A type guard is a runtime condition that also gives TypeScript enough information to treat a value as a more specific type inside a branch.'
+    },
+
+    {
+      question: '20. What is a custom type predicate?',
+      answer:
+        'A custom type predicate is a function return type such as value is VitalReading that tells TypeScript what type is established when the function returns true.'
+    },
+
+    {
+      question: '21. What is any?',
+      answer:
+        'any disables most type checking for the affected value. It can be useful during migration but should be limited because errors can pass through unchecked.'
+    },
+
+    {
+      question: '22. What is unknown?',
+      answer:
+        'unknown represents a value whose type is not yet known. It is safer than any because the value must be narrowed or validated before most operations.'
+    },
+
+    {
+      question: '23. any versus unknown?',
+      answer:
+        'any permits almost all operations without checking. unknown requires type checks before the value can be used safely.'
+    },
+
+    {
+      question: '24. What is never?',
+      answer:
+        'never represents a value that cannot occur. It is used for functions that never return and for exhaustive checks of impossible union branches.'
+    },
+
+    {
+      question: '25. What is void?',
+      answer:
+        'void commonly describes a function whose return value is not intended to be consumed.'
+    },
+
+    {
+      question: '26. What is a generic?',
+      answer:
+        'A generic accepts one or more type parameters so reusable code can preserve type relationships while working with different data types.'
+    },
+
+    {
+      question: '27. Why use generics?',
+      answer:
+        'Generics avoid duplicating similar code and preserve more type information than using broad types such as any.'
+    },
+
+    {
+      question: '28. What is a generic constraint?',
+      answer:
+        'A constraint limits which types can be used for a generic parameter, commonly using extends.'
+    },
+
+    {
+      question: '29. What does keyof do?',
+      answer:
+        'keyof produces a union containing the known property names of a type.'
+    },
+
+    {
+      question: '30. What does typeof do in a type position?',
+      answer:
+        'It derives a TypeScript type from the declared shape of an existing JavaScript value.'
+    },
+
+    {
+      question: '31. What is an indexed access type?',
+      answer:
+        'It extracts the type of a property from another type, such as VitalReading["measuredAt"].'
+    },
+
+    {
+      question: '32. What is Partial?',
+      answer:
+        'Partial<T> produces a type where every property of T is optional.'
+    },
+
+    {
+      question: '33. What is Required?',
+      answer:
+        'Required<T> produces a type where every property of T is required.'
+    },
+
+    {
+      question: '34. What is Pick?',
+      answer:
+        'Pick<T, K> creates a type containing only the selected properties from T.'
+    },
+
+    {
+      question: '35. What is Omit?',
+      answer:
+        'Omit<T, K> creates a type by removing selected properties from T.'
+    },
+
+    {
+      question: '36. What is Record?',
+      answer:
+        'Record<K, V> describes an object whose permitted keys are K and whose values have type V.'
+    },
+
+    {
+      question: '37. What does readonly mean?',
+      answer:
+        'readonly prevents reassignment of a property through that typed reference. It is a compile-time restriction and does not automatically freeze the runtime object.'
+    },
+
+    {
+      question: '38. What is a type assertion?',
+      answer:
+        'A type assertion tells TypeScript to treat a value as a specified type. It does not perform runtime validation or data conversion.'
+    },
+
+    {
+      question: '39. What is the non-null assertion operator?',
+      answer:
+        'The ! operator tells TypeScript that a value is not null or undefined. If that assumption is wrong, the program can still fail at runtime.'
+    },
+
+    {
+      question: '40. What does satisfies do?',
+      answer:
+        'satisfies checks that a value is compatible with a type while often preserving more specific inferred information than a direct annotation.'
+    },
+
+    {
+      question: '41. What is a tuple?',
+      answer:
+        'A tuple is an array type with defined element positions and types, such as [string, number].'
+    },
+
+    {
+      question: '42. What are optional properties?',
+      answer:
+        'Optional properties are marked with ? and may be absent from an object.'
+    },
+
+    {
+      question: '43. What is a declaration file?',
+      answer:
+        'A .d.ts file supplies TypeScript declarations for JavaScript libraries, global values, assets or modules without providing runtime implementation.'
+    },
+
+    {
+      question: '44. Why was vite-env.d.ts required?',
+      answer:
+        'It references Vite client type declarations so TypeScript understands Vite-specific modules, assets and environment definitions.'
+    },
+
+    {
+      question: '45. Why was declare module "*.css" required?',
+      answer:
+        'It tells TypeScript that CSS files are valid import targets when the compiler configuration checks side-effect imports strictly.'
+    },
+
+    {
+      question: '46. What is tsconfig.json?',
+      answer:
+        'tsconfig.json defines TypeScript compiler options, included source files, module settings, output behaviour and strictness rules.'
+    },
+
+    {
+      question: '47. What does strict mode do?',
+      answer:
+        'The strict compiler option enables several stronger checks, including stricter null handling and implicit-any detection.'
+    },
+
+    {
+      question: '48. What is noImplicitAny?',
+      answer:
+        'It reports places where TypeScript would infer any because no usable type information was provided.'
+    },
+
+    {
+      question: '49. What is strictNullChecks?',
+      answer:
+        'It treats null and undefined as separate types that must be handled explicitly instead of being accepted almost everywhere.'
+    },
+
+    {
+      question: '50. What does noEmit mean?',
+      answer:
+        'noEmit tells TypeScript to perform type checking without writing generated JavaScript files.'
+    },
+
+    {
+      question: '51. Why can localhost work while the production build fails?',
+      answer:
+        'The Vite development server can transform and display the application without running the same full type-check command. The production build may separately run tsc and reject type errors.'
+    },
+
+    {
+      question: '52. Are TypeScript types available at runtime?',
+      answer:
+        'Generally no. Interfaces, type aliases and most annotations are removed when TypeScript is converted into JavaScript.'
+    },
+
+    {
+      question: '53. Why is runtime validation still required?',
+      answer:
+        'TypeScript cannot guarantee the actual contents of network responses, form input, browser storage or external JavaScript values at runtime.'
+    },
+
+    {
+      question: '54. How do you type an async function?',
+      answer:
+        'An async function return type is represented using Promise, such as Promise<VitalReading[]> for a function that eventually returns an array of readings.'
+    },
+
+    {
+      question: '55. How do you type React component props?',
+      answer:
+        'Define an interface or type describing the expected properties and use it as the component parameter type.'
+    },
+
+    {
+      question: '56. How did you use TypeScript in the Healthcare Vitals Tracker?',
+      answer:
+        'I used TypeScript to describe health-reading records, authentication-related values, React component props and form state. It helped ensure fields such as systolic pressure, diastolic pressure, sugar level and timestamps used predictable types.'
+    },
+
+    {
+      question: '57. TypeScript versus JavaScript?',
+      answer:
+        'JavaScript runs directly in JavaScript environments and is dynamically typed. TypeScript adds static analysis and development-time types, then produces JavaScript for execution.'
+    },
+
+    {
+      question: '58. Can TypeScript prevent all runtime errors?',
+      answer:
+        'No. It catches many statically detectable errors, but network failures, invalid external data, incorrect business logic and runtime environment problems can still occur.'
+    }
+  ]
+},
   {
     id: 'react', title: 'React', category: 'frontend', short: 'Component-based library for building user interfaces.',
     simple: [
