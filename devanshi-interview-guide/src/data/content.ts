@@ -7968,66 +7968,393 @@ USING (
   ]
 },
   {
-    id: 'android-studio', title: 'Android Studio', category: 'android', short: 'Official IDE for Android development.',
-    simple: [
-      'Android Studio is where the CareCompanion application was written, run and debugged.',
-      'It includes an emulator, debugger, device manager and layout tools.',
-      'It integrates directly with the Gradle build system.'
-    ],
-    technical: [
-      'Logcat displays application and system logs for debugging.',
-      'The emulator simulates Android devices with different versions and screen configurations.',
-      'The IDE manages Kotlin source code, Android resources, manifests and build variants.'
-    ],
-    interview: 'Android Studio is the IDE I used to develop CareCompanion. It provided the emulator, debugging tools, layout support and Gradle integration required to build and test the Android application.',
-    followUps: ['What is Logcat?', 'Emulator versus physical device testing?', 'What is AndroidManifest.xml?']
-  },
+  id: "android-studio",
+  title: "Android Studio",
+  category: "android",
+
+  short:
+    "The official IDE used to develop, test and debug Android applications.",
+
+  simple: [
+    "Android Studio is the official development environment for Android applications.",
+
+    "It provides a code editor for Kotlin and Java.",
+
+    "It includes an Android emulator for testing applications on virtual devices.",
+
+    "Logcat displays application logs, warnings and errors.",
+
+    "Android Studio integrates with Gradle to build and package the application."
+  ],
+
+  technical: [
+    "The emulator simulates Android devices with different screen sizes and Android versions.",
+
+    "The debugger allows breakpoints and step-by-step code execution.",
+
+    "The Device Manager is used to create and manage virtual Android devices.",
+
+    "The layout tools help developers preview Android user-interface screens.",
+
+    "Android Studio uses Gradle for dependency management and build automation."
+  ],
+
+  interview:
+    "Android Studio is the official IDE I used to develop CareCompanion. I used it to write Kotlin code, design and preview application screens, test the app using the emulator and inspect errors through Logcat. It also integrates with Gradle to build and package the Android application.",
+
+  keyPoints: [
+    "Android IDE",
+    "Kotlin editor",
+    "Emulator",
+    "Debugger",
+    "Logcat",
+    "Device Manager"
+  ],
+
+  followUps: [
+    "What is Android Studio?",
+    "What is an emulator?",
+    "What is Logcat?",
+    "How did you test CareCompanion?"
+  ],
+
+  cautions: [
+    "Android Studio is an IDE, not a programming language.",
+
+    "Only mention Android tools and features that you actually used in CareCompanion."
+  ],
+
+  qa: [
+    {
+      question: "1. What is Android Studio?",
+      answer:
+        "Android Studio is the official integrated development environment for building Android applications."
+    },
+
+    {
+      question: "2. What is an Android emulator?",
+      answer:
+        "An emulator simulates an Android device on a computer so the application can be tested without always using a physical phone."
+    },
+
+    {
+      question: "3. What is Logcat?",
+      answer:
+        "Logcat displays system and application logs, including errors, warnings and debugging messages."
+    },
+
+    {
+      question: "4. How did you use Android Studio?",
+      answer:
+        "I used it to write Kotlin code, create application screens, run CareCompanion on an emulator and debug errors."
+    }
+  ]
+},
   {
-    id: 'gradle', title: 'Gradle', category: 'android', short: 'Build automation and dependency management for Android.',
-    simple: [
-      'Gradle compiles the Kotlin code and packages the Android application.',
-      'It downloads and manages libraries used by the project.',
-      'Android Studio is the IDE; Gradle performs the build.'
-    ],
-    technical: [
-      'Gradle handles build types, product flavours, dependency graphs and resource processing.',
-      'Android builds may produce APK or Android App Bundle outputs.',
-      'Configuration files define plugins, SDK versions and dependencies.'
-    ],
-    interview: 'Gradle is the build system used by Android Studio. It manages project dependencies, compiles the Kotlin code, processes resources and packages the application into an installable build.',
-    followUps: ['Android Studio versus Gradle?', 'What is a dependency?', 'APK versus App Bundle?']
-  },
+  id: "gradle",
+  title: "Gradle",
+  category: "android",
+
+  short:
+    "The build system used to compile Android code, manage dependencies and create application packages.",
+
+  simple: [
+    "Gradle is a build-automation and dependency-management tool.",
+
+    "Android Studio uses Gradle to build Android projects.",
+
+    "Gradle downloads and manages external libraries required by the application.",
+
+    "It compiles Kotlin code and processes Android resources.",
+
+    "It packages the application into an APK or Android App Bundle."
+  ],
+
+  technical: [
+    "Gradle build files contain project configuration and dependency declarations.",
+
+    "Dependencies allow external libraries to be added without manually copying their code.",
+
+    "Build types can create different versions such as debug and release builds.",
+
+    "The Android Gradle Plugin connects Gradle with Android-specific build tasks.",
+
+    "Gradle reports dependency or configuration errors during the build process."
+  ],
+
+  interview:
+    "Gradle is the build system used by Android Studio. In CareCompanion, it managed project dependencies, compiled the Kotlin code, processed Android resources and generated the application build. Android Studio is the development environment, while Gradle performs the actual build process.",
+
+  keyPoints: [
+    "Build automation",
+    "Dependencies",
+    "Compilation",
+    "Debug build",
+    "Release build",
+    "APK",
+    "App Bundle"
+  ],
+
+  followUps: [
+    "What is Gradle?",
+    "Android Studio versus Gradle?",
+    "What is a dependency?",
+    "What is an APK?"
+  ],
+
+  cautions: [
+    "Gradle is not an IDE.",
+
+    "Do not claim advanced Gradle configuration experience unless you actually modified build files beyond adding basic dependencies."
+  ],
+
+  qa: [
+    {
+      question: "1. What is Gradle?",
+      answer:
+        "Gradle is a build-automation tool used to compile code, manage dependencies and package applications."
+    },
+
+    {
+      question: "2. Android Studio versus Gradle?",
+      answer:
+        "Android Studio is the IDE used to write and debug the application. Gradle is the system that builds and packages it."
+    },
+
+    {
+      question: "3. What is a dependency?",
+      answer:
+        "A dependency is an external library or module required by the project."
+    },
+
+    {
+      question: "4. What is an APK?",
+      answer:
+        "An APK is an installable package file for an Android application."
+    }
+  ]
+},
   {
-    id: 'git', title: 'Git', category: 'tools', short: 'Distributed version-control system.',
-    simple: [
-      'Git tracks changes made to code over time.',
-      'It lets developers create branches, commit changes, merge work and recover previous versions.',
-      'Each developer can have a complete local copy of the repository history.'
-    ],
-    technical: [
-      'A commit records a snapshot and metadata such as author and parent commit.',
-      'Branches are movable references to commits.',
-      'Merge conflicts happen when Git cannot automatically reconcile competing changes.'
-    ],
-    interview: 'Git is a distributed version-control system. I use it to track code changes, create separate branches for features, commit logical updates and recover earlier versions when needed.',
-    code: `git checkout -b feature/vitals-history\ngit add .\ngit commit -m "Add vitals history"\ngit push -u origin feature/vitals-history`,
-    followUps: ['Merge versus rebase?', 'What is a conflict?', 'What makes a good commit?']
-  },
+  id: "git",
+  title: "Git",
+  category: "tools",
+
+  short:
+    "A distributed version-control system used to track changes in source code.",
+
+  simple: [
+    "Git is a distributed version-control system.",
+
+    "It records changes made to files over time.",
+
+    "Git allows developers to return to earlier versions of their code.",
+
+    "Branches allow developers to work on features without directly changing the main branch.",
+
+    "Commits store meaningful snapshots of project changes.",
+
+    "Git can be used locally without GitHub.",
+
+    "I used Git to track changes and push updates for my projects."
+  ],
+
+  technical: [
+    "A repository is a folder whose history is tracked by Git.",
+
+    "git add moves changes into the staging area.",
+
+    "git commit records staged changes as a snapshot.",
+
+    "git branch creates or lists branches.",
+
+    "git merge combines changes from another branch.",
+
+    "git pull downloads remote changes and integrates them locally.",
+
+    "git push uploads local commits to a remote repository.",
+
+    "A merge conflict occurs when Git cannot automatically combine competing changes."
+  ],
+
+  interview:
+    "Git is a distributed version-control system that I use to track code changes and maintain project history. I create commits for logical updates, use branches when working on separate features and push the completed changes to a remote repository. It also allows me to restore earlier versions if something breaks.",
+
+  keyPoints: [
+    "Repository",
+    "Commit",
+    "Branch",
+    "Merge",
+    "Staging area",
+    "Push and pull",
+    "Merge conflicts"
+  ],
+
+  code: `git init
+
+git status
+
+git add .
+
+git commit -m "Add interview guide content"
+
+git branch -M main
+
+git push origin main`,
+
+  followUps: [
+    "What is Git?",
+    "What is a commit?",
+    "What is a branch?",
+    "What is a merge conflict?"
+  ],
+
+  cautions: [
+    "Git and GitHub are not the same thing.",
+
+    "Do not commit private keys, passwords or environment secrets.",
+
+    "Write clear commit messages instead of vague messages such as update."
+  ],
+
+  qa: [
+    {
+      question: "1. What is Git?",
+      answer:
+        "Git is a distributed version-control system used to track changes in files and source code."
+    },
+
+    {
+      question: "2. What is a commit?",
+      answer:
+        "A commit is a recorded snapshot of staged project changes with a message describing the update."
+    },
+
+    {
+      question: "3. What is a branch?",
+      answer:
+        "A branch is an independent line of development that allows work to continue without immediately changing the main branch."
+    },
+
+    {
+      question: "4. What is a merge conflict?",
+      answer:
+        "A merge conflict occurs when Git cannot automatically combine changes and the developer must choose the correct final code."
+    },
+
+    {
+      question: "5. What is the staging area?",
+      answer:
+        "The staging area contains the changes selected to be included in the next commit."
+    }
+  ]
+},
   {
-    id: 'github', title: 'GitHub', category: 'tools', short: 'Online hosting and collaboration platform for Git.',
-    simple: [
-      'GitHub stores Git repositories online.',
-      'It provides pull requests, issues, code review and automation features.',
-      'Git is the version-control system; GitHub is a platform built around Git.'
-    ],
-    technical: [
-      'Pull requests propose changes and provide a place for review before merging.',
-      'Issues track bugs, feature requests and project work.',
-      'GitHub Actions can automate testing and deployment workflows.'
-    ],
-    interview: 'Git is the version-control system running locally, while GitHub is a cloud platform used to host and collaborate on Git repositories.',
-    followUps: ['What is a pull request?', 'Git versus GitHub?', 'How do you review code?']
-  },
+  id: "github",
+  title: "GitHub",
+  category: "tools",
+
+  short:
+    "An online platform used to host Git repositories and collaborate on software projects.",
+
+  simple: [
+    "GitHub is a cloud platform for hosting Git repositories.",
+
+    "It allows developers to store and share their code online.",
+
+    "GitHub supports collaboration through branches and pull requests.",
+
+    "Issues can be used to report bugs or track tasks.",
+
+    "Pull requests allow changes to be reviewed before they are merged.",
+
+    "GitHub keeps a visible history of commits and contributors.",
+
+    "I use GitHub to host my projects and connect them to deployment platforms such as Vercel."
+  ],
+
+  technical: [
+    "A remote repository is the online version of a Git repository.",
+
+    "A pull request proposes merging changes from one branch into another.",
+
+    "Code review allows team members to comment on and approve changes.",
+
+    "GitHub Issues can track bugs, features and project tasks.",
+
+    "GitHub Actions can automate testing, builds and deployments.",
+
+    "A repository can be public or private.",
+
+    "The origin remote commonly points to the main GitHub repository."
+  ],
+
+  interview:
+    "GitHub is the online platform I use to host and share my Git repositories. I push project commits to GitHub, maintain the source-code history and connect repositories to services such as Vercel for deployment. In collaborative projects, GitHub can also support pull requests, code reviews and issue tracking.",
+
+  keyPoints: [
+    "Remote repository",
+    "Pull requests",
+    "Code reviews",
+    "Issues",
+    "Actions",
+    "Public and private repositories",
+    "Deployment integration"
+  ],
+
+  code: `git remote add origin \
+https://github.com/USERNAME/PROJECT.git
+
+git push -u origin main
+
+git pull origin main`,
+
+  followUps: [
+    "What is GitHub?",
+    "Git versus GitHub?",
+    "What is a pull request?",
+    "What is a remote repository?"
+  ],
+
+  cautions: [
+    "Do not describe GitHub as the version-control system itself.",
+
+    "Do not upload environment files containing secrets.",
+
+    "Only claim pull-request or GitHub Actions experience if you have actually used them."
+  ],
+
+  qa: [
+    {
+      question: "1. What is GitHub?",
+      answer:
+        "GitHub is an online platform used to host Git repositories and support software collaboration."
+    },
+
+    {
+      question: "2. Git versus GitHub?",
+      answer:
+        "Git is the version-control system used locally. GitHub is an online platform that hosts Git repositories."
+    },
+
+    {
+      question: "3. What is a pull request?",
+      answer:
+        "A pull request proposes merging changes from one branch into another and allows the changes to be reviewed."
+    },
+
+    {
+      question: "4. What is a remote repository?",
+      answer:
+        "A remote repository is a Git repository stored on another system, such as GitHub."
+    },
+
+    {
+      question: "5. How did you use GitHub?",
+      answer:
+        "I used GitHub to host my project code, maintain commit history and connect the repository to Vercel for deployment."
+    }
+  ]
+},
   {
     id: 'dsa', title: 'Data Structures & Algorithms', category: 'coursework', short: 'Organising data and solving problems efficiently.',
     simple: [
