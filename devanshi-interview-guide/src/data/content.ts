@@ -4571,68 +4571,1042 @@ async function fetchReadings():
   ]
 },
   {
-    id: 'react', title: 'React', category: 'frontend', short: 'Component-based library for building user interfaces.',
-    simple: [
-      'React divides a user interface into reusable components.',
-      'Props pass information into components, while state stores changing information.',
-      'When state changes, React updates the necessary parts of the interface.'
-    ],
-    technical: [
-      'React uses a declarative model: developers describe the desired UI for a given state.',
-      'Hooks such as useState and useEffect support local state and side effects in function components.',
-      'React reconciles changes between render outputs and applies required updates to the DOM.'
-    ],
-    interview: 'React is a component-based JavaScript library for building user interfaces. In the Healthcare Vitals Tracker, I used React to divide the application into reusable components such as the login interface, reading form and vitals-history view. State was used to manage form values, authentication status and fetched records.',
-    keyPoints: ['Components', 'Props', 'State', 'Hooks', 'Conditional rendering', 'Lists and keys', 'Controlled forms'],
-    code: `const [systolic, setSystolic] = useState<number>(0);`,
-    followUps: ['Props versus state?', 'What is useEffect?', 'Why are keys needed?', 'Controlled versus uncontrolled components?'],
-    cautions: ['Only state that you actually used in the project should be claimed.', 'React handles the UI; backend security must still be enforced separately.']
-  },
+  id: 'react',
+  title: 'React',
+  category: 'frontend',
+
+  short:
+    'A component-based JavaScript library used to build interactive and reusable user interfaces.',
+
+  simple: [
+    'React is a JavaScript library used for building user interfaces.',
+
+    'React applications are divided into small reusable pieces called components.',
+
+    'A component can represent one part of the interface, such as a navbar, form, card, button or dashboard section.',
+
+    'Components make code easier to reuse, test and maintain.',
+
+    'React uses JSX, which allows HTML-like syntax to be written inside JavaScript or TypeScript files.',
+
+    'Props are used to pass data from a parent component to a child component.',
+
+    'State stores information that can change while the application is running.',
+
+    'When state changes, React updates the relevant part of the interface.',
+
+    'Hooks are functions that allow functional components to use state and other React features.',
+
+    'useState is used to store component state.',
+
+    'useEffect is used for side effects such as fetching data, subscribing to events or synchronising with an external system.',
+
+    'React supports conditional rendering, which means different UI can be shown depending on application state.',
+
+    'Lists of elements can be rendered using JavaScript array methods such as map.',
+
+    'React is useful for applications where the interface changes frequently based on user actions or fetched data.',
+
+    'In the Healthcare Vitals Tracker, React can be used to build the login form, vitals form, history list and protected dashboard.'
+  ],
+
+  technical: [
+    'React follows a declarative approach. Developers describe what the interface should look like for the current state, and React handles updating the DOM.',
+
+    'A functional component is a JavaScript or TypeScript function that returns JSX.',
+
+    'JSX is transformed into JavaScript before the browser executes the application.',
+
+    'Props are read-only inputs received by a component.',
+
+    'State is private data managed by a component and can trigger a re-render when updated.',
+
+    'The useState hook returns the current state value and a function used to update it.',
+
+    'State updates should be treated as immutable. Arrays and objects should normally be replaced with updated copies instead of being mutated directly.',
+
+    'The useEffect hook runs side-effect logic after React commits an update to the interface.',
+
+    'The dependency array controls when an effect runs.',
+
+    'An empty dependency array normally causes an effect to run after the initial mount.',
+
+    'An effect can return a cleanup function for removing listeners, cancelling subscriptions or cleaning up timers.',
+
+    'Controlled components store form values in React state and update them through event handlers.',
+
+    'Uncontrolled components allow the DOM to store form values and are commonly accessed using refs.',
+
+    'Lifting state up means moving shared state to the nearest common parent so multiple child components can use the same source of truth.',
+
+    'Prop drilling occurs when props are passed through several intermediate components that do not directly need them.',
+
+    'Context can share values across a component tree without manually passing props through every level.',
+
+    'React uses reconciliation to compare the previous element tree with the new one and determine which DOM updates are required.',
+
+    'Keys help React identify list items between renders. Stable unique identifiers should normally be used instead of array indexes.',
+
+    'The virtual DOM is an in-memory representation used during React rendering. React still updates the real DOM when necessary.',
+
+    'Memoisation tools such as React.memo, useMemo and useCallback can reduce unnecessary work, but they should be used only when they solve a measurable problem.',
+
+    'Error boundaries catch certain rendering errors in descendant components. They do not catch every possible asynchronous or event-handler error.',
+
+    'In TypeScript, component props, state and event handlers can be given explicit types.',
+
+    'React manages the frontend interface. Authentication rules, database access and security must still be enforced by the backend.'
+  ],
+
+  interview:
+    'React is a component-based JavaScript library used to build interactive user interfaces. In the Healthcare Vitals Tracker, I used React to separate the application into reusable parts such as authentication, the vitals-entry form and reading history. I used state to manage form values and fetched records, props to pass data between components and effects for operations such as loading user data. React helped keep the interface modular and made updates easier when application state changed.',
+
+  keyPoints: [
+    'Components',
+    'JSX',
+    'Props',
+    'State',
+    'Hooks',
+    'useState',
+    'useEffect',
+    'Controlled forms',
+    'Conditional rendering',
+    'List keys',
+    'Context',
+    'Reconciliation'
+  ],
+
+  code: `import { useEffect, useState } from 'react';
+
+type VitalReading = {
+  id: string;
+  systolic: number;
+  diastolic: number;
+  measuredAt: string;
+};
+
+type ReadingCardProps = {
+  reading: VitalReading;
+};
+
+function ReadingCard({
+  reading
+}: ReadingCardProps) {
+  return (
+    <article>
+      <h3>
+        {reading.systolic}/
+        {reading.diastolic}
+      </h3>
+
+      <p>{reading.measuredAt}</p>
+    </article>
+  );
+}
+
+export default function VitalsHistory() {
+  const [readings, setReadings] =
+    useState<VitalReading[]>([]);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  useEffect(() => {
+    async function loadReadings() {
+      try {
+        const response =
+          await fetch('/api/readings');
+
+        if (!response.ok) {
+          throw new Error(
+            'Unable to fetch readings'
+          );
+        }
+
+        const data: VitalReading[] =
+          await response.json();
+
+        setReadings(data);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadReadings();
+  }, []);
+
+  if (loading) {
+    return <p>Loading readings...</p>;
+  }
+
+  return (
+    <section>
+      <h2>Vitals history</h2>
+
+      {readings.length === 0 ? (
+        <p>No readings recorded.</p>
+      ) : (
+        readings.map((reading) => (
+          <ReadingCard
+            key={reading.id}
+            reading={reading}
+          />
+        ))
+      )}
+    </section>
+  );
+}`,
+
+  followUps: [
+    'What is a React component?',
+    'What is JSX?',
+    'Props versus state?',
+    'What does useState do?',
+    'What does useEffect do?',
+    'Why are keys required in lists?',
+    'What is a controlled component?',
+    'What is lifting state up?',
+    'What is prop drilling?',
+    'How does React update the DOM?'
+  ],
+
+  cautions: [
+    'Do not say React is a complete backend framework. It mainly manages the user interface.',
+
+    'Do not mutate React state directly.',
+
+    'Do not use useEffect for every calculation. Values derived directly from props or state can often be calculated during rendering.',
+
+    'Do not use array indexes as keys when list order can change.',
+
+    'The virtual DOM does not mean React never touches the real DOM.',
+
+    'Only claim hooks or architectural patterns that actually exist in your project.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is React?',
+      answer:
+        'React is a JavaScript library used to build component-based and interactive user interfaces.'
+    },
+
+    {
+      question: '2. What is a component?',
+      answer:
+        'A component is a reusable unit of interface and behaviour. It can represent a button, form, card, page section or complete screen.'
+    },
+
+    {
+      question: '3. What is JSX?',
+      answer:
+        'JSX is a syntax that allows HTML-like markup to be written inside JavaScript or TypeScript. It is transformed into JavaScript before execution.'
+    },
+
+    {
+      question: '4. What are props?',
+      answer:
+        'Props are read-only values passed from a parent component to a child component.'
+    },
+
+    {
+      question: '5. What is state?',
+      answer:
+        'State is data managed by a component that can change over time and cause the interface to re-render.'
+    },
+
+    {
+      question: '6. Props versus state?',
+      answer:
+        'Props are inputs received from a parent. State is managed by the component itself or by a state-management layer.'
+    },
+
+    {
+      question: '7. What does useState do?',
+      answer:
+        'useState adds state to a functional component and returns the current value and a state-update function.'
+    },
+
+    {
+      question: '8. What does useEffect do?',
+      answer:
+        'useEffect runs side-effect logic after rendering, such as data fetching, subscriptions, event listeners or timer management.'
+    },
+
+    {
+      question: '9. What is a controlled component?',
+      answer:
+        'A controlled form element gets its value from React state and updates that state through an event handler.'
+    },
+
+    {
+      question: '10. Why are keys needed in lists?',
+      answer:
+        'Keys help React identify which items were added, removed or changed between renders.'
+    },
+
+    {
+      question: '11. What is conditional rendering?',
+      answer:
+        'Conditional rendering means displaying different elements depending on conditions such as loading state, authentication or available data.'
+    },
+
+    {
+      question: '12. What is lifting state up?',
+      answer:
+        'It means moving shared state to the nearest common parent so several components use one consistent source of truth.'
+    },
+
+    {
+      question: '13. What is prop drilling?',
+      answer:
+        'Prop drilling occurs when values are passed through several intermediate components only to reach a deeply nested component.'
+    },
+
+    {
+      question: '14. What is React Context?',
+      answer:
+        'Context allows a value to be shared across part of the component tree without passing it manually through every component.'
+    },
+
+    {
+      question: '15. How did you use React in your project?',
+      answer:
+        'I used React to create reusable authentication, form and history components. State controlled form values and displayed readings, while effects supported loading data and maintaining application state.'
+    }
+  ]
+},
   {
-    id: 'vite', title: 'Vite', category: 'frontend', short: 'Fast development server and frontend build tool.',
-    simple: [
-      'Vite starts the local development server and prepares the project for production.',
-      'It offers fast startup and Hot Module Replacement.',
-      'React builds the interface; Vite runs and builds the React project.'
-    ],
-    technical: [
-      'During development, Vite serves source modules efficiently using native ES module concepts.',
-      'For production, Vite creates optimised static assets.',
-      'It also processes TypeScript, CSS and imported resources through its toolchain.'
-    ],
-    interview: 'Vite is the development and build tool I used with React. It provides a fast development server and Hot Module Replacement, and it bundles the project into optimised static assets for production.',
-    followUps: ['React versus Vite?', 'What is Hot Module Replacement?', 'Development build versus production build?']
-  },
+  id: 'vite',
+  title: 'Vite',
+  category: 'frontend',
+
+  short:
+    'A fast development server and frontend build tool commonly used with React and TypeScript.',
+
+  simple: [
+    'Vite is a development and build tool for modern frontend applications.',
+
+    'It is commonly used to create React, TypeScript and JavaScript projects.',
+
+    'Vite provides a local development server.',
+
+    'The development server allows developers to view changes quickly while coding.',
+
+    'Hot Module Replacement updates changed modules without refreshing the entire page.',
+
+    'Vite processes JavaScript, TypeScript, CSS and imported assets.',
+
+    'For production, Vite creates optimised static files.',
+
+    'The production files are usually generated inside a dist folder.',
+
+    'React and Vite are not alternatives.',
+
+    'React is used to build the user interface, while Vite runs and builds the project.',
+
+    'Vite can read environment variables that use the configured public prefix.',
+
+    'The package.json file defines commands such as npm run dev and npm run build.',
+
+    'Vite does not automatically replace all TypeScript type checking.',
+
+    'A project may run locally with Vite but fail during a production build if a separate TypeScript check reports an error.'
+  ],
+
+  technical: [
+    'Vite provides an on-demand development server that serves source modules during development.',
+
+    'It uses native ES modules in modern browsers for fast development startup.',
+
+    'Hot Module Replacement updates changed modules while attempting to preserve application state.',
+
+    'The development command is commonly defined as vite in package.json.',
+
+    'The production command is commonly vite build.',
+
+    'The preview command commonly serves the generated production build locally for testing.',
+
+    'The production build normally generates files inside the dist directory.',
+
+    'Vite can process TypeScript syntax, but syntax transformation is not the same as complete type checking.',
+
+    'A build script may run tsc --noEmit before vite build to ensure TypeScript errors stop deployment.',
+
+    'Vite configuration is normally stored in vite.config.ts or vite.config.js.',
+
+    'Plugins extend Vite behaviour. React projects commonly use the official React plugin.',
+
+    'Environment variables exposed to frontend code should not contain private secrets because frontend values are included in browser-delivered code.',
+
+    'Vite supports static asset imports and files placed in the public directory.',
+
+    'Files in public are copied without transformation and are served from the application root.',
+
+    'Imported assets may receive hashed filenames during the production build for cache management.',
+
+    'A deployment platform must publish the generated dist folder for a normal static Vite application.',
+
+    'When a project is inside a nested repository folder, the deployment root directory must point to the folder containing package.json.',
+
+    'Vite does not provide a database, authentication system or production server-side API by itself.'
+  ],
+
+  interview:
+    'Vite is the development and build tool I used for the React and TypeScript project. During development, it provided a fast local server and Hot Module Replacement so changes appeared quickly. For production, Vite bundled the application and generated optimised files in the dist directory. I also learned that Vite can transform TypeScript, but a separate TypeScript check may still be required before deployment.',
+
+  keyPoints: [
+    'Development server',
+    'Hot Module Replacement',
+    'Production build',
+    'dist directory',
+    'ES modules',
+    'Plugins',
+    'Environment variables',
+    'Static assets',
+    'Vite configuration',
+    'TypeScript build checks'
+  ],
+
+  code: `// vite.config.ts
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()]
+});
+
+/*
+package.json scripts:
+
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  }
+}
+*/`,
+
+  followUps: [
+    'What is Vite?',
+    'React versus Vite?',
+    'What is Hot Module Replacement?',
+    'What does npm run dev do?',
+    'What does npm run build do?',
+    'What is the dist folder?',
+    'Why can localhost work while the build fails?',
+    'What is vite.config.ts?',
+    'How are environment variables handled?',
+    'What is the public folder?'
+  ],
+
+  cautions: [
+    'Do not describe Vite as a frontend framework.',
+
+    'Do not say Vite is React. Vite can be used with multiple frontend technologies.',
+
+    'Do not store private backend secrets in frontend environment variables.',
+
+    'A working development server does not guarantee that the production TypeScript build will pass.',
+
+    'Do not deploy src or public as the production output directory. A normal Vite build publishes dist.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Vite?',
+      answer:
+        'Vite is a frontend development server and build tool designed for modern JavaScript and TypeScript applications.'
+    },
+
+    {
+      question: '2. Why did you use Vite?',
+      answer:
+        'I used Vite because it provides fast project startup, quick module updates and a straightforward production build process.'
+    },
+
+    {
+      question: '3. React versus Vite?',
+      answer:
+        'React builds the user interface. Vite provides the development server and production build system.'
+    },
+
+    {
+      question: '4. What is Hot Module Replacement?',
+      answer:
+        'HMR updates a changed module in the browser without performing a complete page reload.'
+    },
+
+    {
+      question: '5. What does npm run dev do?',
+      answer:
+        'It runs the development script defined in package.json, which normally starts the Vite development server.'
+    },
+
+    {
+      question: '6. What does npm run build do?',
+      answer:
+        'It runs the production build script. In this project it first checks TypeScript and then asks Vite to generate production assets.'
+    },
+
+    {
+      question: '7. What is the dist folder?',
+      answer:
+        'dist contains the optimised production files created by Vite and is the folder normally published during deployment.'
+    },
+
+    {
+      question: '8. Why can localhost work while deployment fails?',
+      answer:
+        'The development server can display transformed code without running the same complete TypeScript build checks used during deployment.'
+    },
+
+    {
+      question: '9. What is vite.config.ts?',
+      answer:
+        'It is the project configuration file used to define plugins, aliases, build behaviour and other Vite settings.'
+    },
+
+    {
+      question: '10. What is the public folder?',
+      answer:
+        'It stores static files that should be served directly and copied to the production output without normal module transformation.'
+    },
+
+    {
+      question: '11. Does Vite type-check TypeScript?',
+      answer:
+        'Vite transforms TypeScript syntax, but projects commonly run tsc separately for complete type checking.'
+    },
+
+    {
+      question: '12. How did you deploy the Vite project?',
+      answer:
+        'I configured the deployment root to the folder containing package.json, used npm run build as the build command and published the dist output folder.'
+    }
+  ]
+},
   {
-    id: 'bootstrap', title: 'Bootstrap', category: 'frontend', short: 'CSS framework with responsive utilities and components.',
-    simple: [
-      'Bootstrap provides a responsive grid and ready-made utility classes.',
-      'It speeds up interface development for forms, spacing, navigation and responsive layouts.',
-      'Custom CSS is still useful so the application does not look generic.'
-    ],
-    technical: [
-      'Bootstrap follows a breakpoint-based responsive grid system.',
-      'Utility classes apply common spacing, display, flex and typography rules.',
-      'Its components can be customised by overriding styles or changing Sass variables in advanced setups.'
-    ],
-    interview: 'Bootstrap is a CSS framework that provides a responsive grid system and reusable utility classes. I used it in Puzzle Grove to build a mobile-first layout more quickly while combining it with custom CSS for the game-specific design.',
-    followUps: ['Why use Bootstrap?', 'Bootstrap versus custom CSS?', 'What are breakpoints?']
-  },
-  {
-    id: 'responsive', title: 'Responsive Web Design', category: 'frontend', short: 'Adapts interfaces across mobile, tablet and desktop.',
-    simple: [
-      'Responsive design allows a website to work well at different screen sizes.',
-      'A mobile-first approach begins with small screens and progressively adds larger layouts.',
-      'Common tools include relative units, media queries, Flexbox, Grid and responsive images.'
-    ],
-    technical: [
-      'Breakpoints should be based on layout needs rather than only device names.',
-      'Fluid containers and flexible media prevent horizontal overflow.',
-      'Touch target size, readable text and keyboard navigation are also part of usable responsive design.'
-    ],
-    interview: 'Responsive web design means creating an interface that adapts to different screen sizes. In Puzzle Grove, I used a mobile-first approach with Bootstrap breakpoints, CSS Grid, Flexbox and custom media queries.',
-    followUps: ['What is mobile-first design?', 'Grid versus Flexbox?', 'How do you test responsiveness?']
-  },
+  id: 'bootstrap',
+  title: 'Bootstrap',
+  category: 'frontend',
+
+  short:
+    'A CSS framework providing responsive layouts, utility classes and reusable interface components.',
+
+  simple: [
+    'Bootstrap is a frontend CSS framework.',
+
+    'It provides predefined CSS classes for layout, spacing, typography, forms, buttons and common interface components.',
+
+    'Bootstrap includes a responsive grid system.',
+
+    'The grid system divides a row into twelve conceptual columns.',
+
+    'Classes such as container, row and col are used to create responsive layouts.',
+
+    'Breakpoint classes allow layouts to change across mobile, tablet and desktop widths.',
+
+    'Bootstrap follows a mobile-first approach.',
+
+    'Utility classes can control margin, padding, display, alignment, colours and sizing.',
+
+    'Bootstrap components include buttons, cards, navigation bars, alerts, modals and forms.',
+
+    'Some interactive Bootstrap components require JavaScript.',
+
+    'Bootstrap helps developers create responsive interfaces quickly.',
+
+    'Default Bootstrap styling can look generic if it is not customised.',
+
+    'Custom CSS can be combined with Bootstrap classes.',
+
+    'In Puzzle Grove, Bootstrap can be used for layout, spacing, responsive navigation and form controls.'
+  ],
+
+  technical: [
+    'Bootstrap provides a grid system based on containers, rows and columns.',
+
+    'A container controls the horizontal width and alignment of page content.',
+
+    'A row groups columns and manages grid spacing.',
+
+    'Column classes define how much horizontal space an item occupies at a breakpoint.',
+
+    'A class such as col-md-6 commonly creates a half-width column from the medium breakpoint onward.',
+
+    'Without a breakpoint prefix, a class applies from the smallest screen size upward.',
+
+    'Bootstrap uses mobile-first min-width breakpoints.',
+
+    'Responsive utility classes can change display, spacing and alignment at different breakpoints.',
+
+    'Spacing utilities follow patterns such as m for margin, p for padding, t for top, b for bottom, x for horizontal and y for vertical.',
+
+    'Flexbox utilities support alignment using classes such as d-flex, justify-content-center and align-items-center.',
+
+    'Bootstrap forms provide consistent styles for inputs, labels and validation states.',
+
+    'Bootstrap components rely on CSS classes and, for interactive behaviour, Bootstrap JavaScript.',
+
+    'The Bootstrap bundle includes required JavaScript dependencies for supported interactive components.',
+
+    'Data attributes can configure components such as modals and collapsible navigation.',
+
+    'Bootstrap variables and Sass configuration can be customised in projects that use its Sass source.',
+
+    'Utility classes are useful for common patterns, while custom CSS is appropriate for unique product styling.',
+
+    'Using too many framework-specific classes can make markup verbose and create dependency on the framework.',
+
+    'Accessibility still requires correct HTML structure, labels, keyboard handling and meaningful content.'
+  ],
+
+  interview:
+    'Bootstrap is a CSS framework that provides a responsive grid, utility classes and reusable components. I used it in Puzzle Grove to develop the mobile-first layout quickly, especially for spacing, columns, forms and responsive navigation. I combined Bootstrap with custom CSS because the framework helped with structure, while custom styles handled the game-specific visual design.',
+
+  keyPoints: [
+    'Grid system',
+    'Containers',
+    'Rows and columns',
+    'Breakpoints',
+    'Mobile-first',
+    'Utility classes',
+    'Forms',
+    'Components',
+    'Responsive navigation',
+    'Custom CSS'
+  ],
+
+  code: `<div class="container py-4">
+  <header
+    class="d-flex flex-column
+           flex-md-row
+           justify-content-between
+           align-items-md-center
+           gap-3 mb-4"
+  >
+    <div>
+      <h1 class="mb-1">
+        Puzzle Grove
+      </h1>
+
+      <p class="text-secondary mb-0">
+        Choose a game to begin.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+    >
+      View progress
+    </button>
+  </header>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4">
+      <article class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title h5">
+            Word Puzzle
+          </h2>
+
+          <p class="card-text">
+            Guess the correct word.
+          </p>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+          >
+            Play game
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>`,
+
+  followUps: [
+    'What is Bootstrap?',
+    'What is the Bootstrap grid?',
+    'What are containers, rows and columns?',
+    'What are breakpoints?',
+    'What does mobile-first mean in Bootstrap?',
+    'What are utility classes?',
+    'What does col-md-6 mean?',
+    'Does Bootstrap require JavaScript?',
+    'What are Bootstrap limitations?',
+    'Bootstrap versus custom CSS?'
+  ],
+
+  cautions: [
+    'Do not describe Bootstrap as a programming language.',
+
+    'Bootstrap does not remove the need to understand CSS.',
+
+    'Do not rely only on Bootstrap classes for accessibility.',
+
+    'Interactive components may require Bootstrap JavaScript.',
+
+    'Default Bootstrap interfaces can look generic without customisation.',
+
+    'Do not say the grid physically creates twelve columns in every layout. It is a responsive sizing system.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Bootstrap?',
+      answer:
+        'Bootstrap is a CSS framework that provides responsive layouts, utility classes and reusable user-interface components.'
+    },
+
+    {
+      question: '2. Why did you use Bootstrap?',
+      answer:
+        'I used it to build responsive layouts more quickly and maintain consistent spacing, forms, buttons and navigation.'
+    },
+
+    {
+      question: '3. What is the Bootstrap grid system?',
+      answer:
+        'It is a responsive layout system based on containers, rows and columns, commonly organised around twelve column units.'
+    },
+
+    {
+      question: '4. What is a container?',
+      answer:
+        'A container wraps page content and provides responsive width and horizontal spacing.'
+    },
+
+    {
+      question: '5. What is a row?',
+      answer:
+        'A row groups columns and handles the spacing and alignment required by the grid.'
+    },
+
+    {
+      question: '6. What does col-md-6 mean?',
+      answer:
+        'It means the column should occupy six of twelve grid units from the medium breakpoint onward.'
+    },
+
+    {
+      question: '7. What are breakpoints?',
+      answer:
+        'Breakpoints are viewport-width ranges at which responsive classes begin applying.'
+    },
+
+    {
+      question: '8. What does mobile-first mean in Bootstrap?',
+      answer:
+        'Base classes apply to smaller screens first, and breakpoint-prefixed classes enhance the layout for wider screens.'
+    },
+
+    {
+      question: '9. What are utility classes?',
+      answer:
+        'Utility classes perform common styling tasks such as spacing, display, colour, alignment and sizing.'
+    },
+
+    {
+      question: '10. Does Bootstrap require JavaScript?',
+      answer:
+        'The grid and most styling do not. Interactive components such as modals, dropdowns and collapsible navigation normally require Bootstrap JavaScript.'
+    },
+
+    {
+      question: '11. Bootstrap versus custom CSS?',
+      answer:
+        'Bootstrap provides a fast, consistent foundation. Custom CSS is used for unique branding, specialised layouts and product-specific interaction states.'
+    },
+
+    {
+      question: '12. What is one limitation of Bootstrap?',
+      answer:
+        'Interfaces can look generic, and heavy reliance on utility classes can create verbose markup or make the application dependent on the framework.'
+    },
+
+    {
+      question: '13. How did you use Bootstrap in Puzzle Grove?',
+      answer:
+        'I used Bootstrap for the responsive grid, spacing utilities, buttons, forms and navigation, then added custom CSS for game boards and visual identity.'
+    }
+  ]
+},
+ {
+  id: 'responsive-web-design',
+  title: 'Responsive Web Design',
+  category: 'frontend',
+
+  short:
+    'An approach that allows interfaces to adapt across mobile, tablet, laptop and desktop screens.',
+
+  simple: [
+    'Responsive web design means creating a website that works across different screen sizes and devices.',
+
+    'A responsive layout should remain readable and usable on mobile phones, tablets, laptops and desktops.',
+
+    'Responsive design does not mean shrinking a desktop page until it fits on a phone.',
+
+    'The layout, spacing, typography and navigation may change depending on available screen space.',
+
+    'Flexible widths allow elements to grow and shrink.',
+
+    'Media queries apply CSS rules when conditions such as viewport width are met.',
+
+    'Flexbox and Grid help create flexible layouts.',
+
+    'Responsive images should resize without overflowing their containers.',
+
+    'The viewport meta tag is required for correct mobile scaling.',
+
+    'A mobile-first approach begins with styles for smaller screens.',
+
+    'Additional styles are added for larger screens using min-width media queries.',
+
+    'Touch targets should be large enough to use comfortably.',
+
+    'Text should remain readable without horizontal scrolling.',
+
+    'Navigation may change from a horizontal menu to a compact mobile menu.',
+
+    'Responsive design should consider accessibility, orientation, content priority and user preferences.'
+  ],
+
+  technical: [
+    'Responsive design combines flexible layouts, responsive media, media queries and adaptable typography.',
+
+    'The viewport meta tag commonly sets the layout viewport width to the device width.',
+
+    'Fluid layouts use flexible measurements such as percentages, fractions, minmax and relative units.',
+
+    'A maximum width can prevent content from becoming excessively wide on large screens.',
+
+    'The CSS min function, max function and clamp function can create responsive sizes with controlled limits.',
+
+    'Mobile-first CSS defines the base experience for smaller screens and uses min-width queries for wider layouts.',
+
+    'Desktop-first CSS commonly starts with large-screen styles and uses max-width queries to reduce the layout.',
+
+    'Mobile-first design often produces simpler base styles and progressive enhancement.',
+
+    'Breakpoints should be selected according to content behaviour rather than only targeting specific device brands.',
+
+    'Flexbox is useful for navigation, alignment and component-level layouts.',
+
+    'CSS Grid is useful for responsive card grids, dashboards and two-dimensional arrangements.',
+
+    'The repeat, auto-fit, auto-fill and minmax functions can create responsive grids with fewer media queries.',
+
+    'Images can use max-width: 100% and height: auto to remain inside their containers.',
+
+    'The picture element and srcset attribute allow different image sources or sizes to be selected.',
+
+    'Responsive typography can use rem units and clamp to scale between minimum and maximum values.',
+
+    'Horizontal scrolling should generally be avoided for primary page content.',
+
+    'Content should reflow when the viewport narrows or text is enlarged.',
+
+    'Touch targets should provide sufficient size and spacing for users on mobile devices.',
+
+    'Hover-only interactions are unsuitable as the only method of accessing important actions.',
+
+    'A responsive interface should be tested with keyboard navigation and screen zoom.',
+
+    'Real-device testing can reveal problems that are not obvious in a desktop browser simulator.',
+
+    'Responsive design should also consider reduced-motion preferences, dark mode and different input methods.',
+
+    'Performance matters on mobile devices, so large images, unnecessary scripts and heavy animation should be reduced.',
+
+    'In Puzzle Grove, a game board can move from multiple columns on desktop to a single-column or compact layout on mobile.'
+  ],
+
+  interview:
+    'Responsive web design is the practice of creating interfaces that adapt to different screen sizes and input methods. I use flexible widths, media queries, Flexbox, CSS Grid and responsive images. In Puzzle Grove, I followed a mobile-first approach so the game interface worked on smaller screens first, then used breakpoints to improve the layout for tablets and desktops. I also considered readable text, touch-friendly buttons and avoiding horizontal scrolling.',
+
+  keyPoints: [
+    'Mobile-first design',
+    'Viewport meta tag',
+    'Flexible layouts',
+    'Media queries',
+    'Breakpoints',
+    'Flexbox',
+    'CSS Grid',
+    'Responsive images',
+    'Relative units',
+    'Touch targets',
+    'Content reflow',
+    'Accessibility'
+  ],
+
+  code: `.page {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.game-card {
+  min-width: 0;
+  padding: 1rem;
+}
+
+.game-card img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.page-title {
+  font-size: clamp(
+    1.8rem,
+    4vw,
+    3.5rem
+  );
+}
+
+.action-button {
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+}
+
+@media (min-width: 48rem) {
+  .game-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .game-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+}`,
+
+  followUps: [
+    'What is responsive web design?',
+    'What is mobile-first design?',
+    'What is the viewport meta tag?',
+    'What are media queries?',
+    'How do you choose breakpoints?',
+    'What are responsive images?',
+    'What units do you use for responsive layouts?',
+    'How do Flexbox and Grid help?',
+    'How do you test responsiveness?',
+    'What accessibility issues exist on mobile?'
+  ],
+
+  cautions: [
+    'Responsive design is not just reducing element sizes.',
+
+    'Do not select breakpoints only by popular device names. Let the content determine when the layout should change.',
+
+    'Do not rely only on hover interactions.',
+
+    'Avoid fixed widths that cause horizontal scrolling on smaller screens.',
+
+    'Browser developer tools are useful, but real-device testing is still valuable.',
+
+    'Do not hide essential content merely to make a mobile layout appear cleaner.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is responsive web design?',
+      answer:
+        'Responsive web design creates interfaces that adapt to different viewport sizes, devices and input methods.'
+    },
+
+    {
+      question: '2. What is mobile-first design?',
+      answer:
+        'Mobile-first design begins with the smaller-screen experience and adds layout enhancements for wider screens.'
+    },
+
+    {
+      question: '3. Why use mobile-first design?',
+      answer:
+        'It encourages content prioritisation, simpler base styles and progressive enhancement for devices with more screen space.'
+    },
+
+    {
+      question: '4. What is the viewport meta tag?',
+      answer:
+        'It tells mobile browsers how to size and scale the layout viewport. A common setting matches the viewport width to the device width.'
+    },
+
+    {
+      question: '5. What are media queries?',
+      answer:
+        'Media queries apply CSS rules only when conditions such as viewport width, orientation or user preferences are met.'
+    },
+
+    {
+      question: '6. How do you choose breakpoints?',
+      answer:
+        'I choose breakpoints when the content or layout stops working comfortably, rather than selecting them only for particular devices.'
+    },
+
+    {
+      question: '7. What is a fluid layout?',
+      answer:
+        'A fluid layout uses flexible measurements so elements can grow and shrink with the available space.'
+    },
+
+    {
+      question: '8. How do you make images responsive?',
+      answer:
+        'I commonly use max-width: 100% and height: auto, and use srcset or picture when different source sizes are needed.'
+    },
+
+    {
+      question: '9. Why use rem instead of only pixels?',
+      answer:
+        'rem is relative to the root font size and can support scalable typography and spacing.'
+    },
+
+    {
+      question: '10. How does Flexbox help responsive design?',
+      answer:
+        'Flexbox can change direction, alignment, wrapping and spacing as the available width changes.'
+    },
+
+    {
+      question: '11. How does Grid help responsive design?',
+      answer:
+        'Grid supports flexible rows and columns and can create responsive card layouts using minmax, auto-fit and fractional units.'
+    },
+
+    {
+      question: '12. How do you test responsiveness?',
+      answer:
+        'I test multiple viewport sizes, browser zoom, keyboard navigation, orientation changes and, where possible, real mobile devices.'
+    },
+
+    {
+      question: '13. What is content reflow?',
+      answer:
+        'Content reflow means the layout rearranges so users can read and operate it without unnecessary two-dimensional scrolling.'
+    },
+
+    {
+      question: '14. How did you make Puzzle Grove responsive?',
+      answer:
+        'I used a mobile-first layout, Bootstrap breakpoints, Grid for game boards and Flexbox for alignment. Wider screens received additional columns while mobile screens kept a simpler layout.'
+    }
+  ]
+},
   {
     id: 'node', title: 'Node.js', category: 'backend', short: 'JavaScript runtime for server-side development.',
     simple: [
