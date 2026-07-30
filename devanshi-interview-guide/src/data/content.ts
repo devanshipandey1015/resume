@@ -6727,83 +6727,1246 @@ auth.uid() = user_id
   ]
 },
   {
-    id: 'sql', title: 'SQL', category: 'databases', short: 'Language for defining and querying relational data.',
-    simple: [
-      'SQL is used to create, read, update and delete relational data.',
-      'It also supports filtering, sorting, joining and aggregation.',
-      'SQL is a language; MySQL and PostgreSQL are database systems that understand it.'
-    ],
-    technical: [
-      'SELECT retrieves data, INSERT creates rows, UPDATE changes rows and DELETE removes rows.',
-      'JOIN operations combine related tables using matching columns.',
-      'GROUP BY and aggregate functions such as COUNT, SUM and AVG summarise data.'
-    ],
-    interview: 'SQL is the language used to define, query and modify relational data. I use it for CRUD operations, filtering, joins, aggregations and defining relationships between tables.',
-    code: `SELECT user_id, COUNT(*) AS reading_count\nFROM vital_readings\nGROUP BY user_id;`,
-    followUps: ['INNER JOIN versus LEFT JOIN?', 'WHERE versus HAVING?', 'What is an index?']
-  },
+  id: "sql",
+  title: "SQL",
+  category: "databases",
+
+  short:
+    "The language used to define, query, update and manage data stored in relational databases.",
+
+  simple: [
+    "SQL stands for Structured Query Language.",
+
+    "SQL is used to communicate with relational database systems such as MySQL and PostgreSQL.",
+
+    "It can create tables, insert records, retrieve data, update existing records and delete records.",
+
+    "CRUD stands for Create, Read, Update and Delete.",
+
+    "SELECT is used to retrieve data.",
+
+    "INSERT is used to add new rows.",
+
+    "UPDATE is used to modify existing rows.",
+
+    "DELETE is used to remove rows.",
+
+    "The WHERE clause filters records according to a condition.",
+
+    "ORDER BY sorts query results.",
+
+    "GROUP BY combines rows that share a value so aggregate functions can be applied.",
+
+    "JOIN combines related data from multiple tables.",
+
+    "Aggregate functions include COUNT, SUM, AVG, MIN and MAX.",
+
+    "SQL is the language, while MySQL and PostgreSQL are database-management systems that understand SQL.",
+
+    "In the Healthcare Vitals Tracker, SQL concepts are relevant because user and health-reading data are stored in relational PostgreSQL tables."
+  ],
+
+  technical: [
+    "DDL stands for Data Definition Language and includes commands such as CREATE, ALTER and DROP.",
+
+    "DML stands for Data Manipulation Language and commonly includes INSERT, UPDATE and DELETE.",
+
+    "DQL is commonly used to describe SELECT queries.",
+
+    "TCL includes transaction-related commands such as COMMIT and ROLLBACK.",
+
+    "DCL includes permission-related commands such as GRANT and REVOKE.",
+
+    "A SELECT query can choose specific columns instead of retrieving every column with SELECT *.",
+
+    "The WHERE clause filters individual rows before grouping.",
+
+    "The HAVING clause filters grouped results after GROUP BY.",
+
+    "INNER JOIN returns rows that have matching values in both joined tables.",
+
+    "LEFT JOIN returns every row from the left table and matching rows from the right table.",
+
+    "RIGHT JOIN returns every row from the right table and matching rows from the left table.",
+
+    "FULL OUTER JOIN returns matching rows and unmatched rows from both sides when supported by the database.",
+
+    "A self join joins a table with itself using different aliases.",
+
+    "A subquery is a query placed inside another query.",
+
+    "A correlated subquery depends on values from the outer query and may be evaluated repeatedly.",
+
+    "A Common Table Expression uses WITH to create a named temporary query result for one statement.",
+
+    "UNION combines query results and removes duplicates.",
+
+    "UNION ALL combines query results while retaining duplicates.",
+
+    "DISTINCT removes duplicate combinations from the selected output columns.",
+
+    "NULL represents an unknown or absent value and should normally be checked using IS NULL or IS NOT NULL.",
+
+    "Comparing a value to NULL using = NULL does not produce the intended result.",
+
+    "COALESCE returns the first non-null value from a list of expressions.",
+
+    "CASE provides conditional logic inside a SQL query.",
+
+    "An index can improve read performance by helping the database locate rows without scanning the full table.",
+
+    "Indexes require additional storage and can make INSERT, UPDATE and DELETE operations more expensive.",
+
+    "A transaction groups multiple database operations into one logical unit.",
+
+    "COMMIT permanently saves a transaction, while ROLLBACK cancels uncommitted changes.",
+
+    "Parameterized queries should be used instead of directly combining user input with SQL strings.",
+
+    "Parameterized queries help prevent SQL injection.",
+
+    "Query performance can be studied using an execution plan such as EXPLAIN."
+  ],
+
+  interview:
+    "SQL is the language used to define, retrieve and modify relational data. I use it for CRUD operations, filtering, joins, grouping and aggregations. I understand that SQL is different from a database system: MySQL and PostgreSQL are systems that implement SQL. In a health-tracking application, SQL can be used to connect users with their health readings through primary and foreign keys and to retrieve each user’s records in chronological order.",
+
+  keyPoints: [
+    "CRUD",
+    "SELECT",
+    "WHERE",
+    "JOIN",
+    "GROUP BY",
+    "HAVING",
+    "Aggregations",
+    "Subqueries",
+    "CTEs",
+    "Transactions",
+    "Indexes",
+    "SQL injection"
+  ],
+
+  code: `-- Example tables
+
+CREATE TABLE users (
+  id BIGINT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE vital_readings (
+  id BIGINT PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  systolic INT,
+  diastolic INT,
+  blood_sugar DECIMAL(6, 2),
+  measured_at TIMESTAMP NOT NULL,
+
+  CONSTRAINT fk_reading_user
+    FOREIGN KEY (user_id)
+    REFERENCES users(id)
+);
+
+-- Retrieve one user's latest readings
+
+SELECT
+  id,
+  systolic,
+  diastolic,
+  blood_sugar,
+  measured_at
+FROM vital_readings
+WHERE user_id = 101
+ORDER BY measured_at DESC;
+
+-- Count readings for every user
+
+SELECT
+  user_id,
+  COUNT(*) AS total_readings
+FROM vital_readings
+GROUP BY user_id
+HAVING COUNT(*) > 0;
+
+-- Join users with their readings
+
+SELECT
+  u.email,
+  r.systolic,
+  r.diastolic,
+  r.measured_at
+FROM users AS u
+INNER JOIN vital_readings AS r
+  ON r.user_id = u.id;`,
+
+  followUps: [
+    "What is SQL?",
+    "What is CRUD?",
+    "WHERE versus HAVING?",
+    "INNER JOIN versus LEFT JOIN?",
+    "What is a primary key?",
+    "What is a foreign key?",
+    "What is GROUP BY?",
+    "What is a transaction?",
+    "What is an index?",
+    "How do you prevent SQL injection?"
+  ],
+
+  cautions: [
+    "Do not describe SQL as a database.",
+
+    "Avoid using SELECT * in interview examples when only a few columns are required.",
+
+    "Do not compare NULL using = NULL. Use IS NULL.",
+
+    "Do not combine untrusted user input directly into an SQL query.",
+
+    "An index does not automatically improve every query.",
+
+    "DELETE without a WHERE clause can remove every row from a table."
+  ],
+
+  qa: [
+    {
+      question: "1. What is SQL?",
+      answer:
+        "SQL is the language used to define, query and modify data in relational database systems."
+    },
+
+    {
+      question: "2. What is CRUD?",
+      answer:
+        "CRUD stands for Create, Read, Update and Delete. In SQL these are commonly represented by INSERT, SELECT, UPDATE and DELETE."
+    },
+
+    {
+      question: "3. What is the difference between WHERE and HAVING?",
+      answer:
+        "WHERE filters individual rows before grouping. HAVING filters groups after GROUP BY has been applied."
+    },
+
+    {
+      question: "4. What is a JOIN?",
+      answer:
+        "A JOIN combines related rows from two or more tables using a matching condition."
+    },
+
+    {
+      question: "5. INNER JOIN versus LEFT JOIN?",
+      answer:
+        "INNER JOIN returns only matching rows. LEFT JOIN returns all rows from the left table and matching rows from the right table."
+    },
+
+    {
+      question: "6. What is GROUP BY?",
+      answer:
+        "GROUP BY combines rows with the same selected value so aggregate functions such as COUNT or AVG can be calculated per group."
+    },
+
+    {
+      question: "7. WHERE versus ON in a join?",
+      answer:
+        "ON defines how tables are related during the join. WHERE filters the rows produced by the query."
+    },
+
+    {
+      question: "8. UNION versus UNION ALL?",
+      answer:
+        "UNION combines results and removes duplicates. UNION ALL keeps duplicate rows and is generally less expensive."
+    },
+
+    {
+      question: "9. What is a subquery?",
+      answer:
+        "A subquery is a query nested inside another query and used as an input to the outer query."
+    },
+
+    {
+      question: "10. What is a CTE?",
+      answer:
+        "A Common Table Expression is a named temporary result created using WITH and used within one SQL statement."
+    },
+
+    {
+      question: "11. What is an index?",
+      answer:
+        "An index is an additional data structure that helps the database locate rows faster. It improves many reads but adds storage and write overhead."
+    },
+
+    {
+      question: "12. What is a transaction?",
+      answer:
+        "A transaction groups several operations into one logical unit so they can succeed together or be rolled back together."
+    },
+
+    {
+      question: "13. What is SQL injection?",
+      answer:
+        "SQL injection occurs when untrusted input changes the intended structure of a query. Parameterized queries should be used to prevent it."
+    },
+
+    {
+      question: "14. How did you use SQL concepts in your project?",
+      answer:
+        "The Healthcare Vitals Tracker stores users and health records in relational PostgreSQL tables. Each reading is linked to a user, and the application retrieves that user’s timestamped records."
+    }
+  ]
+},
   {
-    id: 'relational-db', title: 'Relational Databases', category: 'databases', short: 'Stores structured data in related tables.',
-    simple: [
-      'A relational database stores information in tables made of rows and columns.',
-      'Primary keys uniquely identify rows.',
-      'Foreign keys connect records across tables.'
-    ],
-    technical: [
-      'Constraints enforce rules such as uniqueness, valid references and required values.',
-      'Normalisation reduces unnecessary duplication and update anomalies.',
-      'Transactions group related operations into a reliable unit of work.'
-    ],
-    interview: 'A relational database organises data into related tables. Primary keys uniquely identify rows, while foreign keys establish relationships between entities. For a health tracker, a reading can store the authenticated user’s ID as a foreign key.',
-    followUps: ['Primary key versus foreign key?', 'What is normalisation?', 'What is a transaction?']
-  },
+  id: "relational-databases",
+  title: "Relational Databases",
+  category: "databases",
+
+  short:
+    "Database systems that organise structured data into tables connected through defined relationships.",
+
+  simple: [
+    "A relational database stores data in tables.",
+
+    "A table contains rows and columns.",
+
+    "A row represents one record.",
+
+    "A column represents one property of the record.",
+
+    "A primary key uniquely identifies a row.",
+
+    "A foreign key connects one table to another table.",
+
+    "Relationships help reduce unnecessary duplication.",
+
+    "A one-to-one relationship connects one row with at most one row in another table.",
+
+    "A one-to-many relationship connects one parent row with several child rows.",
+
+    "A many-to-many relationship is commonly represented using an intermediate junction table.",
+
+    "Constraints help keep data valid.",
+
+    "Examples of constraints include PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL and CHECK.",
+
+    "A schema defines the structure of the database.",
+
+    "Transactions help keep related changes consistent.",
+
+    "Relational databases are useful when data is structured and relationships between entities are important.",
+
+    "In the Healthcare Vitals Tracker, one user can have many vital-reading records."
+  ],
+
+  technical: [
+    "A relation is represented as a table containing tuples or rows and attributes or columns.",
+
+    "A candidate key is a minimal set of columns capable of uniquely identifying a row.",
+
+    "One candidate key is selected as the primary key.",
+
+    "A composite key consists of more than one column.",
+
+    "A surrogate key is an artificial identifier such as an auto-incrementing number or UUID.",
+
+    "A natural key is based on meaningful business data such as a unique email address.",
+
+    "Referential integrity ensures that a foreign-key value refers to a valid parent row or is null when allowed.",
+
+    "ON DELETE CASCADE can automatically delete dependent child rows when the parent is deleted.",
+
+    "ON DELETE RESTRICT can prevent deletion when dependent rows still exist.",
+
+    "Normalization organises data to reduce duplication and modification anomalies.",
+
+    "First Normal Form requires atomic values and no repeating groups.",
+
+    "Second Normal Form removes partial dependency on part of a composite key.",
+
+    "Third Normal Form removes transitive dependency between non-key attributes.",
+
+    "Denormalization intentionally duplicates or combines data to improve particular read patterns.",
+
+    "Entity integrity requires primary-key values to be unique and non-null.",
+
+    "ACID stands for Atomicity, Consistency, Isolation and Durability.",
+
+    "Atomicity means a transaction is completed fully or not at all.",
+
+    "Consistency means transactions preserve defined rules and constraints.",
+
+    "Isolation controls how concurrent transactions interact.",
+
+    "Durability means committed changes survive failures.",
+
+    "Indexes improve selected query patterns but should be chosen according to actual access needs.",
+
+    "Views store a query definition and expose its result like a virtual table.",
+
+    "Database schemas should represent domain entities, relationships, constraints and expected query patterns.",
+
+    "Relational databases are strong when correctness, transactions and structured relationships matter."
+  ],
+
+  interview:
+    "A relational database organises structured data into tables. Primary keys uniquely identify records, while foreign keys connect related tables. In the Healthcare Vitals Tracker, a user can have many health readings, so the user-to-reading relationship is one-to-many. Relational constraints help maintain data consistency, while transactions ensure that related database operations are completed safely.",
+
+  keyPoints: [
+    "Tables",
+    "Rows and columns",
+    "Primary keys",
+    "Foreign keys",
+    "Relationships",
+    "Constraints",
+    "Normalization",
+    "Transactions",
+    "ACID",
+    "Referential integrity",
+    "Indexes",
+    "Views"
+  ],
+
+  code: `users
+-----------------------------
+id          PRIMARY KEY
+email       UNIQUE NOT NULL
+name        NOT NULL
+
+
+vital_readings
+-----------------------------
+id          PRIMARY KEY
+user_id     FOREIGN KEY
+systolic
+diastolic
+blood_sugar
+measured_at NOT NULL
+
+
+Relationship:
+
+One user
+   |
+   | has many
+   v
+Many vital_readings
+
+
+Possible junction-table example:
+
+students
+courses
+student_courses
+
+student_courses contains:
+- student_id
+- course_id
+
+This represents a many-to-many relationship.`,
+
+  followUps: [
+    "What is a relational database?",
+    "What is a table?",
+    "Primary key versus foreign key?",
+    "What is a one-to-many relationship?",
+    "What is a many-to-many relationship?",
+    "What is normalization?",
+    "What are ACID properties?",
+    "What is referential integrity?",
+    "What is a constraint?",
+    "When would you use a relational database?"
+  ],
+
+  cautions: [
+    "Do not say that a foreign key must always be unique.",
+
+    "Do not use an email address as the only identifier without considering whether it can change.",
+
+    "Normalization does not mean every table must be split as much as possible.",
+
+    "Cascading deletes should be configured carefully.",
+
+    "A relational database can also store JSON and less-structured data, depending on the database system."
+  ],
+
+  qa: [
+    {
+      question: "1. What is a relational database?",
+      answer:
+        "A relational database stores structured data in tables and connects those tables using defined relationships."
+    },
+
+    {
+      question: "2. What is a primary key?",
+      answer:
+        "A primary key is a column or set of columns that uniquely identifies each row in a table."
+    },
+
+    {
+      question: "3. What is a foreign key?",
+      answer:
+        "A foreign key is a column that references a key in another table and creates a relationship between the tables."
+    },
+
+    {
+      question: "4. Primary key versus unique key?",
+      answer:
+        "Both enforce uniqueness, but a table has one selected primary key. A database may allow multiple unique constraints."
+    },
+
+    {
+      question: "5. What is a one-to-many relationship?",
+      answer:
+        "One parent row can be connected to several child rows. For example, one user can have many health readings."
+    },
+
+    {
+      question: "6. What is a many-to-many relationship?",
+      answer:
+        "Rows from each table can relate to several rows in the other table. A junction table is commonly used to represent this."
+    },
+
+    {
+      question: "7. What is normalization?",
+      answer:
+        "Normalization organises tables to reduce duplicate data and avoid insertion, update and deletion anomalies."
+    },
+
+    {
+      question: "8. What is referential integrity?",
+      answer:
+        "Referential integrity ensures that relationships remain valid, such as preventing a reading from referencing a user who does not exist."
+    },
+
+    {
+      question: "9. What are ACID properties?",
+      answer:
+        "Atomicity, Consistency, Isolation and Durability describe reliable transaction behaviour."
+    },
+
+    {
+      question: "10. What is a transaction?",
+      answer:
+        "A transaction is a set of database operations treated as one unit of work."
+    },
+
+    {
+      question: "11. What is a schema?",
+      answer:
+        "A schema defines database objects such as tables, columns, relationships, constraints and indexes."
+    },
+
+    {
+      question: "12. Why did your project use a relational database?",
+      answer:
+        "The data was structured, and every health reading belonged to a particular user. A relational database clearly represented that relationship and supported consistent querying."
+    }
+  ]
+},
   {
-    id: 'mysql', title: 'MySQL', category: 'databases', short: 'Popular open-source relational database system.',
-    simple: [
-      'MySQL stores structured information and supports SQL queries.',
-      'It is widely used in traditional web applications.',
-      'It supports indexes, constraints, joins and transactions.'
-    ],
-    technical: [
-      'Schema design determines tables, column types, keys and relationships.',
-      'Indexes speed up reads but consume storage and can add write overhead.',
-      'Transactions provide reliable multi-step operations when used with a transactional storage engine.'
-    ],
-    interview: 'MySQL is a relational database-management system that uses SQL. I have used it to learn schema design, CRUD operations, joins and relationships between tables.',
-    cautions: ['MySQL is listed as a skill but not connected to a listed project. Prepare one concrete schema or exercise you implemented.'],
-    followUps: ['SQL versus MySQL?', 'What is an index?', 'Explain a join you have written.']
-  },
+  id: "mysql",
+  title: "MySQL",
+  category: "databases",
+
+  short:
+    "A widely used open-source relational database-management system that supports SQL and transactional data.",
+
+  simple: [
+    "MySQL is a relational database-management system.",
+
+    "It uses SQL to create, retrieve and modify data.",
+
+    "MySQL is widely used in web applications and business systems.",
+
+    "It stores data in tables connected through keys and relationships.",
+
+    "MySQL supports joins, indexes, constraints, transactions, views and stored procedures.",
+
+    "MySQL is different from SQL. SQL is the language, while MySQL is a database system.",
+
+    "MySQL commonly uses the InnoDB storage engine for transactions and foreign-key support.",
+
+    "A MySQL server can contain several databases.",
+
+    "Applications connect to MySQL using credentials and a database driver.",
+
+    "Indexes can improve query performance.",
+
+    "Transactions can group several changes into one reliable operation.",
+
+    "MySQL is a suitable choice for many structured web-application workloads.",
+
+    "My resume lists MySQL as a skill mainly for schema design, SQL queries, joins and relational database concepts."
+  ],
+
+  technical: [
+    "MySQL follows a client-server architecture.",
+
+    "The MySQL server manages data, permissions, queries, transactions and connections.",
+
+    "InnoDB is the default storage engine in modern MySQL installations and supports transactions, row-level locking and foreign keys.",
+
+    "MySQL supports common SQL data types such as INT, BIGINT, DECIMAL, VARCHAR, TEXT, DATE, DATETIME and TIMESTAMP.",
+
+    "VARCHAR stores variable-length text up to a declared limit.",
+
+    "DECIMAL is suitable for values that require exact decimal precision, such as financial data.",
+
+    "AUTO_INCREMENT can generate numeric identifier values automatically.",
+
+    "Indexes can be created on one column or several columns.",
+
+    "The order of columns matters in a composite index.",
+
+    "A covering index contains enough selected information for some queries to be answered directly from the index.",
+
+    "EXPLAIN displays information about how MySQL plans to execute a query.",
+
+    "Transactions use commands such as START TRANSACTION, COMMIT and ROLLBACK.",
+
+    "MySQL supports isolation levels including Read Uncommitted, Read Committed, Repeatable Read and Serializable.",
+
+    "Repeatable Read is commonly the default isolation level in MySQL InnoDB.",
+
+    "Views expose stored query definitions.",
+
+    "Stored procedures contain SQL logic executed inside the database server.",
+
+    "Triggers execute automatically in response to certain table events.",
+
+    "Users and privileges should be configured according to least privilege.",
+
+    "Database backups and migrations are important for production maintenance.",
+
+    "Character sets and collations control text storage and comparison behaviour.",
+
+    "utf8mb4 is commonly used for full Unicode support."
+  ],
+
+  interview:
+    "MySQL is an open-source relational database-management system that uses SQL. I have used MySQL concepts for creating schemas, writing CRUD queries, applying joins and defining primary and foreign keys. I understand that MySQL is the database software, while SQL is the query language. For transactional applications, MySQL commonly uses the InnoDB storage engine.",
+
+  keyPoints: [
+    "RDBMS",
+    "InnoDB",
+    "SQL",
+    "Indexes",
+    "Transactions",
+    "Foreign keys",
+    "EXPLAIN",
+    "Views",
+    "Stored procedures",
+    "Permissions",
+    "Character sets"
+  ],
+
+  code: `CREATE DATABASE interview_demo;
+
+USE interview_demo;
+
+CREATE TABLE users (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  created_at TIMESTAMP
+    DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE readings (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  systolic INT NOT NULL,
+  diastolic INT NOT NULL,
+  measured_at DATETIME NOT NULL,
+
+  CONSTRAINT fk_user_reading
+    FOREIGN KEY (user_id)
+    REFERENCES users(id)
+    ON DELETE CASCADE
+);
+
+CREATE INDEX idx_readings_user_date
+  ON readings(user_id, measured_at);
+
+EXPLAIN
+SELECT *
+FROM readings
+WHERE user_id = 10
+ORDER BY measured_at DESC;`,
+
+  followUps: [
+    "What is MySQL?",
+    "SQL versus MySQL?",
+    "What is InnoDB?",
+    "What is AUTO_INCREMENT?",
+    "What is a composite index?",
+    "What does EXPLAIN do?",
+    "What is an isolation level?",
+    "What is a stored procedure?",
+    "What is a trigger?",
+    "Where have you used MySQL?"
+  ],
+
+  cautions: [
+    "Do not claim that the Healthcare Vitals Tracker uses MySQL; it uses PostgreSQL through Supabase.",
+
+    "Do not describe MySQL and SQL as the same thing.",
+
+    "Do not create indexes on every column without considering query patterns.",
+
+    "Use DECIMAL rather than FLOAT when exact decimal precision is required.",
+
+    "Only claim stored-procedure or trigger experience when you have actually implemented them."
+  ],
+
+  qa: [
+    {
+      question: "1. What is MySQL?",
+      answer:
+        "MySQL is an open-source relational database-management system that stores structured data and accepts SQL queries."
+    },
+
+    {
+      question: "2. SQL versus MySQL?",
+      answer:
+        "SQL is the query language. MySQL is a database-management system that implements SQL."
+    },
+
+    {
+      question: "3. What is InnoDB?",
+      answer:
+        "InnoDB is MySQL’s commonly used storage engine. It supports transactions, foreign keys and row-level locking."
+    },
+
+    {
+      question: "4. What is AUTO_INCREMENT?",
+      answer:
+        "AUTO_INCREMENT allows MySQL to generate the next numeric identifier automatically when a row is inserted."
+    },
+
+    {
+      question: "5. What is a composite index?",
+      answer:
+        "A composite index contains multiple columns. The column order affects which queries can use it efficiently."
+    },
+
+    {
+      question: "6. What does EXPLAIN do?",
+      answer:
+        "EXPLAIN shows the query execution plan, including table access, possible indexes and estimated row processing."
+    },
+
+    {
+      question: "7. What are storage engines?",
+      answer:
+        "Storage engines define how MySQL stores and manages table data. InnoDB is the normal choice for transactional applications."
+    },
+
+    {
+      question: "8. What is a stored procedure?",
+      answer:
+        "A stored procedure is named SQL logic stored and executed inside the database server."
+    },
+
+    {
+      question: "9. What is a trigger?",
+      answer:
+        "A trigger runs automatically before or after a specified database event such as INSERT, UPDATE or DELETE."
+    },
+
+    {
+      question: "10. Where did you use MySQL?",
+      answer:
+        "I used MySQL while learning relational schema design, CRUD operations, joins, keys and query writing. My current Healthcare Vitals Tracker uses PostgreSQL rather than MySQL."
+    }
+  ]
+},
   {
-    id: 'postgresql', title: 'PostgreSQL', category: 'databases', short: 'Feature-rich open-source relational database.',
-    simple: [
-      'PostgreSQL is the database used underneath Supabase.',
-      'It stores structured health records and relationships.',
-      'It is known for data integrity, standards support and advanced features.'
-    ],
-    technical: [
-      'PostgreSQL supports transactions, constraints, JSON data, views, indexes and functions.',
-      'In Supabase, Row Level Security can restrict which rows a user may access.',
-      'Relational constraints can ensure that records remain connected to valid users.'
-    ],
-    interview: 'PostgreSQL is the relational database underlying my Healthcare Vitals Tracker through Supabase. It stores structured user-specific health readings and supports relational constraints and secure data-access rules.',
-    followUps: ['PostgreSQL versus MySQL?', 'What is Row Level Security?', 'Why use a relational database here?']
-  },
+  id: "postgresql",
+  title: "PostgreSQL",
+  category: "databases",
+
+  short:
+    "A powerful open-source relational database known for standards compliance, data integrity and advanced features.",
+
+  simple: [
+    "PostgreSQL is an open-source relational database-management system.",
+
+    "It uses SQL and supports tables, relationships, constraints and transactions.",
+
+    "PostgreSQL is known for strong data integrity and advanced query capabilities.",
+
+    "It supports common relational features such as joins, indexes, views and foreign keys.",
+
+    "It also supports JSON data alongside relational data.",
+
+    "PostgreSQL provides many data types, functions and extension capabilities.",
+
+    "Supabase uses PostgreSQL as its underlying database.",
+
+    "The Healthcare Vitals Tracker stores health records in PostgreSQL through Supabase.",
+
+    "Each reading can be linked to an authenticated user.",
+
+    "PostgreSQL supports Row Level Security.",
+
+    "Row Level Security can restrict which rows a user may access.",
+
+    "Transactions help preserve consistency across related operations.",
+
+    "PostgreSQL is useful for applications where structured data, relationships and correctness are important."
+  ],
+
+  technical: [
+    "PostgreSQL supports standard SQL along with database-specific extensions.",
+
+    "It supports transactional DDL for many schema operations.",
+
+    "PostgreSQL uses Multi-Version Concurrency Control to allow concurrent access while reducing unnecessary blocking.",
+
+    "MVCC allows transactions to work with consistent row versions.",
+
+    "Common PostgreSQL data types include integer, bigint, numeric, text, varchar, boolean, date, timestamp, uuid, json and jsonb.",
+
+    "json stores JSON text, while jsonb stores a processed binary representation that supports efficient indexing and operations.",
+
+    "UUID is commonly used for globally unique identifiers.",
+
+    "The RETURNING clause can return inserted, updated or deleted rows without requiring a separate query.",
+
+    "PostgreSQL supports partial indexes that include only rows matching a condition.",
+
+    "Expression indexes index the result of an expression rather than only a raw column.",
+
+    "EXPLAIN and EXPLAIN ANALYZE help inspect query plans and actual execution behaviour.",
+
+    "PostgreSQL supports window functions for calculations across related rows without collapsing them into one grouped result.",
+
+    "Common Table Expressions use WITH and can improve readability for complex queries.",
+
+    "PostgreSQL supports functions, triggers, views and materialized views.",
+
+    "A materialized view stores the result of a query and must be refreshed when updated results are required.",
+
+    "Row Level Security applies policies at the row level for SELECT, INSERT, UPDATE and DELETE.",
+
+    "PostgreSQL schemas can organise database objects into logical namespaces.",
+
+    "Extensions can add capabilities to PostgreSQL.",
+
+    "Constraints and explicit data types help enforce correctness close to the data."
+  ],
+
+  interview:
+    "PostgreSQL is the relational database used by Supabase in my Healthcare Vitals Tracker. It stores structured user-specific health readings and supports strong constraints, transactions and access policies. Each reading can be associated with the authenticated user’s ID. PostgreSQL Row Level Security can then ensure that users access only rows they own. I chose a relational database because the data has a clear structure and relationship between users and readings.",
+
+  keyPoints: [
+    "PostgreSQL",
+    "Transactions",
+    "MVCC",
+    "JSONB",
+    "UUID",
+    "RETURNING",
+    "Indexes",
+    "Window functions",
+    "Row Level Security",
+    "Views",
+    "Extensions",
+    "Data integrity"
+  ],
+
+  code: `CREATE TABLE vital_readings (
+  id UUID PRIMARY KEY
+    DEFAULT gen_random_uuid(),
+
+  user_id UUID NOT NULL,
+
+  systolic INTEGER,
+  diastolic INTEGER,
+  blood_sugar NUMERIC(6, 2),
+
+  measured_at TIMESTAMPTZ
+    NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX
+  idx_readings_user_measured
+ON vital_readings (
+  user_id,
+  measured_at DESC
+);
+
+INSERT INTO vital_readings (
+  user_id,
+  systolic,
+  diastolic
+)
+VALUES (
+  '00000000-0000-0000-0000-000000000001',
+  120,
+  80
+)
+RETURNING *;
+
+SELECT
+  user_id,
+  measured_at,
+  systolic,
+  AVG(systolic) OVER (
+    PARTITION BY user_id
+    ORDER BY measured_at
+    ROWS BETWEEN 2 PRECEDING
+      AND CURRENT ROW
+  ) AS moving_average
+FROM vital_readings;`,
+
+  followUps: [
+    "What is PostgreSQL?",
+    "Why did you use PostgreSQL?",
+    "PostgreSQL versus MySQL?",
+    "What is MVCC?",
+    "What is JSONB?",
+    "What does RETURNING do?",
+    "What is Row Level Security?",
+    "What is a window function?",
+    "What is a materialized view?",
+    "How is PostgreSQL used in Supabase?"
+  ],
+
+  cautions: [
+    "Only claim Row Level Security when you have actually enabled and configured policies.",
+
+    "Do not say PostgreSQL is automatically more suitable than MySQL for every application.",
+
+    "Do not store timestamps as unclear local-time strings when timezone-aware timestamps are required.",
+
+    "Do not treat JSONB as a replacement for correct relational modelling in every situation.",
+
+    "Do not say Supabase and PostgreSQL are separate unrelated databases; Supabase is built around PostgreSQL."
+  ],
+
+  qa: [
+    {
+      question: "1. What is PostgreSQL?",
+      answer:
+        "PostgreSQL is an open-source relational database-management system known for data integrity, advanced SQL features and extensibility."
+    },
+
+    {
+      question: "2. Why did your project use PostgreSQL?",
+      answer:
+        "The application data was structured, and every health reading belonged to a user. PostgreSQL represented that relationship clearly and supported secure access policies."
+    },
+
+    {
+      question: "3. PostgreSQL versus MySQL?",
+      answer:
+        "Both are relational databases. PostgreSQL is often selected for advanced querying, extensibility and strict data features, while MySQL is widely used for conventional web workloads. The best choice depends on the project."
+    },
+
+    {
+      question: "4. What is MVCC?",
+      answer:
+        "Multi-Version Concurrency Control allows concurrent transactions to work with different consistent row versions, reducing unnecessary read-write blocking."
+    },
+
+    {
+      question: "5. What is JSONB?",
+      answer:
+        "JSONB stores JSON in a processed binary representation and supports indexing and efficient JSON operations."
+    },
+
+    {
+      question: "6. What does RETURNING do?",
+      answer:
+        "RETURNING allows INSERT, UPDATE or DELETE statements to return affected row values immediately."
+    },
+
+    {
+      question: "7. What is Row Level Security?",
+      answer:
+        "Row Level Security allows policies to control which individual rows a user may select, insert, update or delete."
+    },
+
+    {
+      question: "8. What is a window function?",
+      answer:
+        "A window function calculates values across related rows while keeping each original row in the result."
+    },
+
+    {
+      question: "9. View versus materialized view?",
+      answer:
+        "A normal view runs its underlying query when accessed. A materialized view stores the query result and must be refreshed."
+    },
+
+    {
+      question: "10. How is PostgreSQL connected to Supabase?",
+      answer:
+        "Supabase provides a managed PostgreSQL database and adds services such as authentication, generated APIs, storage and access-policy integration."
+    }
+  ]
+},
   {
-    id: 'supabase', title: 'Supabase', category: 'databases', short: 'Backend-as-a-Service built around PostgreSQL.',
-    simple: [
-      'Supabase combines a hosted PostgreSQL database with authentication, APIs and other backend services.',
-      'It allowed the Healthcare Vitals Tracker to store data without building a complete custom server.',
-      'Supabase is more than a database; it is a managed backend platform.'
-    ],
-    technical: [
-      'Supabase generates data APIs around PostgreSQL and provides client libraries for applications.',
-      'Authentication identity can be combined with Row Level Security policies.',
-      'Storage, realtime capabilities and serverless functions can be added when required.'
-    ],
-    interview: 'Supabase is a Backend-as-a-Service platform built on PostgreSQL. In my project, I used it for email authentication, storing health readings and connecting the React application to backend data without building a complete custom server.',
-    cautions: ['Confirm whether Row Level Security was actually enabled before claiming it.', 'Frontend filtering alone is not sufficient protection for user-specific records.'],
-    followUps: ['Why Supabase instead of a custom backend?', 'How did you secure records?', 'Supabase versus Firebase?']
-  },
+  id: "supabase",
+  title: "Supabase",
+  category: "databases",
+
+  short:
+    "A Backend-as-a-Service platform built around PostgreSQL, providing authentication, APIs, storage and database access.",
+
+  simple: [
+    "Supabase is a Backend-as-a-Service platform.",
+
+    "It is built around a hosted PostgreSQL database.",
+
+    "Supabase provides authentication, generated APIs, storage and real-time features.",
+
+    "It reduces the need to build every backend feature from scratch.",
+
+    "The frontend can communicate with Supabase using its client library.",
+
+    "Supabase Authentication can handle registration, login, logout and sessions.",
+
+    "The database stores structured application data.",
+
+    "The authenticated user has a unique user ID.",
+
+    "Application records can store that user ID as an ownership field.",
+
+    "Row Level Security policies can restrict users to their own data.",
+
+    "Supabase generates database APIs based on PostgreSQL tables.",
+
+    "The anon key is intended for client applications when access policies are correctly configured.",
+
+    "The service-role key is highly privileged and must remain on a trusted server.",
+
+    "In the Healthcare Vitals Tracker, Supabase handles authentication and PostgreSQL storage for health readings."
+  ],
+
+  technical: [
+    "Supabase is built on open-source components and uses PostgreSQL as its database.",
+
+    "The Supabase JavaScript client provides methods for authentication and database operations.",
+
+    "A query such as supabase.from('vital_readings').select('*') requests records from a table.",
+
+    "insert creates records, update modifies records and delete removes records.",
+
+    "select can be combined with filters, ordering, limits and relationship queries.",
+
+    "Supabase Authentication manages users and sessions.",
+
+    "The authentication user ID is available to PostgreSQL policies through auth.uid().",
+
+    "Row Level Security must be enabled on user-specific tables to enforce secure row access.",
+
+    "SELECT policies control which rows can be read.",
+
+    "INSERT policies use WITH CHECK to control which new rows may be created.",
+
+    "UPDATE policies can use USING and WITH CHECK to control existing and updated row values.",
+
+    "The anon key does not replace database security policies.",
+
+    "The service-role key bypasses normal Row Level Security and must never be shipped to browser code.",
+
+    "Supabase Storage can manage files in buckets with access policies.",
+
+    "Real-time subscriptions can report selected database changes to connected clients.",
+
+    "Edge Functions can run trusted server-side logic when application requirements exceed direct client-to-database operations.",
+
+    "Environment variables commonly store the project URL and public anon key.",
+
+    "Frontend environment variables are still visible in the delivered browser application.",
+
+    "Errors returned by Supabase queries should be handled explicitly.",
+
+    "Database migrations should be used to manage schema and policy changes consistently.",
+
+    "Supabase simplifies backend development, but schema design, validation and access control remain developer responsibilities."
+  ],
+
+  interview:
+    "Supabase is the Backend-as-a-Service platform I used for the Healthcare Vitals Tracker. It provided a hosted PostgreSQL database, email authentication and a client library for reading and writing health records. After a user logged in, each reading could be associated with that user’s ID. Row Level Security policies should then verify that auth.uid() matches the row’s user_id, so users can access only their own health data.",
+
+  keyPoints: [
+    "Backend-as-a-Service",
+    "PostgreSQL",
+    "Authentication",
+    "Generated APIs",
+    "Supabase client",
+    "Row Level Security",
+    "auth.uid()",
+    "Storage",
+    "Real-time",
+    "Edge Functions",
+    "Anon key",
+    "Service-role key"
+  ],
+
+  code: `import {
+  createClient
+} from "@supabase/supabase-js";
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
+
+type NewReading = {
+  user_id: string;
+  systolic: number;
+  diastolic: number;
+  measured_at: string;
+};
+
+export async function addReading(
+  reading: NewReading
+) {
+  const {
+    data,
+    error
+  } = await supabase
+    .from("vital_readings")
+    .insert(reading)
+    .select()
+    .single();
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function getReadings() {
+  const {
+    data,
+    error
+  } = await supabase
+    .from("vital_readings")
+    .select("*")
+    .order("measured_at", {
+      ascending: false
+    });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+/*
+Example PostgreSQL RLS policy:
+
+CREATE POLICY
+  "Users read their own readings"
+ON vital_readings
+FOR SELECT
+USING (
+  auth.uid() = user_id
+);
+*/`,
+
+  followUps: [
+    "What is Supabase?",
+    "Why did you use Supabase?",
+    "Is Supabase a database?",
+    "How does the frontend communicate with Supabase?",
+    "What is Row Level Security?",
+    "What does auth.uid() return?",
+    "Is the anon key safe in the frontend?",
+    "What is the service-role key?",
+    "What are Edge Functions?",
+    "What are Supabase limitations?"
+  ],
+
+  cautions: [
+    "Supabase is not only a database; it is a backend platform built around PostgreSQL.",
+
+    "Do not expose the service-role key in frontend code.",
+
+    "Do not claim user data is secure merely because the frontend filters by user ID.",
+
+    "Only claim Row Level Security if the policies are actually configured.",
+
+    "The public anon key is not a secret, but it must be combined with correct database policies.",
+
+    "Do not claim you built a complete custom backend when you used managed Supabase services."
+  ],
+
+  qa: [
+    {
+      question: "1. What is Supabase?",
+      answer:
+        "Supabase is a Backend-as-a-Service platform built around PostgreSQL. It provides database hosting, authentication, generated APIs, storage and other backend features."
+    },
+
+    {
+      question: "2. Why did you use Supabase?",
+      answer:
+        "The project required a relational database, email authentication and user-specific data access. Supabase provided these capabilities in one platform."
+    },
+
+    {
+      question: "3. Is Supabase a database?",
+      answer:
+        "Supabase includes a hosted PostgreSQL database, but the platform also provides authentication, APIs, storage, real-time features and server-side functions."
+    },
+
+    {
+      question: "4. How does React communicate with Supabase?",
+      answer:
+        "The React application uses the Supabase JavaScript client to perform authentication and database operations."
+    },
+
+    {
+      question: "5. How are health readings linked to users?",
+      answer:
+        "Each reading stores the authenticated user’s ID in a user_id column."
+    },
+
+    {
+      question: "6. What is Row Level Security?",
+      answer:
+        "Row Level Security uses PostgreSQL policies to control which individual rows a user can read or modify."
+    },
+
+    {
+      question: "7. What does auth.uid() do?",
+      answer:
+        "Inside a Supabase PostgreSQL policy, auth.uid() returns the ID of the currently authenticated user."
+    },
+
+    {
+      question: "8. Is the anon key safe in frontend code?",
+      answer:
+        "It is designed for client use, but it is safe only when Row Level Security and other access policies are correctly configured."
+    },
+
+    {
+      question: "9. What is the service-role key?",
+      answer:
+        "It is a privileged server-side key that can bypass Row Level Security. It must never be included in browser code or public repositories."
+    },
+
+    {
+      question: "10. What is one advantage of Supabase?",
+      answer:
+        "It speeds up development by providing a managed relational database, authentication and API access without requiring a complete custom backend."
+    },
+
+    {
+      question: "11. What is one limitation of Supabase?",
+      answer:
+        "The application depends on a managed platform, and the developer still needs to understand database design, policies, performance and secure backend architecture."
+    },
+
+    {
+      question: "12. How did you use Supabase in your project?",
+      answer:
+        "I used Supabase Authentication for email login and sessions and used its PostgreSQL database to store timestamped blood-pressure and blood-sugar readings."
+    }
+  ]
+},
   {
     id: 'android-studio', title: 'Android Studio', category: 'android', short: 'Official IDE for Android development.',
     simple: [
