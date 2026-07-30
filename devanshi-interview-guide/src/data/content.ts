@@ -5608,67 +5608,1124 @@ package.json scripts:
   ]
 },
   {
-    id: 'node', title: 'Node.js', category: 'backend', short: 'JavaScript runtime for server-side development.',
-    simple: [
-      'Node.js allows JavaScript to run outside the browser.',
-      'It is commonly used for web servers, APIs, command-line tools and scripts.',
-      'Node.js is a runtime, not a programming language or database.'
-    ],
-    technical: [
-      'Node.js uses the V8 JavaScript engine and an event-driven, non-blocking I/O model.',
-      'It is well suited to I/O-heavy workloads such as API requests and database operations.',
-      'The package ecosystem is commonly managed through npm.'
-    ],
-    interview: 'Node.js is a JavaScript runtime used for server-side development. It allows the same language to be used across the frontend and backend. Its event-driven model is useful for handling API requests and other I/O-heavy operations.',
-    cautions: ['Node.js is listed on the resume but is not explicitly shown in the three project stacks. Prepare a truthful example of where you used it.', 'Do not claim that Supabase is a Node.js backend you personally built.'],
-    followUps: ['What is the event loop?', 'Why is Node.js good for I/O?', 'Is Node.js single-threaded?']
-  },
+  id: 'nodejs',
+  title: 'Node.js',
+  category: 'backend',
+
+  short:
+    'A JavaScript runtime used to execute JavaScript outside the browser, commonly for servers, APIs and development tools.',
+
+  simple: [
+    'Node.js is a JavaScript runtime environment.',
+
+    'It allows JavaScript to run outside a web browser.',
+
+    'Node.js is commonly used to create backend servers, REST APIs, command-line tools and automation scripts.',
+
+    'Node.js uses the V8 JavaScript engine, which is also used by Chromium-based browsers.',
+
+    'Node.js is not a programming language. JavaScript is the language, while Node.js is the runtime that executes it.',
+
+    'Node.js follows an event-driven and non-blocking approach for many input and output operations.',
+
+    'This makes Node.js suitable for applications that handle many API requests, database operations or network connections.',
+
+    'The npm package manager is commonly used with Node.js to install third-party libraries.',
+
+    'The package.json file stores project metadata, dependencies and scripts.',
+
+    'Node.js provides built-in modules for tasks such as file handling, HTTP servers, paths and operating-system information.',
+
+    'Node.js is useful when developers want to use JavaScript for both frontend and backend development.',
+
+    'In my resume, Node.js is listed as a backend skill, but the Healthcare Vitals Tracker primarily uses Supabase as its backend service.'
+  ],
+
+  technical: [
+    'Node.js executes JavaScript using the V8 engine.',
+
+    'Node.js uses an event loop to coordinate asynchronous tasks.',
+
+    'Many input and output operations are non-blocking, meaning the application does not need to wait idly for one operation to finish before accepting other work.',
+
+    'Examples of input and output operations include reading files, making network requests and querying databases.',
+
+    'JavaScript code itself normally runs on one main event-loop thread, while Node.js can use operating-system facilities and a worker pool for some background operations.',
+
+    'A callback is a function that runs after an asynchronous operation completes.',
+
+    'Promises provide a structured way to represent asynchronous success or failure.',
+
+    'async and await provide more readable syntax for working with promises.',
+
+    'Node.js supports CommonJS modules using require and module.exports.',
+
+    'Modern Node.js also supports ES modules using import and export.',
+
+    'The package.json file can define whether the project uses CommonJS or ES modules.',
+
+    'npm stands for Node Package Manager and is used to install packages and run scripts.',
+
+    'The node_modules folder contains installed project dependencies.',
+
+    'The package-lock.json file records resolved dependency versions to improve repeatable installations.',
+
+    'Environment variables are commonly used to store configuration such as database URLs and API keys.',
+
+    'Private secrets should not be committed to GitHub.',
+
+    'The built-in http module can create a web server without an external framework.',
+
+    'Frameworks such as Express can simplify routing and middleware, but Express is separate from Node.js.',
+
+    'Middleware is code that runs during request processing before the final route handler returns a response.',
+
+    'Node.js is well suited for I/O-heavy applications, but CPU-intensive work can block the event loop if it is performed directly on the main thread.',
+
+    'Worker threads or separate processes can be used for CPU-heavy operations.',
+
+    'Errors in asynchronous code should be caught and handled so the server does not return unclear failures or terminate unexpectedly.'
+  ],
+
+  interview:
+    'Node.js is a JavaScript runtime that allows JavaScript to run outside the browser. It is commonly used for backend servers and REST APIs. Its event-driven and non-blocking input-output model makes it suitable for handling multiple network or database operations efficiently. I have studied Node.js for backend and API development, although my Healthcare Vitals Tracker currently uses Supabase as its main backend service.',
+
+  keyPoints: [
+    'JavaScript runtime',
+    'V8 engine',
+    'Event loop',
+    'Non-blocking I/O',
+    'Promises',
+    'async and await',
+    'npm',
+    'package.json',
+    'Modules',
+    'HTTP server',
+    'Environment variables'
+  ],
+
+  code: `import http from 'node:http';
+
+const server = http.createServer(
+  (request, response) => {
+    if (
+      request.method === 'GET' &&
+      request.url === '/api/health'
+    ) {
+      response.writeHead(200, {
+        'Content-Type': 'application/json'
+      });
+
+      response.end(
+        JSON.stringify({
+          status: 'ok',
+          message: 'Server is running'
+        })
+      );
+
+      return;
+    }
+
+    response.writeHead(404, {
+      'Content-Type': 'application/json'
+    });
+
+    response.end(
+      JSON.stringify({
+        error: 'Route not found'
+      })
+    );
+  }
+);
+
+server.listen(3000, () => {
+  console.log(
+    'Server running on http://localhost:3000'
+  );
+});`,
+
+  followUps: [
+    'What is Node.js?',
+    'Is Node.js a programming language?',
+    'What is the event loop?',
+    'What does non-blocking I/O mean?',
+    'What is npm?',
+    'What is package.json?',
+    'What is the difference between CommonJS and ES modules?',
+    'Why is Node.js good for APIs?',
+    'When may Node.js be a poor choice?',
+    'Where did you use Node.js?'
+  ],
+
+  cautions: [
+    'Do not describe Node.js as a programming language.',
+
+    'Do not say Node.js is automatically multithreaded for all JavaScript execution.',
+
+    'Do not claim that Supabase is a Node.js backend you personally built.',
+
+    'Do not expose private API keys or database passwords in frontend code.',
+
+    'Do not claim production Node.js experience if your use was limited to learning or small backend exercises.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Node.js?',
+      answer:
+        'Node.js is a runtime environment that allows JavaScript to execute outside the browser. It is commonly used for servers, APIs, scripts and development tools.'
+    },
+
+    {
+      question: '2. Is Node.js a programming language?',
+      answer:
+        'No. JavaScript is the programming language. Node.js is a runtime environment used to execute JavaScript.'
+    },
+
+    {
+      question: '3. What is the V8 engine?',
+      answer:
+        'V8 is the JavaScript engine that compiles and executes JavaScript. Node.js uses V8 to run JavaScript outside the browser.'
+    },
+
+    {
+      question: '4. What is the event loop?',
+      answer:
+        'The event loop coordinates asynchronous tasks and schedules callbacks when the main JavaScript call stack is available.'
+    },
+
+    {
+      question: '5. What does non-blocking I/O mean?',
+      answer:
+        'It means Node.js can start an input-output operation and continue handling other work instead of waiting for that operation to complete.'
+    },
+
+    {
+      question: '6. Why is Node.js suitable for APIs?',
+      answer:
+        'APIs often spend time waiting for database or network operations. Node.js can handle these I/O operations efficiently without blocking the server during each wait.'
+    },
+
+    {
+      question: '7. What is npm?',
+      answer:
+        'npm is the package manager commonly used with Node.js. It installs dependencies and runs scripts defined in package.json.'
+    },
+
+    {
+      question: '8. What is package.json?',
+      answer:
+        'package.json stores project information, scripts, dependencies, version details and configuration such as module type.'
+    },
+
+    {
+      question: '9. What is package-lock.json?',
+      answer:
+        'It records the exact dependency versions installed so other developers and deployment systems can reproduce the same dependency tree.'
+    },
+
+    {
+      question: '10. What is the difference between CommonJS and ES modules?',
+      answer:
+        'CommonJS commonly uses require and module.exports. ES modules use import and export and are the modern JavaScript module standard.'
+    },
+
+    {
+      question: '11. What are environment variables?',
+      answer:
+        'Environment variables provide configuration values outside the source code, such as ports, database URLs and private credentials.'
+    },
+
+    {
+      question: '12. When may Node.js be less suitable?',
+      answer:
+        'CPU-heavy calculations can block the event loop if they run on the main thread. Such work may require worker threads, separate services or another architecture.'
+    },
+
+    {
+      question: '13. Where did you use Node.js?',
+      answer:
+        'I have used Node.js while learning backend and REST API concepts. My Healthcare Vitals Tracker uses Supabase as its primary backend, so I would not describe that project as a custom Node.js backend.'
+    }
+  ]
+},
   {
-    id: 'rest', title: 'REST APIs', category: 'backend', short: 'Resource-oriented communication over HTTP.',
-    simple: [
-      'An API allows software systems to communicate.',
-      'REST APIs organise operations around resources and HTTP methods.',
-      'A frontend can request, create, update or delete backend data through endpoints.'
-    ],
-    technical: [
-      'GET retrieves, POST creates, PUT replaces, PATCH partially updates and DELETE removes resources.',
-      'HTTP status codes communicate outcomes such as 200 success, 201 created, 400 invalid request, 401 unauthenticated, 403 forbidden and 500 server error.',
-      'RESTful APIs are normally stateless: each request contains the context required to process it.'
-    ],
-    interview: 'A REST API allows the frontend and backend to communicate through HTTP requests. Resources are identified through endpoints, and operations are performed using methods such as GET, POST, PUT and DELETE.',
-    code: `GET /readings\nPOST /readings\nPATCH /readings/123\nDELETE /readings/123`,
-    followUps: ['PUT versus PATCH?', '401 versus 403?', 'What does stateless mean?']
-  },
+  id: 'rest-apis',
+  title: 'REST APIs',
+  category: 'backend',
+
+  short:
+    'A resource-oriented approach for communication between clients and servers using HTTP.',
+
+  simple: [
+    'API stands for Application Programming Interface.',
+
+    'An API allows two software systems to communicate with each other.',
+
+    'In a web application, the frontend can send a request to the backend through an API.',
+
+    'The backend processes the request, accesses required data and returns a response.',
+
+    'REST stands for Representational State Transfer.',
+
+    'REST is an architectural style commonly used to design web APIs.',
+
+    'REST APIs organise functionality around resources such as users, readings, products or appointments.',
+
+    'A resource is identified using a URL or endpoint.',
+
+    'HTTP methods describe the operation being performed.',
+
+    'GET retrieves data.',
+
+    'POST creates new data.',
+
+    'PUT generally replaces or fully updates a resource.',
+
+    'PATCH partially updates a resource.',
+
+    'DELETE removes a resource.',
+
+    'REST API responses commonly use JSON.',
+
+    'HTTP status codes communicate whether a request succeeded or failed.',
+
+    'The Healthcare Vitals Tracker frontend communicates with Supabase through its client and generated API layer.'
+  ],
+
+  technical: [
+    'REST treats application data as resources identified through URLs.',
+
+    'An endpoint combines a server address with a path representing a resource or operation.',
+
+    'A URL such as /api/readings can represent a collection of health readings.',
+
+    'A URL such as /api/readings/123 can represent one specific reading.',
+
+    'GET requests should retrieve data and should not normally modify server state.',
+
+    'POST requests commonly create resources or trigger operations.',
+
+    'PUT commonly replaces a complete resource representation.',
+
+    'PATCH commonly updates selected fields of a resource.',
+
+    'DELETE removes a resource.',
+
+    'Request data can be sent through path parameters, query parameters, headers or a request body.',
+
+    'Path parameters identify a particular resource, such as /readings/123.',
+
+    'Query parameters filter, sort or paginate data, such as /readings?limit=10.',
+
+    'Headers provide metadata such as content type, authorisation and accepted response formats.',
+
+    'The request body commonly contains JSON when creating or updating data.',
+
+    'The Content-Type header tells the server how the request body is formatted.',
+
+    'The Authorization header commonly carries authentication credentials or tokens.',
+
+    'A RESTful API should use meaningful resource names rather than unclear action-based paths.',
+
+    'REST APIs are stateless, meaning each request should contain the information required to process it.',
+
+    'Stateless does not mean the application cannot store data. It means the server should not depend on hidden conversational state between requests.',
+
+    'Status code 200 normally indicates success.',
+
+    'Status code 201 indicates that a resource was successfully created.',
+
+    'Status code 204 indicates success without a response body.',
+
+    'Status code 400 represents an invalid request.',
+
+    'Status code 401 means authentication is required or invalid.',
+
+    'Status code 403 means the user is authenticated but does not have permission.',
+
+    'Status code 404 means the resource or route was not found.',
+
+    'Status code 409 can represent a conflict such as a duplicate resource.',
+
+    'Status code 500 represents an unexpected server-side error.',
+
+    'Input should be validated on the backend even when the frontend has already validated it.',
+
+    'Pagination prevents a large collection from being returned in one response.',
+
+    'Rate limiting can protect APIs from excessive requests.',
+
+    'API versioning can help maintain compatibility when response structures change.',
+
+    'CORS controls whether a browser frontend from one origin may access a server on another origin.'
+  ],
+
+  interview:
+    'A REST API allows the frontend and backend to communicate through HTTP. Resources are represented by endpoints, and operations are performed using methods such as GET, POST, PATCH and DELETE. The API returns a response body, commonly in JSON, along with an HTTP status code. In the Healthcare Vitals Tracker, the frontend sends requests through the Supabase client to create and retrieve user-specific health readings.',
+
+  keyPoints: [
+    'Resources',
+    'Endpoints',
+    'HTTP methods',
+    'Request and response',
+    'JSON',
+    'Status codes',
+    'Path parameters',
+    'Query parameters',
+    'Headers',
+    'Statelessness',
+    'Validation',
+    'CORS'
+  ],
+
+  code: `// Retrieve all readings
+GET /api/readings
+
+// Retrieve one reading
+GET /api/readings/123
+
+// Create a reading
+POST /api/readings
+Content-Type: application/json
+
+{
+  "systolic": 120,
+  "diastolic": 80,
+  "measuredAt": "2026-07-30T10:30:00Z"
+}
+
+// Update part of a reading
+PATCH /api/readings/123
+Content-Type: application/json
+
+{
+  "systolic": 118
+}
+
+// Delete a reading
+DELETE /api/readings/123
+
+
+// Example frontend request
+
+async function createReading() {
+  const response = await fetch(
+    '/api/readings',
+    {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({
+        systolic: 120,
+        diastolic: 80
+      })
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      'Unable to create reading'
+    );
+  }
+
+  return response.json();
+}`,
+
+  followUps: [
+    'What is an API?',
+    'What is REST?',
+    'What is an endpoint?',
+    'GET versus POST?',
+    'PUT versus PATCH?',
+    'What is a request body?',
+    'What are HTTP status codes?',
+    'What does stateless mean?',
+    'What is CORS?',
+    'How do you secure an API?'
+  ],
+
+  cautions: [
+    'Do not describe REST as a programming language or library.',
+
+    'Do not use GET requests to perform destructive actions.',
+
+    'Do not confuse 401 and 403.',
+
+    'Frontend validation does not replace backend validation.',
+
+    'Do not assume every API response is successful. Always check the status or response.ok.',
+
+    'Do not send passwords or sensitive information through URL query parameters.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is an API?',
+      answer:
+        'An API is an interface that allows two software systems to exchange requests and responses.'
+    },
+
+    {
+      question: '2. What is REST?',
+      answer:
+        'REST is an architectural style for designing network APIs around resources and standard HTTP behaviour.'
+    },
+
+    {
+      question: '3. What is an endpoint?',
+      answer:
+        'An endpoint is a URL path through which a client accesses an API resource or operation.'
+    },
+
+    {
+      question: '4. What is a resource?',
+      answer:
+        'A resource is an entity managed by the API, such as a user, reading, order or appointment.'
+    },
+
+    {
+      question: '5. What does GET do?',
+      answer:
+        'GET retrieves a resource or collection and should not normally change server data.'
+    },
+
+    {
+      question: '6. What does POST do?',
+      answer:
+        'POST commonly creates a resource or submits data for processing.'
+    },
+
+    {
+      question: '7. PUT versus PATCH?',
+      answer:
+        'PUT commonly replaces a full resource representation, while PATCH updates selected fields.'
+    },
+
+    {
+      question: '8. What does DELETE do?',
+      answer:
+        'DELETE requests removal of a resource.'
+    },
+
+    {
+      question: '9. What is JSON?',
+      answer:
+        'JSON is a text-based data format commonly used to exchange structured information between frontend and backend systems.'
+    },
+
+    {
+      question: '10. What is the difference between path and query parameters?',
+      answer:
+        'A path parameter usually identifies a specific resource. Query parameters commonly filter, sort, search or paginate a collection.'
+    },
+
+    {
+      question: '11. What is an HTTP header?',
+      answer:
+        'A header contains metadata about a request or response, such as content type, authorisation or caching instructions.'
+    },
+
+    {
+      question: '12. What does stateless mean in REST?',
+      answer:
+        'Each request should contain the information needed to process it rather than relying on an undocumented conversation state stored between requests.'
+    },
+
+    {
+      question: '13. What is the difference between 401 and 403?',
+      answer:
+        '401 means valid authentication is missing or failed. 403 means the user is authenticated but not authorised for the requested action.'
+    },
+
+    {
+      question: '14. What is CORS?',
+      answer:
+        'CORS is a browser security mechanism that controls whether frontend code from one origin can access resources from another origin.'
+    },
+
+    {
+      question: '15. How do you secure a REST API?',
+      answer:
+        'Use authentication, authorisation, HTTPS, backend validation, access-control rules, rate limiting and careful handling of secrets and error messages.'
+    },
+
+    {
+      question: '16. How did you use APIs in your project?',
+      answer:
+        'The React frontend used the Supabase client and generated API layer to insert and retrieve authenticated users’ health records.'
+    }
+  ]
+},
   {
-    id: 'authentication', title: 'Authentication', category: 'backend', short: 'Verifies who a user is.',
-    simple: [
-      'Authentication verifies the identity of a user.',
-      'Authorisation determines what that authenticated user is allowed to access.',
-      'Secure systems do not store passwords as plain text.'
-    ],
-    technical: [
-      'A successful login normally results in a server-side session or a signed token.',
-      'Protected routes improve user experience, but backend access controls provide the actual security boundary.',
-      'Password hashing and token generation should be delegated to secure libraries or managed services.'
-    ],
-    interview: 'Authentication verifies the user’s identity. In the Healthcare Vitals Tracker, users register or log in through Supabase Authentication. After successful authentication, the application maintains the user session and permits access to that user’s health records.',
-    followUps: ['Authentication versus authorisation?', 'Session versus token?', 'Why not store plain-text passwords?']
-  },
+  id: 'authentication',
+  title: 'Authentication',
+  category: 'backend',
+
+  short:
+    'The process of verifying the identity of a user before providing access to protected functionality.',
+
+  simple: [
+    'Authentication verifies who a user is.',
+
+    'A common authentication method uses an email address and password.',
+
+    'The user submits credentials through a login form.',
+
+    'The authentication service verifies those credentials.',
+
+    'If verification succeeds, the application creates or receives a session.',
+
+    'The session allows the application to remember that the user is logged in.',
+
+    'Protected pages should only be available to authenticated users.',
+
+    'Authentication and authorisation are different concepts.',
+
+    'Authentication answers: Who are you?',
+
+    'Authorisation answers: What are you allowed to access?',
+
+    'Passwords should not be stored as plain text.',
+
+    'Passwords are normally processed using a secure password-hashing algorithm.',
+
+    'Applications may use session-based or token-based authentication.',
+
+    'Logging out should invalidate or remove the active session.',
+
+    'In the Healthcare Vitals Tracker, users authenticate before viewing or managing their health records.'
+  ],
+
+  technical: [
+    'Authentication proves a user identity using one or more factors.',
+
+    'Common factors include something the user knows, owns or is.',
+
+    'Password-based authentication uses something the user knows.',
+
+    'Multi-factor authentication requires more than one type of factor.',
+
+    'Passwords should be salted and processed using a suitable password-hashing algorithm.',
+
+    'Hashing is a one-way transformation, while encryption is designed to be reversible with a key.',
+
+    'A secure application should never store passwords as plain text.',
+
+    'Session-based authentication commonly stores session information on the server and sends the browser a session identifier.',
+
+    'Token-based authentication commonly gives the client a signed token that accompanies future requests.',
+
+    'An access token is usually short-lived and is used to access protected resources.',
+
+    'A refresh token can be used to obtain another access token without asking the user to log in again.',
+
+    'A token is not automatically encrypted. Signed tokens protect integrity but their payload may still be readable.',
+
+    'Cookies can store session identifiers and support flags such as HttpOnly, Secure and SameSite.',
+
+    'HttpOnly helps prevent client-side JavaScript from directly reading a cookie.',
+
+    'Secure restricts cookie transmission to HTTPS connections.',
+
+    'SameSite helps reduce some cross-site request-forgery risks.',
+
+    'Storing sensitive tokens in localStorage can expose them if the application has a cross-site scripting vulnerability.',
+
+    'Protected frontend routes improve user experience but do not provide complete security by themselves.',
+
+    'The backend must verify authentication and authorisation for every protected data request.',
+
+    'Logging out should remove or invalidate credentials and clear user-specific application state.',
+
+    'Password-reset flows should use short-lived, unpredictable links or codes.',
+
+    'Login attempts may require rate limiting to reduce brute-force attacks.',
+
+    'Error messages should avoid revealing whether a specific email account exists.',
+
+    'HTTPS protects credentials and tokens while they travel between the client and server.',
+
+    'Authentication identifies the user, while row-level or role-based policies determine which records that user may access.'
+  ],
+
+  interview:
+    'Authentication verifies a user’s identity. In the Healthcare Vitals Tracker, users register or log in using email and password through Supabase Authentication. After successful verification, the application receives an authenticated session and allows the user to access protected features. Authentication identifies the user, while database policies and authorisation rules must ensure that the user can access only their own records.',
+
+  keyPoints: [
+    'Identity verification',
+    'Email and password',
+    'Password hashing',
+    'Sessions',
+    'Tokens',
+    'Access tokens',
+    'Refresh tokens',
+    'Protected routes',
+    'Logout',
+    'Authentication versus authorisation',
+    'HTTPS',
+    'Security'
+  ],
+
+  code: `type AuthUser = {
+  id: string;
+  email: string;
+};
+
+type AuthState =
+  | {
+      status: 'loading';
+      user: null;
+    }
+  | {
+      status: 'authenticated';
+      user: AuthUser;
+    }
+  | {
+      status: 'unauthenticated';
+      user: null;
+    };
+
+function canAccessDashboard(
+  authState: AuthState
+): boolean {
+  return (
+    authState.status ===
+    'authenticated'
+  );
+}
+
+/*
+Typical login flow:
+
+1. User submits email and password.
+2. Authentication service verifies credentials.
+3. Service returns a session or token.
+4. Application stores the active session safely.
+5. Protected requests include authentication.
+6. Backend verifies identity and permissions.
+7. Logout removes or invalidates the session.
+*/`,
+
+  followUps: [
+    'What is authentication?',
+    'Authentication versus authorisation?',
+    'How should passwords be stored?',
+    'Hashing versus encryption?',
+    'Session versus token authentication?',
+    'What is an access token?',
+    'What is a refresh token?',
+    'What is a protected route?',
+    'What happens during logout?',
+    'Why is backend validation required?'
+  ],
+
+  cautions: [
+    'Do not say authentication automatically prevents users from accessing one another’s records.',
+
+    'Do not claim you implemented password hashing when Supabase handled it.',
+
+    'Do not store plain-text passwords.',
+
+    'Do not treat frontend route protection as the only security layer.',
+
+    'Do not say every token is encrypted.',
+
+    'Do not expose private tokens or credentials in GitHub repositories.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is authentication?',
+      answer:
+        'Authentication is the process of verifying the identity of a user or system.'
+    },
+
+    {
+      question: '2. What is authorisation?',
+      answer:
+        'Authorisation decides which resources or actions an authenticated user is permitted to access.'
+    },
+
+    {
+      question: '3. Authentication versus authorisation?',
+      answer:
+        'Authentication answers who the user is. Authorisation answers what that user is allowed to do.'
+    },
+
+    {
+      question: '4. How should passwords be stored?',
+      answer:
+        'Passwords should be salted and processed through a secure password-hashing algorithm rather than stored as plain text.'
+    },
+
+    {
+      question: '5. Hashing versus encryption?',
+      answer:
+        'Hashing is intended to be one-way. Encryption can be reversed using the correct key.'
+    },
+
+    {
+      question: '6. What is a session?',
+      answer:
+        'A session represents an authenticated interaction and allows the application to recognise the user across requests.'
+    },
+
+    {
+      question: '7. Session-based versus token-based authentication?',
+      answer:
+        'Session-based systems commonly store session state on the server. Token-based systems give the client a signed credential that is verified with requests.'
+    },
+
+    {
+      question: '8. What is an access token?',
+      answer:
+        'An access token is a credential used to access protected APIs, commonly for a limited period.'
+    },
+
+    {
+      question: '9. What is a refresh token?',
+      answer:
+        'A refresh token is used to request a new access token after the current access token expires.'
+    },
+
+    {
+      question: '10. What is a protected route?',
+      answer:
+        'A protected route is a page or API endpoint that requires a valid authenticated session.'
+    },
+
+    {
+      question: '11. Is hiding a page in React enough security?',
+      answer:
+        'No. The backend and database must also verify the user and enforce permissions because frontend checks can be bypassed.'
+    },
+
+    {
+      question: '12. What happens during logout?',
+      answer:
+        'The active session or tokens should be removed or invalidated, and user-specific application data should be cleared.'
+    },
+
+    {
+      question: '13. What is multi-factor authentication?',
+      answer:
+        'It requires more than one type of verification factor, such as a password plus a one-time code.'
+    },
+
+    {
+      question: '14. How was authentication used in your project?',
+      answer:
+        'Supabase Authentication handled email registration, login and session management. The React application used the authenticated session to control access to the health dashboard.'
+    }
+  ]
+},
   {
-    id: 'supabase-auth', title: 'Supabase Authentication', category: 'backend', short: 'Managed registration, login and session service.',
-    simple: [
-      'Supabase Authentication handles registration, login and user sessions.',
-      'It can support email/password login, magic links, password reset and social login.',
-      'Using a managed service avoids implementing credential storage manually.'
-    ],
-    technical: [
-      'Supabase Auth issues identity information that can be used with database access policies.',
-      'The authenticated user ID can be associated with application records.',
-      'The client can listen for authentication-state changes and restore existing sessions.'
-    ],
-    interview: 'I used Supabase Authentication to handle email-based registration, login and session management. This allowed me to focus on application features while using a managed authentication service rather than implementing credential storage manually.',
-    followUps: ['How did you protect user-specific rows?', 'How did session restoration work?', 'What happens on logout?']
-  },
+  id: 'supabase-authentication',
+  title: 'Supabase Authentication',
+  category: 'backend',
+
+  short:
+    'A managed authentication service that provides registration, login, logout and user-session handling.',
+
+  simple: [
+    'Supabase Authentication is a managed authentication service.',
+
+    'It is part of the Supabase Backend-as-a-Service platform.',
+
+    'It can support email and password registration and login.',
+
+    'It can also support magic links, one-time passwords and social login providers.',
+
+    'Supabase creates and manages authenticated users.',
+
+    'After login, Supabase provides a user session.',
+
+    'The session contains information that allows the application and Supabase services to identify the logged-in user.',
+
+    'The React application can listen for authentication-state changes.',
+
+    'Supabase provides functions for signing up, signing in and signing out.',
+
+    'Supabase Authentication works with PostgreSQL access policies.',
+
+    'The authenticated user ID can be linked to rows stored in the database.',
+
+    'Row Level Security can restrict database rows according to the authenticated user.',
+
+    'Using Supabase Authentication avoids implementing password storage and token generation manually.',
+
+    'The frontend still needs loading states, error messages and protected navigation.',
+
+    'In the Healthcare Vitals Tracker, Supabase Authentication handles email login and user-session management.'
+  ],
+
+  technical: [
+    'Supabase Authentication manages user identities and authentication sessions.',
+
+    'The auth.signUp function can register a user using email and password.',
+
+    'The auth.signInWithPassword function authenticates an existing email-password user.',
+
+    'The auth.signOut function removes the active session from the client and signs the user out.',
+
+    'The auth.getSession function returns the current locally available session.',
+
+    'The auth.getUser function can retrieve authenticated user information through Supabase authentication verification.',
+
+    'The onAuthStateChange listener reports events such as sign in, sign out and token refresh.',
+
+    'Supabase sessions include access and refresh credentials managed by the Supabase client.',
+
+    'The authenticated user has a unique ID.',
+
+    'That user ID can be stored in application-table rows as an ownership field.',
+
+    'Supabase exposes the authenticated user ID to PostgreSQL policies through auth.uid().',
+
+    'Row Level Security policies can compare auth.uid() with a row user_id field.',
+
+    'A SELECT policy can allow users to read only rows they own.',
+
+    'An INSERT policy can require the inserted user_id to match auth.uid().',
+
+    'UPDATE and DELETE policies can similarly restrict changes to owned rows.',
+
+    'Frontend filtering alone is not a reliable security boundary.',
+
+    'Row Level Security should be enabled on tables containing user-specific data.',
+
+    'The public Supabase anon key is designed for client applications when Row Level Security policies are correctly configured.',
+
+    'The service-role key is highly privileged and must never be included in browser code or public repositories.',
+
+    'Email confirmation may be enabled, requiring users to verify their email before normal access.',
+
+    'Password-reset flows can be handled through Supabase recovery links.',
+
+    'Authentication errors should be shown to users in a clear but safe way.',
+
+    'Application code should handle initial session loading before deciding whether to show a protected page.',
+
+    'Logging out should clear user-specific state such as cached readings.',
+
+    'Supabase provides the authentication mechanism, but the developer must still configure database policies and application behaviour correctly.'
+  ],
+
+  interview:
+    'Supabase Authentication is the managed authentication service I used in the Healthcare Vitals Tracker. It handled email-based registration, login, logout and session management. After login, the React application used the authenticated user information to load the appropriate health records. For secure user-specific access, each record should be associated with the authenticated user ID and protected using PostgreSQL Row Level Security policies based on auth.uid().',
+
+  keyPoints: [
+    'signUp',
+    'signInWithPassword',
+    'signOut',
+    'Sessions',
+    'Authenticated user',
+    'Auth state listener',
+    'User ID',
+    'Row Level Security',
+    'auth.uid()',
+    'Email verification',
+    'Password recovery',
+    'Anon key security'
+  ],
+
+  code: `import {
+  createClient
+} from '@supabase/supabase-js';
+
+const supabaseUrl =
+  import.meta.env.VITE_SUPABASE_URL;
+
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabase =
+  createClient(
+    supabaseUrl,
+    supabaseAnonKey
+  );
+
+export async function signUp(
+  email: string,
+  password: string
+) {
+  const {
+    data,
+    error
+  } = await supabase.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function signIn(
+  email: string,
+  password: string
+) {
+  const {
+    data,
+    error
+  } =
+    await supabase.auth
+      .signInWithPassword({
+        email,
+        password
+      });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}
+
+export async function signOut() {
+  const {
+    error
+  } = await supabase.auth.signOut();
+
+  if (error) {
+    throw error;
+  }
+}
+
+/*
+Example ownership policy idea:
+
+Users may read a row only when:
+
+auth.uid() = user_id
+*/`,
+
+  followUps: [
+    'What is Supabase Authentication?',
+    'How does signUp work?',
+    'How does signInWithPassword work?',
+    'What is a Supabase session?',
+    'What is onAuthStateChange?',
+    'How are records linked to users?',
+    'What is Row Level Security?',
+    'What does auth.uid() represent?',
+    'Is the anon key safe in frontend code?',
+    'Why must the service-role key remain private?'
+  ],
+
+  cautions: [
+    'Only claim Row Level Security if you have enabled and configured it in the project.',
+
+    'Do not include the Supabase service-role key in frontend code.',
+
+    'Do not say frontend filtering secures database rows.',
+
+    'Do not claim you implemented password hashing manually. Supabase Authentication manages credentials.',
+
+    'Do not expose environment files containing private secrets in GitHub.',
+
+    'The anon key is intended for client use only when database policies are configured correctly.'
+  ],
+
+  qa: [
+    {
+      question: '1. What is Supabase Authentication?',
+      answer:
+        'It is a managed authentication service that handles user registration, login, logout and session management.'
+    },
+
+    {
+      question: '2. Why did you use Supabase Authentication?',
+      answer:
+        'It provided email authentication and session management without requiring me to build password storage and token handling from scratch.'
+    },
+
+    {
+      question: '3. What does signUp do?',
+      answer:
+        'signUp creates a new Supabase authentication user using credentials such as email and password.'
+    },
+
+    {
+      question: '4. What does signInWithPassword do?',
+      answer:
+        'It verifies an existing user’s email and password and returns authenticated user and session information when successful.'
+    },
+
+    {
+      question: '5. What does signOut do?',
+      answer:
+        'It removes the current authenticated session and signs the user out.'
+    },
+
+    {
+      question: '6. What is a Supabase session?',
+      answer:
+        'A session contains authentication information used to identify the active user and authorise Supabase requests.'
+    },
+
+    {
+      question: '7. What is onAuthStateChange?',
+      answer:
+        'It is a listener that reports authentication events such as sign in, sign out and token refresh.'
+    },
+
+    {
+      question: '8. How do you connect database rows to a user?',
+      answer:
+        'Store the authenticated user’s ID in an ownership column such as user_id.'
+    },
+
+    {
+      question: '9. What is Row Level Security?',
+      answer:
+        'Row Level Security is a PostgreSQL feature that controls which individual rows a user may select, insert, update or delete.'
+    },
+
+    {
+      question: '10. What does auth.uid() mean?',
+      answer:
+        'auth.uid() returns the ID of the currently authenticated Supabase user inside a PostgreSQL policy.'
+    },
+
+    {
+      question: '11. How can users be restricted to their own rows?',
+      answer:
+        'Create Row Level Security policies that compare auth.uid() with the row user_id value.'
+    },
+
+    {
+      question: '12. Is the Supabase anon key safe in the frontend?',
+      answer:
+        'It is designed for client-side use, but security depends on correctly configured Row Level Security policies. It is not a substitute for access control.'
+    },
+
+    {
+      question: '13. What is the service-role key?',
+      answer:
+        'It is a privileged server-side key that can bypass normal Row Level Security. It must never be exposed in frontend code.'
+    },
+
+    {
+      question: '14. How did you use Supabase Authentication in your project?',
+      answer:
+        'I used it for email registration, login, logout and maintaining the active user session in the Healthcare Vitals Tracker.'
+    },
+
+    {
+      question: '15. What should happen when the user logs out?',
+      answer:
+        'The session should be removed, protected pages should become inaccessible and any cached user-specific readings should be cleared.'
+    }
+  ]
+},
   {
     id: 'sql', title: 'SQL', category: 'databases', short: 'Language for defining and querying relational data.',
     simple: [
